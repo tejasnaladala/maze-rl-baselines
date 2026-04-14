@@ -1,7 +1,5 @@
 # Approach C: NeurIPS-Grade Experiment Suite
 
-> **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
-
 **Goal:** Build and run a comprehensive experiment suite comparing spiking vs non-spiking RL agents on cross-environment generalization, with enough rigor for IEEE Trans Cybernetics or Frontiers in Neuroscience.
 
 **Architecture:** Single Python script (`research/01_experiments/run_approach_c.py`) that runs all experiments, saves per-run JSON, and generates figures. Uses existing `engram.spiking_dqn.SpikingQNetwork` for spiking agents and `stable_baselines3` for strong baselines. All runs are resumable via checkpoint files.
