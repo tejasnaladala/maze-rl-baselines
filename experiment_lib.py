@@ -586,12 +586,12 @@ class DoubleDQNAgent:
 
     def learn(self, obs: list[float], action: int, reward: float, next_obs: list[float], done: bool) -> None:
         self.replay.push(obs, action, reward, next_obs, float(done))
-        if len(self.replay) < 32:
+        if len(self.replay) < self.batch_size:
             return
-        o, a, r, no, d = self.replay.sample(32)
+        o, a, r, no, d = self.replay.sample(self.batch_size)
+        o, a, r, no, d = o.to(self.device), a.to(self.device), r.to(self.device), no.to(self.device), d.to(self.device)
         q = self.net(o).gather(1, a.unsqueeze(1)).squeeze(1)
         with torch.no_grad():
-            # Double DQN: select action with online net, evaluate with target net
             best_actions = self.net(no).argmax(dim=1)
             nq = self.target(no).gather(1, best_actions.unsqueeze(1)).squeeze(1)
             target = r + self.gamma * nq * (1 - d)
