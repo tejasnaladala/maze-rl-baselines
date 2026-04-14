@@ -18,9 +18,63 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-import sys, os
-sys.path.insert(0, str(Path(__file__).parent.parent.parent))
-from engram.spiking_dqn import SpikingQNetwork, ReplayBuffer
+import snntorch as snn
+from snntorch import surrogate
+
+
+# ============================================================
+# SPIKING Q-NETWORK (inlined -- no Rust dependency needed)
+# ============================================================
+
+class SpikingQNetwork(nn.Module):
+    """Spiking Q-Network with surrogate gradients, non-spiking LI output."""
+    def __init__(self, obs_dim: int, num_actions: int, hidden: int = 64, num_steps: int = 8):
+        super().__init__()
+        self.num_steps = num_steps
+        self.num_actions = num_actions
+        sg = surrogate.atan(alpha=2.0)
+        self.fc1 = nn.Linear(obs_dim, hidden)
+        self.lif1 = snn.Leaky(beta=0.9, learn_beta=True, spike_grad=sg, reset_mechanism='subtract')
+        self.fc2 = nn.Linear(hidden, hidden // 2)
+        self.lif2 = snn.Leaky(beta=0.85, learn_beta=True, spike_grad=sg, reset_mechanism='subtract')
+        self.fc_out = nn.Linear(hidden // 2, num_actions)
+        self.li_out = snn.Leaky(beta=0.95, learn_beta=True, spike_grad=sg, reset_mechanism='none', output=True)
+
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        batch = x.shape[0]
+        mem1 = self.lif1.init_leaky()
+        mem2 = self.lif2.init_leaky()
+        mem_out = self.li_out.init_leaky()
+        max_mem = torch.full((batch, self.num_actions), -1e9, device=x.device)
+        for _ in range(self.num_steps):
+            spk1, mem1 = self.lif1(self.fc1(x), mem1)
+            spk2, mem2 = self.lif2(self.fc2(spk1), mem2)
+            _, mem_out = self.li_out(self.fc_out(spk2), mem_out)
+            max_mem = torch.max(max_mem, mem_out)
+        return max_mem
+
+
+class ReplayBuffer:
+    """Experience replay buffer."""
+    def __init__(self, capacity: int = 10000):
+        self.buffer: deque = deque(maxlen=capacity)
+
+    def push(self, obs, action, reward, next_obs, done):
+        self.buffer.append((obs, action, reward, next_obs, done))
+
+    def sample(self, batch_size: int):
+        batch = random.sample(self.buffer, min(batch_size, len(self.buffer)))
+        obs, actions, rewards, next_obs, dones = zip(*batch)
+        return (
+            torch.FloatTensor(np.array(obs)),
+            torch.LongTensor(actions),
+            torch.FloatTensor(rewards),
+            torch.FloatTensor(np.array(next_obs)),
+            torch.FloatTensor(dones),
+        )
+
+    def __len__(self):
+        return len(self.buffer)
 
 # ============================================================
 # CONSTANTS
