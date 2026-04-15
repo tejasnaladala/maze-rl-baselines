@@ -1,0 +1,180 @@
+
+======================================================================
+  Loading results from 7 directories
+======================================================================
+  insurance_backup\exp_h200                                 503 files
+  raw_results\exp_oracle_random                             600 files
+  raw_results\exp_reward_ablation_fast                      155 files
+  raw_results\exp_reward_ablation                            19 files
+  raw_results\exp_memory_agents                               2 files
+  raw_results\exp_v2_tabular                                240 files
+  raw_results\exp_capacity_study                              0 files
+
+  TOTAL records: 227850
+  Canonical agents: ['BFSOracle', 'DRQN', 'DoubleDQN', 'FeatureQ', 'FeatureQ_v2', 'LevyRandom_1.5', 'LevyRandom_2.0', 'MLP_DQN', 'NoBackRandom', 'Random', 'TabularQ', 'TabularQ_v2', 'full::DoubleDQN', 'full::FeatureQ', 'full::MLP_DQN', 'full::NoBackRandom', 'full::Random', 'vanilla::FeatureQ', 'vanilla::MLP_DQN', 'vanilla::NoBackRandom', 'vanilla::Random']
+  Maze sizes: [9, 11, 13, 17, 21, 25]
+
+======================================================================
+  Table 1: Per-agent success rates (test phase, 95% bootstrap CI)
+======================================================================
+Agent              Size  n    mean     95% CI                
+BFSOracle          9     20   100.0%   [100.0, 100.0]
+DRQN               9     2     22.0%   [  6.0,  38.0]
+DoubleDQN          9     20    15.8%   [ 13.8,  17.9]
+FeatureQ           9     20    19.6%   [ 17.3,  21.8]
+FeatureQ_v2        9     20    35.3%   [ 32.4,  38.0]
+LevyRandom_1.5     9     20    34.3%   [ 31.1,  37.4]
+LevyRandom_2.0     9     20    40.3%   [ 37.3,  43.3]
+MLP_DQN            9     20    19.3%   [ 15.9,  22.9]
+NoBackRandom       9     20    52.2%   [ 49.2,  55.1]
+Random             9     20    31.7%   [ 29.6,  34.0]
+TabularQ           9     20     0.5%   [  0.1,   1.0]
+TabularQ_v2        9     20    29.8%   [ 26.1,  33.6]
+BFSOracle          11    20   100.0%   [100.0, 100.0]
+DoubleDQN          11    20     9.7%   [  7.9,  11.4]
+FeatureQ           11    20    16.7%   [ 14.0,  19.4]
+FeatureQ_v2        11    20    22.4%   [ 19.1,  26.1]
+LevyRandom_1.5     11    20    20.7%   [ 18.0,  23.6]
+LevyRandom_2.0     11    20    23.0%   [ 20.7,  25.5]
+MLP_DQN            11    20    10.3%   [  8.5,  11.9]
+NoBackRandom       11    20    36.9%   [ 34.1,  39.7]
+Random             11    20    18.9%   [ 17.4,  20.5]
+TabularQ           11    20     0.3%   [  0.0,   0.6]
+TabularQ_v2        11    20    16.2%   [ 12.4,  19.9]
+BFSOracle          13    20   100.0%   [100.0, 100.0]
+DoubleDQN          13    20     3.4%   [  2.0,   5.0]
+FeatureQ           13    20    11.1%   [  8.5,  13.9]
+FeatureQ_v2        13    20    12.1%   [ 10.5,  13.8]
+LevyRandom_1.5     13    20    12.5%   [ 10.8,  14.2]
+LevyRandom_2.0     13    20    15.8%   [ 13.9,  18.0]
+MLP_DQN            13    20     4.1%   [  2.7,   5.6]
+NoBackRandom       13    20    25.8%   [ 23.6,  28.2]
+Random             13    20    12.3%   [ 10.1,  14.4]
+TabularQ           13    20     0.1%   [  0.0,   0.3]
+TabularQ_v2        13    20     9.0%   [  6.5,  11.6]
+BFSOracle          17    20   100.0%   [100.0, 100.0]
+DoubleDQN          17    20     0.5%   [  0.1,   1.0]
+FeatureQ           17    20     4.9%   [  3.6,   6.3]
+FeatureQ_v2        17    20     1.0%   [  0.4,   1.8]
+LevyRandom_1.5     17    20     5.9%   [  4.5,   7.4]
+LevyRandom_2.0     17    20     6.9%   [  5.7,   8.0]
+MLP_DQN            17    20     0.9%   [  0.3,   1.6]
+NoBackRandom       17    20    14.8%   [ 12.9,  16.7]
+Random             17    20     4.4%   [  3.3,   5.5]
+TabularQ           17    20     0.0%   [  0.0,   0.0]
+TabularQ_v2        17    20     1.1%   [  0.5,   1.8]
+BFSOracle          21    20   100.0%   [100.0, 100.0]
+DoubleDQN          21    20     0.2%   [  0.0,   0.5]
+FeatureQ           21    20     3.1%   [  2.2,   4.1]
+FeatureQ_v2        21    20     0.3%   [  0.0,   0.6]
+LevyRandom_1.5     21    20     3.2%   [  2.4,   4.0]
+LevyRandom_2.0     21    20     4.1%   [  3.1,   5.2]
+MLP_DQN            21    20     0.2%   [  0.0,   0.5]
+NoBackRandom       21    20     7.9%   [  6.0,   9.9]
+Random             21    20     2.1%   [  1.4,   2.7]
+TabularQ           21    20     0.1%   [  0.0,   0.3]
+TabularQ_v2        21    20     0.2%   [  0.0,   0.5]
+BFSOracle          25    20   100.0%   [100.0, 100.0]
+FeatureQ           25    1      0.0%   [  0.0,   0.0]
+FeatureQ_v2        25    20     0.0%   [  0.0,   0.0]
+LevyRandom_1.5     25    20     1.8%   [  1.2,   2.4]
+LevyRandom_2.0     25    20     3.1%   [  2.2,   4.0]
+NoBackRandom       25    20     4.5%   [  3.2,   5.9]
+Random             25    20     1.5%   [  0.9,   2.2]
+TabularQ           25    1      0.0%   [  0.0,   0.0]
+TabularQ_v2        25    20     0.0%   [  0.0,   0.0]
+
+======================================================================
+  Table 2: Pairwise vs Random (paired bootstrap, Holm-corrected)
+======================================================================
+  SKIP DRQN vs Random @ size=9: only 2 common seeds (need >= 3)
+  SKIP FeatureQ vs Random @ size=25: only 1 common seeds (need >= 3)
+  SKIP TabularQ vs Random @ size=25: only 1 common seeds (need >= 3)
+Size  Agent              n    agent%   ref%     diff%      d       p_holm     sig
+9     BFSOracle          20   100.0%   31.7%   +68.3%  +18.42  0.0000    ***
+9     DoubleDQN          20    15.8%   31.7%   -15.9%  -3.14  0.0000    ***
+9     FeatureQ           20    19.6%   31.7%   -12.1%  -2.32  0.0000    ***
+9     FeatureQ_v2        20    35.3%   31.7%    +3.6%  +0.60  0.7982    
+9     LevyRandom_1.5     20    34.3%   31.7%    +2.6%  +0.41  1.0000    
+9     LevyRandom_2.0     20    40.3%   31.7%    +8.6%  +1.41  0.0000    ***
+9     MLP_DQN            20    19.3%   31.7%   -12.4%  -1.82  0.0000    ***
+9     NoBackRandom       20    52.2%   31.7%   +20.5%  +3.32  0.0000    ***
+9     TabularQ           20     0.5%   31.7%   -31.2%  -8.24  0.0000    ***
+9     TabularQ_v2        20    29.8%   31.7%    -1.9%  -0.26  1.0000    
+11    BFSOracle          20   100.0%   18.9%   +81.1%  +31.02  0.0000    ***
+11    DoubleDQN          20     9.7%   18.9%    -9.2%  -2.35  0.0000    ***
+11    FeatureQ           20    16.7%   18.9%    -2.2%  -0.43  1.0000    
+11    FeatureQ_v2        20    22.4%   18.9%    +3.5%  +0.55  1.0000    
+11    LevyRandom_1.5     20    20.7%   18.9%    +1.8%  +0.34  1.0000    
+11    LevyRandom_2.0     20    23.0%   18.9%    +4.1%  +0.86  0.0576    
+11    MLP_DQN            20    10.3%   18.9%    -8.6%  -2.24  0.0000    ***
+11    NoBackRandom       20    36.9%   18.9%   +18.0%  +3.40  0.0000    ***
+11    TabularQ           20     0.3%   18.9%   -18.6%  -6.98  0.0000    ***
+11    TabularQ_v2        20    16.2%   18.9%    -2.7%  -0.41  1.0000    
+13    BFSOracle          20   100.0%   12.3%   +87.7%  +24.62  0.0000    ***
+13    DoubleDQN          20     3.4%   12.3%    -8.9%  -2.05  0.0000    ***
+13    FeatureQ           20    11.1%   12.3%    -1.2%  -0.21  1.0000    
+13    FeatureQ_v2        20    12.1%   12.3%    -0.2%  -0.04  1.0000    
+13    LevyRandom_1.5     20    12.5%   12.3%    +0.2%  +0.04  1.0000    
+13    LevyRandom_2.0     20    15.8%   12.3%    +3.5%  +0.71  0.0000    ***
+13    MLP_DQN            20     4.1%   12.3%    -8.2%  -1.92  0.0000    ***
+13    NoBackRandom       20    25.8%   12.3%   +13.5%  +2.58  0.0000    ***
+13    TabularQ           20     0.1%   12.3%   -12.2%  -3.41  0.0000    ***
+13    TabularQ_v2        20     9.0%   12.3%    -3.3%  -0.60  0.6748    
+17    BFSOracle          20   100.0%    4.4%   +95.6%  +51.14  0.0000    ***
+17    DoubleDQN          20     0.5%    4.4%    -3.9%  -1.93  0.0000    ***
+17    FeatureQ           20     4.9%    4.4%    +0.5%  +0.17  1.0000    
+17    FeatureQ_v2        20     1.0%    4.4%    -3.4%  -1.54  0.0000    ***
+17    LevyRandom_1.5     20     5.9%    4.4%    +1.5%  +0.49  0.5216    
+17    LevyRandom_2.0     20     6.9%    4.4%    +2.5%  +0.93  0.0000    ***
+17    MLP_DQN            20     0.9%    4.4%    -3.5%  -1.62  0.0000    ***
+17    NoBackRandom       20    14.8%    4.4%   +10.4%  +2.81  0.0000    ***
+17    TabularQ           20     0.0%    4.4%    -4.4%  -2.35  0.0000    ***
+17    TabularQ_v2        20     1.1%    4.4%    -3.3%  -1.53  0.0040    **
+21    BFSOracle          20   100.0%    2.1%   +97.9%  +91.19  0.0000    ***
+21    DoubleDQN          20     0.2%    2.1%    -1.9%  -1.64  0.0000    ***
+21    FeatureQ           20     3.1%    2.1%    +1.0%  +0.53  0.5340    
+21    FeatureQ_v2        20     0.3%    2.1%    -1.8%  -1.51  0.0000    ***
+21    LevyRandom_1.5     20     3.2%    2.1%    +1.1%  +0.64  0.8736    
+21    LevyRandom_2.0     20     4.1%    2.1%    +2.0%  +0.98  0.0076    **
+21    MLP_DQN            20     0.2%    2.1%    -1.9%  -1.64  0.0000    ***
+21    NoBackRandom       20     7.9%    2.1%    +5.8%  +1.72  0.0000    ***
+21    TabularQ           20     0.1%    2.1%    -2.0%  -1.79  0.0000    ***
+21    TabularQ_v2        20     0.2%    2.1%    -1.9%  -1.64  0.0000    ***
+25    BFSOracle          20   100.0%    1.5%   +98.5%  +88.57  0.0000    ***
+25    FeatureQ_v2        20     0.0%    1.5%    -1.5%  -1.35  0.0000    ***
+25    LevyRandom_1.5     20     1.8%    1.5%    +0.3%  +0.20  1.0000    
+25    LevyRandom_2.0     20     3.1%    1.5%    +1.6%  +0.84  0.0782    
+25    NoBackRandom       20     4.5%    1.5%    +3.0%  +1.20  0.0000    ***
+25    TabularQ_v2        20     0.0%    1.5%    -1.5%  -1.35  0.0000    ***
+
+======================================================================
+  Table 3: K4 Reward Ablation (9x9 only)
+======================================================================
+  26100 ablation records at 9x9
+Config::Agent                  n    mean     95% CI                
+full::DoubleDQN                3     12.0%   [  8.0,  20.0]
+full::FeatureQ                 20    35.3%   [ 32.2,  38.1]
+full::MLP_DQN                  20    19.3%   [ 16.5,  22.4]
+full::NoBackRandom             20    52.2%   [ 49.2,  55.1]
+full::Random                   20    31.7%   [ 29.6,  34.0]
+vanilla::FeatureQ              20    17.4%   [ 14.5,  20.3]
+vanilla::MLP_DQN               15    15.1%   [ 11.3,  20.0]
+vanilla::NoBackRandom          20    52.2%   [ 49.2,  55.1]
+vanilla::Random                20    31.7%   [ 29.6,  34.0]
+
+  K4 decisive pairwise tests (full vs vanilla, paired on seeds):
+    Random          full= 31.7% vanilla= 31.7% delta= +0.0% [ +0.0,  +0.0] d=+0.00 p=1.0000
+    NoBackRandom    full= 52.2% vanilla= 52.2% delta= +0.0% [ +0.0,  +0.0] d=+0.00 p=1.0000
+    FeatureQ        full= 35.3% vanilla= 17.4% delta=-17.9% [-22.1, -13.4] d=-2.66 p=0.0000
+
+======================================================================
+  Headline JSON (for reproduce.py pinning)
+======================================================================
+  Headline written to analysis_output\final\headline.json
+
+======================================================================
+  DONE
+======================================================================
+  All outputs in analysis_output\final
+  Run 'python reproduce.py freeze --out manifest.json' to pin results

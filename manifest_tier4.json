@@ -1,0 +1,2724 @@
+{
+  "headline": {
+    "BFSOracle": {
+      "11": {
+        "max": 1.0,
+        "mean_success": 1.0,
+        "min": 1.0,
+        "n_seeds": 20
+      },
+      "13": {
+        "max": 1.0,
+        "mean_success": 1.0,
+        "min": 1.0,
+        "n_seeds": 20
+      },
+      "17": {
+        "max": 1.0,
+        "mean_success": 1.0,
+        "min": 1.0,
+        "n_seeds": 20
+      },
+      "21": {
+        "max": 1.0,
+        "mean_success": 1.0,
+        "min": 1.0,
+        "n_seeds": 20
+      },
+      "25": {
+        "max": 1.0,
+        "mean_success": 1.0,
+        "min": 1.0,
+        "n_seeds": 20
+      },
+      "9": {
+        "max": 1.0,
+        "mean_success": 1.0,
+        "min": 1.0,
+        "n_seeds": 20
+      }
+    },
+    "LevyRandom_1.5": {
+      "11": {
+        "max": 0.36,
+        "mean_success": 0.20700000000000002,
+        "min": 0.1,
+        "n_seeds": 20
+      },
+      "13": {
+        "max": 0.2,
+        "mean_success": 0.12500000000000006,
+        "min": 0.06,
+        "n_seeds": 20
+      },
+      "17": {
+        "max": 0.14,
+        "mean_success": 0.05900000000000001,
+        "min": 0.0,
+        "n_seeds": 20
+      },
+      "21": {
+        "max": 0.06,
+        "mean_success": 0.03200000000000001,
+        "min": 0.0,
+        "n_seeds": 20
+      },
+      "25": {
+        "max": 0.04,
+        "mean_success": 0.018,
+        "min": 0.0,
+        "n_seeds": 20
+      },
+      "9": {
+        "max": 0.46,
+        "mean_success": 0.343,
+        "min": 0.22,
+        "n_seeds": 20
+      }
+    },
+    "LevyRandom_2.0": {
+      "11": {
+        "max": 0.36,
+        "mean_success": 0.22999999999999998,
+        "min": 0.14,
+        "n_seeds": 20
+      },
+      "13": {
+        "max": 0.3,
+        "mean_success": 0.15800000000000003,
+        "min": 0.08,
+        "n_seeds": 20
+      },
+      "17": {
+        "max": 0.1,
+        "mean_success": 0.06900000000000002,
+        "min": 0.02,
+        "n_seeds": 20
+      },
+      "21": {
+        "max": 0.08,
+        "mean_success": 0.041,
+        "min": 0.0,
+        "n_seeds": 20
+      },
+      "25": {
+        "max": 0.08,
+        "mean_success": 0.031000000000000007,
+        "min": 0.0,
+        "n_seeds": 20
+      },
+      "9": {
+        "max": 0.52,
+        "mean_success": 0.403,
+        "min": 0.3,
+        "n_seeds": 20
+      }
+    },
+    "NoBackRandom": {
+      "11": {
+        "max": 0.48,
+        "mean_success": 0.36899999999999994,
+        "min": 0.26,
+        "n_seeds": 20
+      },
+      "13": {
+        "max": 0.38,
+        "mean_success": 0.258,
+        "min": 0.16,
+        "n_seeds": 20
+      },
+      "17": {
+        "max": 0.24,
+        "mean_success": 0.14800000000000002,
+        "min": 0.06,
+        "n_seeds": 20
+      },
+      "21": {
+        "max": 0.16,
+        "mean_success": 0.079,
+        "min": 0.0,
+        "n_seeds": 20
+      },
+      "25": {
+        "max": 0.1,
+        "mean_success": 0.045000000000000005,
+        "min": 0.0,
+        "n_seeds": 20
+      },
+      "9": {
+        "max": 0.62,
+        "mean_success": 0.522,
+        "min": 0.4,
+        "n_seeds": 20
+      }
+    },
+    "Random": {
+      "11": {
+        "max": 0.26,
+        "mean_success": 0.18900000000000008,
+        "min": 0.12,
+        "n_seeds": 20
+      },
+      "13": {
+        "max": 0.24,
+        "mean_success": 0.12300000000000003,
+        "min": 0.04,
+        "n_seeds": 20
+      },
+      "17": {
+        "max": 0.08,
+        "mean_success": 0.044,
+        "min": 0.0,
+        "n_seeds": 20
+      },
+      "21": {
+        "max": 0.04,
+        "mean_success": 0.020999999999999998,
+        "min": 0.0,
+        "n_seeds": 20
+      },
+      "25": {
+        "max": 0.06,
+        "mean_success": 0.015,
+        "min": 0.0,
+        "n_seeds": 20
+      },
+      "9": {
+        "max": 0.44,
+        "mean_success": 0.317,
+        "min": 0.24,
+        "n_seeds": 20
+      }
+    },
+    "full_DoubleDQN": {
+      "9": {
+        "max": 0.2,
+        "mean_success": 0.12000000000000001,
+        "min": 0.08,
+        "n_seeds": 3
+      }
+    },
+    "full_FeatureQ": {
+      "9": {
+        "max": 0.42,
+        "mean_success": 0.395,
+        "min": 0.38,
+        "n_seeds": 4
+      }
+    },
+    "full_MLP_DQN": {
+      "9": {
+        "max": 0.32,
+        "mean_success": 0.215,
+        "min": 0.14,
+        "n_seeds": 4
+      }
+    },
+    "full_NoBackRand": {
+      "9": {
+        "max": 0.62,
+        "mean_success": 0.54,
+        "min": 0.46,
+        "n_seeds": 4
+      }
+    },
+    "full_Random": {
+      "9": {
+        "max": 0.34,
+        "mean_success": 0.31500000000000006,
+        "min": 0.26,
+        "n_seeds": 4
+      }
+    }
+  },
+  "manifest": {
+    "files": {
+      "raw_results/exp_oracle_random/BFSOracle_11_1024.json": {
+        "sha256": "4fd95094cebf0b1e526236ad091fc5afe860f48b9a883218dc97b4cff585afa4",
+        "size": 61003
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_10240.json": {
+        "sha256": "de56e3e4bd099a92132e1d79c7b029dba172ecf4f080afd3c8121cd1fb056e0b",
+        "size": 61138
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_11264.json": {
+        "sha256": "273922cce4aae4c6f44493c05179a679571c7fef7b6868b8a31115bf3ed64e64",
+        "size": 61238
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_12288.json": {
+        "sha256": "e2d567f0f8fc047c94b2910fc97530f73abdc5b00616704e462ae749f6840a9f",
+        "size": 61385
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_123.json": {
+        "sha256": "0107de9f72bdd3fd740fae52dba83d70b2ca2c8fe16a0f55af1e7c8b92ef030f",
+        "size": 61032
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_13312.json": {
+        "sha256": "9335919fd99ab904d9cdb397c63094f950d23f7fae0c6998c0ebcb0d67d11d60",
+        "size": 61242
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_14336.json": {
+        "sha256": "70a979ff09a814a189c9a2582e3b4e52341008835caa5f290db5f2ed6c1ea8f8",
+        "size": 61223
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_15360.json": {
+        "sha256": "649bffbd1d37210947bf9fe21257f06404374b3013ca8588a84a1e69b5694faf",
+        "size": 61382
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_16384.json": {
+        "sha256": "11074374272c930a8a6d2e235b10587f15702acce7f36f5e0185cf41702a6212",
+        "size": 61232
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_2048.json": {
+        "sha256": "264df9f77e2f9bc12c799dfbdc6a76f4e5f4479ae004da8532d1f628eb39183d",
+        "size": 60900
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_3072.json": {
+        "sha256": "a059013f5478a5fddd8dbb6cea32ba52ebba83461918eb484f9537a1fb89c568",
+        "size": 60962
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_4096.json": {
+        "sha256": "b0e9cabc9213c0214667cf17300e659075328c8b66c48f806fbf3d501068e21b",
+        "size": 61429
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_42.json": {
+        "sha256": "ccc2a54d46f99a0a44a51f154bcfb452372e43c612abdd0f072c3c19b579a02d",
+        "size": 60903
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_456.json": {
+        "sha256": "86321c058db58b49924f91831d701ca06fde485b668ca4efb72c1439a605a65a",
+        "size": 61003
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_5120.json": {
+        "sha256": "84260838af4a1673e8a72ce757d57e5a41afe7738e21fe2623d97c9dfb8f46a2",
+        "size": 61219
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_6144.json": {
+        "sha256": "2e852db84c9c7f8ddf541c3674f9aaf0b9b12f99291f079cfa96617d9ffeba75",
+        "size": 61199
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_7168.json": {
+        "sha256": "f4e4f5b9fc2426a996fcaf89a43f33c49ab4d6447fc31e3e6fdfcc9419c9dff5",
+        "size": 61087
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_789.json": {
+        "sha256": "6b26a4f45088e8ee7f7d578f83e1195f18f7a44b3b2eb7640a613ddd9b316dc4",
+        "size": 60911
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_8192.json": {
+        "sha256": "feb10bd0b4718f43ee781f8a255afcf046d91bf43f5e3b392fb898e0f94ff054",
+        "size": 61022
+      },
+      "raw_results/exp_oracle_random/BFSOracle_11_9216.json": {
+        "sha256": "712fbd96c4982cd6fe61dd130fb931897d0c18b95d2ff2ef2de061805e87c5f6",
+        "size": 61028
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_1024.json": {
+        "sha256": "858ba11a497386adee3b1b5c13ef1657181a98917e089dc3a573b512dff603d8",
+        "size": 61249
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_10240.json": {
+        "sha256": "f4ab7b6fa13de96e313ea99ffead299ce655700ceb00aa8df71fe3c0697fe16b",
+        "size": 61286
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_11264.json": {
+        "sha256": "44f4187e86c8b0ee4ad65594292d1a6c643893ea4f96bc15fdee37d79639207b",
+        "size": 61307
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_12288.json": {
+        "sha256": "d44a46d4a59cd3c29a1aba804eb92b3a19fb46908218552995d546b676fb4289",
+        "size": 61372
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_123.json": {
+        "sha256": "01841022d144b634ea38627064fc82daf4a55593ced88b228946a3b6946a499b",
+        "size": 61142
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_13312.json": {
+        "sha256": "45d9eadf4b1066b9fdcbca4f13ebb88a6de6f01a55ad403a49921a428dff5322",
+        "size": 61470
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_14336.json": {
+        "sha256": "8a5410a46e53c0af2038499b4ce34024531a72c6556ac76f6a31c27f36b04808",
+        "size": 61476
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_15360.json": {
+        "sha256": "e3bdd534b8c15fee8e6b4400657d33dc5f2b0f677eaf54b45c4f8ef6cb4f9590",
+        "size": 61521
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_16384.json": {
+        "sha256": "76273763304f6ac559d43b95ebf33321f0f9aa48d2cc321ee8a14e4ec0a1f46c",
+        "size": 61689
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_2048.json": {
+        "sha256": "33845f524896bd1f71876cd11afc15fd42e9239ac14e3b62a1be2044bc8a04d7",
+        "size": 61196
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_3072.json": {
+        "sha256": "e4728c2dcb40508ca8b2a6e0dba70a099c5a3104adbfff7e396d9cee01e30af2",
+        "size": 61316
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_4096.json": {
+        "sha256": "7b033cd7907a289d723b2c65048efb0b8bcb5856f2ac2ca69f7ce39132462b67",
+        "size": 61250
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_42.json": {
+        "sha256": "3aab415a09584a39b29accd8232341d9efb0a1b1db569df9810d2fcca1ffc31a",
+        "size": 61042
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_456.json": {
+        "sha256": "2278fa25ca93360d7a277ef02bb3801c145496657af03c381e1d0a3104cac461",
+        "size": 60896
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_5120.json": {
+        "sha256": "abab3d9d482e44a72a897fea355e0a8b2bf0ec0182df7adeef02cafab7295b61",
+        "size": 61256
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_6144.json": {
+        "sha256": "e4ab268535f610594e65fad9eb9a7e62ac763692d7b34da803917fcf4b7888df",
+        "size": 61223
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_7168.json": {
+        "sha256": "1bd150c307b14f20bdf4144c14a989246b721875a4c72a632ff54689690d13b6",
+        "size": 61332
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_789.json": {
+        "sha256": "7e7eb3d47453bcf417768f090f1af6fcba96f1add3dc58d368aa816165839c9d",
+        "size": 61420
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_8192.json": {
+        "sha256": "25c803b04709fa75d8325f0c81832287d5500727c7b42cd7ac878f1ddd623d2f",
+        "size": 61227
+      },
+      "raw_results/exp_oracle_random/BFSOracle_13_9216.json": {
+        "sha256": "5ccde477f153ed3273326a1f24572cc97b16fb3d192710a82dc429ccffb1c56a",
+        "size": 61340
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_1024.json": {
+        "sha256": "ce8217cfcd6db706763df53603741c389b6134f7d29ea229cbaabb21b189f95b",
+        "size": 62055
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_10240.json": {
+        "sha256": "a5a381b92aa8573441878cf853d78a272d2e88003f8c329225d2eba11b3562cb",
+        "size": 62305
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_11264.json": {
+        "sha256": "7452fa2191ac530bb1c79f6fc68cb1a689bfb752666bae26d4bcda4d6b419ec0",
+        "size": 62280
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_12288.json": {
+        "sha256": "80ef3aa2e9a37697d4232409892700b0634beddd521aa4deb1d6491fdc6afd9f",
+        "size": 62254
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_123.json": {
+        "sha256": "ecc25fac8c1f91b13bd7a7a236510c22125c7afeac3b9ccd7637598e4e4b3f16",
+        "size": 62431
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_13312.json": {
+        "sha256": "79f7a995dcd34b60fcf0e8b351892eb031dc48526b020620213d0fd66b380240",
+        "size": 62070
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_14336.json": {
+        "sha256": "4d992392403b4e284b49c418f6618fc2665049f6582c09948756a6e6c320b4d3",
+        "size": 62095
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_15360.json": {
+        "sha256": "b3269997a267af30063e8a9d3b250249a3a02530d6f8168cab877195bb53e3d0",
+        "size": 62141
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_16384.json": {
+        "sha256": "82efdad740282c0a42506e23b5a8f9d78fe3c77a340fd1c7c80d7fb4f8f4f177",
+        "size": 62510
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_2048.json": {
+        "sha256": "b3066221b30468fbf39f14988cb119c57336cfc61d6a9555bcf5b8edc144e095",
+        "size": 61907
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_3072.json": {
+        "sha256": "844c3ceb662f59a86c4d17c5e18d837f8cedce8bcf2c190435e3bbf07ae17163",
+        "size": 61986
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_4096.json": {
+        "sha256": "7189912b16b527df834380cbdb1b22f065141221f53bc5224674e108f0bc19dd",
+        "size": 62185
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_42.json": {
+        "sha256": "ad8bf3f59f49700f26ae4497e8c13b151545650cbdc38b844aa54394bf95cb61",
+        "size": 61824
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_456.json": {
+        "sha256": "a813281fb091ccb09c3b03a15a49bc7f376bf2b3e9c63bec28ee69fde93cb7ff",
+        "size": 61712
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_5120.json": {
+        "sha256": "d35a9e72d24c6f44d5af964ab1ab9de5d01c887d8f24b33c7a40546438916e6e",
+        "size": 61975
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_6144.json": {
+        "sha256": "8670e0c531fe13a58281abbe39ec8457ad4ccacae16691cd17b6184ee4d32cdb",
+        "size": 61817
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_7168.json": {
+        "sha256": "27443606584f3825a019d5c793b05ba845aded0ceddee0359246c660656e9b47",
+        "size": 61730
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_789.json": {
+        "sha256": "87e24262c9bea4dda729f91788a6b20559d7d293eb9d72e642fce348c3ffb769",
+        "size": 61980
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_8192.json": {
+        "sha256": "f634a0eaecbcc5d45b5ef60af7139cf9176eac640f9a67ac3c12896803617778",
+        "size": 61793
+      },
+      "raw_results/exp_oracle_random/BFSOracle_17_9216.json": {
+        "sha256": "49be15f2534b292d8dc1065c0eec82cfdba8e226a1234ad85dd68c0f005df6f5",
+        "size": 61662
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_1024.json": {
+        "sha256": "cacc23a874eada2a1e89cc48ddff1607389d1e156fdd78b89acc1a9e6df7e756",
+        "size": 63460
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_10240.json": {
+        "sha256": "3e60839f72fc654e90e536b6f61270e763d10c8772e68b8d7fc2d5d7b7713b76",
+        "size": 62946
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_11264.json": {
+        "sha256": "b22b26305f3e9a07584f3aff8fcbcdc98c09a9f019ba3aea66c4f6b81d3ba757",
+        "size": 63500
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_12288.json": {
+        "sha256": "663f12375d621bf4a14667e86ffa8cfd4a1db1892ff8ecad2823547b74d02cea",
+        "size": 63069
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_123.json": {
+        "sha256": "360e61f22e6cd15c86aa4fa3d3ffe793d366aff4004dbbc149c7219a48f09ae9",
+        "size": 63044
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_13312.json": {
+        "sha256": "73df60ab0246c3f5f1178d36f36f3f53f990749ab69e356fa8a31e2266c5a752",
+        "size": 63234
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_14336.json": {
+        "sha256": "27108bba0b761c3c7fe1c6402e2db266f409f6944bf1eaf31ccfe18b9d29a0c6",
+        "size": 63428
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_15360.json": {
+        "sha256": "cf38e7a38070a75106a889157a120928a629d29a1f24dbf02a6224298776fe47",
+        "size": 63213
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_16384.json": {
+        "sha256": "a71b4e3bb02853af778d147bfae71486fe842a54ec8c4954d13dbba40291f6b9",
+        "size": 63522
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_2048.json": {
+        "sha256": "a3f350cc10ec623783d3eb325fa99ffd61f10d212e9c701170304ea0eee6b0fe",
+        "size": 63375
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_3072.json": {
+        "sha256": "0425ec2ca57da49260c77d678cf549f6508d47834d4ef2261623303e897740bc",
+        "size": 62767
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_4096.json": {
+        "sha256": "02d0ba3c49f7bdcf81aeb5f94a5ad5581a87dcee6ae665ae9238a8cf9934d907",
+        "size": 63147
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_42.json": {
+        "sha256": "2290b46145b6ec1108794fd1d751acc37799db4edd9308efa3f13acac1b62e8c",
+        "size": 62340
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_456.json": {
+        "sha256": "dfff5794523429ab5be4e3f5060eb60ec4e4cddf3e8ec80678845d335cc857cb",
+        "size": 62535
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_5120.json": {
+        "sha256": "ad43b1537e83ae34089415f8bfcd11b09d10f19af93d57e798c82ec3758fd91a",
+        "size": 63203
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_6144.json": {
+        "sha256": "348a6f168b3dbd00c2ccb6d12ce2c0169dbbab26feed5192de1800d05d37307d",
+        "size": 62857
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_7168.json": {
+        "sha256": "b799f4c5eb4cdf79313908f3a702d4a37cda9b2ae712318f3bf32ae7d4c0a43d",
+        "size": 62999
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_789.json": {
+        "sha256": "97ddd0bf41c877d63a14cb38c91e1a78d8e2cd6d4152aa502c465db001a4426a",
+        "size": 63225
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_8192.json": {
+        "sha256": "ad69fbadfd70fa0d87c501209a630d6aaa92670e244c0154d84a52bd5823db1a",
+        "size": 63069
+      },
+      "raw_results/exp_oracle_random/BFSOracle_21_9216.json": {
+        "sha256": "a3788d60f39871b2136dd9df453dbf15a9f99a13c394680a1188f9732a564a83",
+        "size": 62957
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_1024.json": {
+        "sha256": "60aac2fbad57dbc2900fac87df786e00743585922f85d0aeb63a47025d10cf01",
+        "size": 62825
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_10240.json": {
+        "sha256": "0ad792053d0af28b41b5b2aef22b8c3d6eb21370fde74cce0495deec8ca7f0d3",
+        "size": 64120
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_11264.json": {
+        "sha256": "39344259a7a55ee0c623e8989f6824d9f12a806680d12c52dd8fa7d99f19602c",
+        "size": 64180
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_12288.json": {
+        "sha256": "cb417ae6a6ced748a0383cc051398c7eb1e0cbc09fbbeaacaaeaf651655966b3",
+        "size": 64041
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_123.json": {
+        "sha256": "9b9ef384d64910bc7d5d7df060b9a8b7e792447200eff68d0241043199e00153",
+        "size": 63682
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_13312.json": {
+        "sha256": "67f44c067b0f4b46a339155668d2fb0d1c4db9fe74f7057246092796092ca1e3",
+        "size": 64030
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_14336.json": {
+        "sha256": "0827cf26ef01891dbb53b6d202ac9fa1f43dcf0a5096e2ae6dd9be0f14d97aff",
+        "size": 63920
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_15360.json": {
+        "sha256": "88af84ba9de2b649ce362d61b98262297170f5fe5df3cf0cfa18156ba8938644",
+        "size": 63620
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_16384.json": {
+        "sha256": "98977c50871ff2b09cc34f5472dbf2a267f561db7dfb167a7807734f8a63ea9b",
+        "size": 64160
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_2048.json": {
+        "sha256": "32028b6a01a13bc9f1c327eeb454534dfba2716e0aba372081268da8e1c531bb",
+        "size": 63260
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_3072.json": {
+        "sha256": "c78ec187ecc57577f0b806d2ce5c48a8e1b835dd2bdf1220db3c41c41b3605fe",
+        "size": 63433
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_4096.json": {
+        "sha256": "001a0057ee5d72634c140d9e3fc11c196175bf3dbfdd2b3c75200bb4242f9aa2",
+        "size": 64003
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_42.json": {
+        "sha256": "6a0df7d318f57ae974f464ce433b4bb9b51ebc1b03a133d3164c75fd0b3ceffe",
+        "size": 63045
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_456.json": {
+        "sha256": "4cf037b71802869f538f4fe140dfcf8b3c649b180b2ed126184d80f322f52e2c",
+        "size": 63840
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_5120.json": {
+        "sha256": "205b26646770a89dd990ec0c49377f9cd61d824b018d0bf603551cf436390c6c",
+        "size": 64118
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_6144.json": {
+        "sha256": "ba5e1b7e8211a8d7047954ea4572acd8e4ab94a4a8dc0256d70c186f01b45a39",
+        "size": 63980
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_7168.json": {
+        "sha256": "516e47d393812208052afbf1610f94fa5f7a536ee1eeaee32ba1b03a614a01fd",
+        "size": 63981
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_789.json": {
+        "sha256": "1c61f39a8715f7d9abd68ed016414c5e3e4f071e91052a17954ddad6352f808c",
+        "size": 63674
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_8192.json": {
+        "sha256": "7a6be72e3905e62379e6daa144e149e190f8e31d4b0a00ac880c597e9d38b345",
+        "size": 64119
+      },
+      "raw_results/exp_oracle_random/BFSOracle_25_9216.json": {
+        "sha256": "5ce618e7d8d5d8bc558e80f16816fb11814905a192d56f7301d44b5b9af1b1cb",
+        "size": 64056
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_1024.json": {
+        "sha256": "8bb111b3c6100cae6a542d87007c4631d74e8c4b4020996430f93284d3981308",
+        "size": 60818
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_10240.json": {
+        "sha256": "fb2ca5a36726623478317db59beeff7647117fcd1a81632d949ceb6ea8d1e93d",
+        "size": 60706
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_11264.json": {
+        "sha256": "27880bc9822be0c86ba14b0eef8a10b1a9f84edcfbdc7587c221fce1c298bd3a",
+        "size": 60936
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_12288.json": {
+        "sha256": "8ec34128d4fa542220e283422820457ba65ea2b1ec9895254bad84098bbb2ba0",
+        "size": 60935
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_123.json": {
+        "sha256": "486470324bb0353928137cf78d82b95b7bf0861a9f2596a8b8e6011269be241b",
+        "size": 60493
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_13312.json": {
+        "sha256": "b24e5545f455a57354c18191acf9b418157228f2c06ec8eaaec0e2169a70d94a",
+        "size": 60756
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_14336.json": {
+        "sha256": "ea477e4eccaecf4177476652bc2ff2f4f3cc63e03fcadac61ef20d86690ebcb3",
+        "size": 60864
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_15360.json": {
+        "sha256": "88715b609b8a8a0ab70cc82489f11a02d0eeb321d916281729729fe912c158d2",
+        "size": 61010
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_16384.json": {
+        "sha256": "1c9b379ed4e4a764fba71d37745d8694b562035668e71e3b9371b2c3186f4049",
+        "size": 60894
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_2048.json": {
+        "sha256": "6100ee35b4cb80243aba7d9c311145550309edad578907934ffcdcf5b11cb477",
+        "size": 60770
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_3072.json": {
+        "sha256": "72a92f9e9dd6daffc85dd93aaba6b9646e6f4e377a55fbc3ca58521dcf46d960",
+        "size": 60909
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_4096.json": {
+        "sha256": "05f1ec980863b39792d07ec3e7de1997a06fc30514ce55eca1d1742c0f31e9ea",
+        "size": 60876
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_42.json": {
+        "sha256": "2e7e3875bb14075f8a4afd9a99dae86918a4837ac8460039b2f14af889593c6a",
+        "size": 60453
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_456.json": {
+        "sha256": "19f8d7a1d918dbbc26030ba9bd3093d0ac756da1cd2499c6a23139c3546266ca",
+        "size": 60777
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_5120.json": {
+        "sha256": "6813f932b72f524e49147f46249f3084c1cb3991caab7ec9daa3945c197b082c",
+        "size": 60777
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_6144.json": {
+        "sha256": "d6305662d1f028a3d8a6dc767dca7c613a836dd2d06f1109905af0ccf0b86ea9",
+        "size": 60870
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_7168.json": {
+        "sha256": "8a4324fed01b1009b90998fe6a441f3f48f7b3a439af51744e20e26bb7fdcaf0",
+        "size": 60875
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_789.json": {
+        "sha256": "82c9dce0797e87ef3ce9f5976f6a5889722515af1422e72632001dd3afa1197c",
+        "size": 60687
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_8192.json": {
+        "sha256": "147a5f52168f470161656734e0ea861d0753245fb0cae893aee427fb84691469",
+        "size": 60688
+      },
+      "raw_results/exp_oracle_random/BFSOracle_9_9216.json": {
+        "sha256": "c6e89c6f3b75f9af604734cb6fbffb0759dd542bc482ad7071b21bc831de1471",
+        "size": 60741
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_1024.json": {
+        "sha256": "8dd6f089e66a17f1d5a436abcade09868ef9973252e4f4c545509861255d3240",
+        "size": 64846
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_10240.json": {
+        "sha256": "9b37939b6f718eb717ae387ae876ef7fd2dc64f9799af5c70907141ae7519dbd",
+        "size": 64314
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_11264.json": {
+        "sha256": "e9a9b1dadd72eff48ed45287fe845b23e0f0daab944e36e712d4c29a28c7d4c9",
+        "size": 65594
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_12288.json": {
+        "sha256": "b8aea298ff92245b5d978b4ab8d48c923acf91e034ef6a2938e845daef0fc941",
+        "size": 65249
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_123.json": {
+        "sha256": "915df549714dc559d6355164c6f0c1f58dcbe254d2f61ed1f617ce6735e51354",
+        "size": 64788
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_13312.json": {
+        "sha256": "e0d88ef27c13b43952b7f0039807fc7826c7afa8296d0c5473772e52c491d01b",
+        "size": 65245
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_14336.json": {
+        "sha256": "433fba25a11b3dafc640802306741b081ff105ffd5e4546a99c192b07c7da864",
+        "size": 65329
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_15360.json": {
+        "sha256": "4f9005c97ea372d65978f1a4911ec6bc821b99637065623c76ac811cf8cec8f1",
+        "size": 65422
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_16384.json": {
+        "sha256": "5ab34956004f0920a7cf33407829b446ce54b12d704087c66eae0d9bf4766e4d",
+        "size": 65178
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_2048.json": {
+        "sha256": "81d8908eea3f7791418699f75dcd914d0f65f9e307c3b4bdc1d04f6e76b2d6a4",
+        "size": 64640
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_3072.json": {
+        "sha256": "d3ef2f04dbb05bad5b9a77784c75e2365393c14e8d01402c0baa6ede285e4c56",
+        "size": 65140
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_4096.json": {
+        "sha256": "50f306c5e14ef46d4f69b16b5c8a5b460b2fc20e71faaad47beceb42067ea08d",
+        "size": 64889
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_42.json": {
+        "sha256": "530afee5ee17e6c65eb9e0515c077c01ed0f0de6b7c1ff9f501ea26afa28893c",
+        "size": 64724
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_456.json": {
+        "sha256": "b49f98ebed3901734325e9936f0692cbf35507923ff7dd0eee1db9f02775c193",
+        "size": 65285
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_5120.json": {
+        "sha256": "9afa72707ef4dd99ffe65e2c233820fcebf7d0bfbf289f5810df189d562f89f6",
+        "size": 65643
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_6144.json": {
+        "sha256": "82d4f239285a5fe85b9807afa5c6a539aa9d0e25034f401fe81084a07b6b589d",
+        "size": 65097
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_7168.json": {
+        "sha256": "837cf60214fb76e5479b8ab11d27df87a713b9f43f6c26d86a772f52ecd41450",
+        "size": 64164
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_789.json": {
+        "sha256": "afeb3098c1daeb895750066e84b7e94d24dbfaec927da2633bdb4771403a215b",
+        "size": 64993
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_8192.json": {
+        "sha256": "e7e5b293375adc3af30959750cd87ff0056a9426e5e5602690c7b2068a1a43cb",
+        "size": 64159
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_11_9216.json": {
+        "sha256": "c444ca8abb9c3d65bcd616da4e9d7c363d3847702e642b83d1a17ffc27dfcb89",
+        "size": 64345
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_1024.json": {
+        "sha256": "1caa570ff0b5760967b08af03bb8b521b6f7e7b5d60984721f89572b9004a0cd",
+        "size": 65365
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_10240.json": {
+        "sha256": "fdc19c974195cb4d4578d8d2851fae786ce6b7cc65aa20f37d94217cd15eeb03",
+        "size": 65529
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_11264.json": {
+        "sha256": "96890e4260fdce93e8297a41b0acf19f01463fb41ab3cfe23dc7b3b81d6635bd",
+        "size": 65653
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_12288.json": {
+        "sha256": "6530d05e93e2ca88e2debed82b4a10cef6379d2a1bea40f0b296a140f502e24d",
+        "size": 65680
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_123.json": {
+        "sha256": "3496e450950969ee17d25d2c97f14c973bfc98a1bb126a243241912eedb10a60",
+        "size": 65603
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_13312.json": {
+        "sha256": "2281fdbbd775fcc56626796a24249676d327f8393c58f9300971dde27db51cf4",
+        "size": 65659
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_14336.json": {
+        "sha256": "cecb8af6c04c7cffd0c8cd2d3838710eb19b7452c4490662c1bf63c9b6cd9ce1",
+        "size": 65810
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_15360.json": {
+        "sha256": "9e8a2cb90cd301dd4e81b5c9203a1d11094ad0178358f1de20c6bcc61d4e289c",
+        "size": 65840
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_16384.json": {
+        "sha256": "b7b71a3c23de93c5d3942bee0c4a6fbd4a7ac530270fd704ff482ff190666475",
+        "size": 65818
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_2048.json": {
+        "sha256": "3c854b40519a6fbc13ef7ce912fd8db73337b12788f2587000199557cd031e01",
+        "size": 65506
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_3072.json": {
+        "sha256": "accde3e9ba3969e2853f27e7a2a0553c6ea094ec5d9dc065e2100b5ab11c252e",
+        "size": 65455
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_4096.json": {
+        "sha256": "e467097b7bc0cdcb1f08e1485faf5e355d7c9afce931d3024ea57e662522fb42",
+        "size": 65467
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_42.json": {
+        "sha256": "9e97094712904065d753dd1733b5408987f48538b0ba02fc6e28b1429ec4cc21",
+        "size": 65451
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_456.json": {
+        "sha256": "a65e0648d3eee078f312de2d48cbf7e34f26b5cdec1a50eb7629f37f0b81a1af",
+        "size": 65457
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_5120.json": {
+        "sha256": "b9be4e0c074e71adf4708978a4c0fdc5a4893bbd4de8d530e23f94051e52d5a6",
+        "size": 65654
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_6144.json": {
+        "sha256": "120e66c3ee0f9aa45fdcf1acd1cf57c7b070fc0863af6d13b2861343781775fd",
+        "size": 65263
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_7168.json": {
+        "sha256": "78dfed60f56c9eae5bc4a31f8adf5dfba3ac040748e6d33bd728ab86e15f1431",
+        "size": 65360
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_789.json": {
+        "sha256": "323b647fe6ea16fb5623a2496f170c3e62072a23b70db742cce6e7681b182cdc",
+        "size": 65473
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_8192.json": {
+        "sha256": "ff6a9c7e7998639053e16157442d0857dffaf34e313b9f032a33f8e912985f0d",
+        "size": 65640
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_13_9216.json": {
+        "sha256": "3881c2aa5ecf1fc1db42ca51af6c96fdaa29e4bae1d6a2e71861e27ed76af3b8",
+        "size": 65806
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_1024.json": {
+        "sha256": "494540ba09728283606239e94ccd7c588154019fbd5bad6eac16fe54dd8f01d9",
+        "size": 66250
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_10240.json": {
+        "sha256": "13bf809b05d023863a7dc9bf5d37c698b9e6b7e0b143a9f98751a319b9688aba",
+        "size": 66405
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_11264.json": {
+        "sha256": "94e4c83834293ba040c6f5bd5dca3ed2a9ef51ca24e56afffa63cc4c12dd0a32",
+        "size": 66384
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_12288.json": {
+        "sha256": "bca9c8ce0053a708626e2d1399b98100dd5193429df4b5e8370b04802a2f31b9",
+        "size": 66401
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_123.json": {
+        "sha256": "9e6dc9a66833f8994a31008516536c6c436a19073755f7d01354a40435ead320",
+        "size": 66093
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_13312.json": {
+        "sha256": "d644fdd28a0ea4563d593915caa6a799f6bf68315cd104965240164d2e02963c",
+        "size": 66427
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_14336.json": {
+        "sha256": "f698d4fbaf9d2a302c0063d535ab5f3e4eb70ce759f8073d747e8673eee15a4e",
+        "size": 66370
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_15360.json": {
+        "sha256": "9f8532ce414c5a3c1442a4487e04e40740388f31ae3a021dbb7dc62c624d2d29",
+        "size": 66366
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_16384.json": {
+        "sha256": "4455f4903b69e931bb6abd51dcd75ba925ad5e4abc137fc05f66a8fed0837cf1",
+        "size": 66298
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_2048.json": {
+        "sha256": "c8e81731039eec11546985d98d9923bcf55ef4dc4c911440c1dd472e29f666d2",
+        "size": 66257
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_3072.json": {
+        "sha256": "6dde22c6ee7521b41d41abdff2de376e942d4ef98ad9fa7a387f6a01cb83c326",
+        "size": 66237
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_4096.json": {
+        "sha256": "d5b2d3d04ab3c9bdcd4c1ba38ed8225eb9de73982ff73db5997c3c4401f97258",
+        "size": 66203
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_42.json": {
+        "sha256": "dd581417c7d20d51a059c449f23a8f210389704e37310b014675d22c0e2b49ed",
+        "size": 65875
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_456.json": {
+        "sha256": "f997e25ee86e28e09bd3adbc5feea94900f899d42169fded2f7430586589d001",
+        "size": 66102
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_5120.json": {
+        "sha256": "0b6d1451585aa5ca3021d891b1d09a314e52243437c6bcbde3434f9a3b005e08",
+        "size": 66207
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_6144.json": {
+        "sha256": "f3769302cd302ec16d0e01a725521434ee8f0c6a13460dbb66d972da89307468",
+        "size": 66231
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_7168.json": {
+        "sha256": "f4a8fd928b321c33fef70892d96fc9eaf1d07908f3822505d43eea5d9333bf9f",
+        "size": 66248
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_789.json": {
+        "sha256": "62f995e79a082bb25123b04e12286fd07583c7f648375495a919154b248fbdbb",
+        "size": 66035
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_8192.json": {
+        "sha256": "bb0c5b746a25fd2cc56492db13e60f8a623f41cb6776c58e9a803e00c486357e",
+        "size": 65985
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_17_9216.json": {
+        "sha256": "684362faf3ff798fc89eec119daed30f480b0df09b0cac856cf5c77701d771ce",
+        "size": 65849
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_1024.json": {
+        "sha256": "24bba55e528254dbf3b215bc884587905149b0a50a91f25c86083e915bc26d21",
+        "size": 66221
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_10240.json": {
+        "sha256": "c99dced1a67c9b5be77738534aace0f15d5078f18186a752200bf664fcad263e",
+        "size": 66373
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_11264.json": {
+        "sha256": "e551cb3b386745efbb1d3f3197ac0dfb01819796ad1dfc2101ecfb575577929e",
+        "size": 66356
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_12288.json": {
+        "sha256": "19ea54fe2959d23e303fba293367fcd5bd550b60715993dda64a07e2d10b2b31",
+        "size": 66377
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_123.json": {
+        "sha256": "16260eda0fea7531231437a2807154e5b70328b06742f919cb49eb078baee3fe",
+        "size": 66058
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_13312.json": {
+        "sha256": "19a6db4e4703a3557aea5393224aad9708202317e9cb9fe20313212f17681378",
+        "size": 66367
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_14336.json": {
+        "sha256": "f728371ff8dc224408d7f4fe5559aa7236277ce749f44c5ac66777a988d7e534",
+        "size": 66379
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_15360.json": {
+        "sha256": "ad59188a56a276b1a567a5f1255faa034f33208cbd225640d266070e1ff212e3",
+        "size": 66384
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_16384.json": {
+        "sha256": "17718fdd32c38d7e3a55a27a0d84a8771a1694d7a31789e06d4671fb9ba0826d",
+        "size": 66366
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_2048.json": {
+        "sha256": "712226b556205e50fd9f0761040767cd9b0cf4ecf757fea3992fb26e95b622c7",
+        "size": 66231
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_3072.json": {
+        "sha256": "72dc608aa748624d4cce38d6c1e3326a31ba3a1ed9fe907039609b0c04134d4c",
+        "size": 66224
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_4096.json": {
+        "sha256": "aa71c0686902c9ddf2b1e269e4edc38704738f15d8c7a49c3f9ae08f3c7a5814",
+        "size": 66219
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_42.json": {
+        "sha256": "df5ca27c893caf0fc0b9bd7664e8b70ab8db1ffcb4e8159eda8b7c449455d431",
+        "size": 65901
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_456.json": {
+        "sha256": "c5f7aced53309f1c3cf584b8eadb0e0263f1cbae085fe1bb74c873cf6bb4d960",
+        "size": 66101
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_5120.json": {
+        "sha256": "da763da301cd87a8d4c9c97e432f9681638d99a7d7586888209effdf9db2f6b4",
+        "size": 66230
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_6144.json": {
+        "sha256": "9f5c974e91392f7ec4c9f28f6dc0a20a52c2e1cb891b45ee18daa0dde1086565",
+        "size": 66225
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_7168.json": {
+        "sha256": "36bde3631aac80a4735ec2ff283a5727428b5859995e2f5eea2ef3db5e9131a0",
+        "size": 66242
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_789.json": {
+        "sha256": "ab5311d6e0f8dfd7e1224be1aed5a4670d2d224f3eb532be525dcb499a4a6c7d",
+        "size": 66075
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_8192.json": {
+        "sha256": "86b617e6fe64eb9f91c3f1eb96863d43ab6d324304b1c6ad524ebe7a3edffd13",
+        "size": 66197
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_21_9216.json": {
+        "sha256": "1811da61102f4f13cc06ad9a8dfe3ac1c11d4e9875a720cd0db25cfa6fcee4bf",
+        "size": 66224
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_1024.json": {
+        "sha256": "0bbae0403deef3b6117643f1ae6dc9d9e88660377888a95ac501a39bb56bf16d",
+        "size": 66130
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_10240.json": {
+        "sha256": "c1b625b5f0811e977800b25d7b987e2521149630956d62efcd25aff8b35f1d6d",
+        "size": 66207
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_11264.json": {
+        "sha256": "402741df2763a0903e90efec7efdf163a5850721aa192915401fac46c34ad1f9",
+        "size": 66220
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_12288.json": {
+        "sha256": "cb02183a1b5c92e16d4f322718968511993bc88916e67ffac661b13b93961d15",
+        "size": 66258
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_123.json": {
+        "sha256": "bafe11318bcc860ed88d5fb36a9a30bfb1ff0fb336901f77e8e9ccb8639c23ca",
+        "size": 65939
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_13312.json": {
+        "sha256": "87972531b7555221a6386b75007803869be3ab440b75650fe22404902d28518f",
+        "size": 66257
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_14336.json": {
+        "sha256": "67845b8d0e7f2057a2b61fea3e9e6896f419c4d31afcd02fba2aca7b249161ac",
+        "size": 66269
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_15360.json": {
+        "sha256": "2c9f1edba8c40fd74fdb86cfdc61c540507a7a29b6fb8115bbc67a664ef457f0",
+        "size": 66222
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_16384.json": {
+        "sha256": "5cc4ec7f86d0cfcfc6c000c44362324bfafc767411aee7f75e938076fc230e97",
+        "size": 66221
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_2048.json": {
+        "sha256": "19007420288e30e7d9cd063a4d2bf0bc245266efb72e331fc3551ebe1ec8b568",
+        "size": 66101
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_3072.json": {
+        "sha256": "0e454af7aaf852d427e17e0574b88e103a00f6d0dd4e861ad9f2cd84fbbfb641",
+        "size": 66076
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_4096.json": {
+        "sha256": "69ea0ef1fa7370148e8766300dff30431f7b75c35777ca301c3d33d83d36ed68",
+        "size": 66130
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_42.json": {
+        "sha256": "7e853905654668660fb0da0dce428bc87064cac2bfdd43101066e2b523ab3816",
+        "size": 65812
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_456.json": {
+        "sha256": "b8077e02ed38abf6a1f2b6fc2991b7b3c196d69b22c51cd2d0950322e1e4cd5c",
+        "size": 65965
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_5120.json": {
+        "sha256": "2c38bc0b3b00b958265706d2ea8723422a817f6cc9641fff835eb32f9921ecde",
+        "size": 66094
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_6144.json": {
+        "sha256": "84d1c72cc3af089efc6808c9fae1572ef49b5a3e3ca2d40a411baef351271098",
+        "size": 66084
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_7168.json": {
+        "sha256": "56e1c457125282b9ae77fa61f9bc043cd30b895e33d914e90d4b8117989a55c1",
+        "size": 66084
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_789.json": {
+        "sha256": "de38657574e32cf68db700f525a796ce2bc504288d0fd54389b91b1e20519ba2",
+        "size": 65898
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_8192.json": {
+        "sha256": "a4953df02f6c861fe8cabe823176360bf5ae598d96dbc012b5f7267ca30611ff",
+        "size": 66084
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_25_9216.json": {
+        "sha256": "b8ced4206953910cad206f529553c06b260741ef2951889020c1fab48a559103",
+        "size": 66073
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_1024.json": {
+        "sha256": "9e3f9245fdaf28126f9a7a2f94cc5165bd6ad8d87ff204fc7b3fc7e02f0f5a14",
+        "size": 64593
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_10240.json": {
+        "sha256": "6e4fc5a05d8b430702dd3e22b43532688e2a268ef8ceea71970869454ff84cb4",
+        "size": 64330
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_11264.json": {
+        "sha256": "62633e7619b63aa21e8f73812dc004ea36d97d29833c88ef2fe4a0a42f1db2b8",
+        "size": 64268
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_12288.json": {
+        "sha256": "a0301afd8d24a043d7118a0c310566fb15fa0ebd5eb5dc9b3068ae1bf346a247",
+        "size": 64431
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_123.json": {
+        "sha256": "a51f04b5717944f4a2d6a79894d16386b8746b211c41255eaf07b4abe83281e0",
+        "size": 64535
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_13312.json": {
+        "sha256": "b6f9af616fd1a1be447e6f44fbf3f29a0fad2bff143a4476d0fb994f26ee93fd",
+        "size": 64271
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_14336.json": {
+        "sha256": "87eaa35ac615a4063a588c667274e4070447fa86978c6a9c90c72799222728e6",
+        "size": 64284
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_15360.json": {
+        "sha256": "f7f62d246b435a07be02b4c34073a43e226f5b8c4934f532b32192aa3d6f73a6",
+        "size": 64450
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_16384.json": {
+        "sha256": "90e1a40354236a3c1e71ad8fa3270cb72cd765c40ce8db9c8a510c2dd52d00fb",
+        "size": 64567
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_2048.json": {
+        "sha256": "1d32e0be5c4f1234a7ad598513fd13d1d3428a068e5228a9759fdc7fb6130344",
+        "size": 64359
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_3072.json": {
+        "sha256": "62eb8d640a9331b6f649d3ba653e87841d942073ee2a4f29039eaa407ae37884",
+        "size": 64626
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_4096.json": {
+        "sha256": "174f1137817ff99d593e0ddbbedec36131de674489a307bd4ad178ae4b017119",
+        "size": 64282
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_42.json": {
+        "sha256": "19dc6a620c12a610b47729f3668af8c6b5fa5e931504c811fcb54082b8db709b",
+        "size": 64203
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_456.json": {
+        "sha256": "6125fd41702fe976e3460608a99b4d35731d1d9a4008991563e15ea130c2fd7e",
+        "size": 64199
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_5120.json": {
+        "sha256": "c3c23987dd39e5196dd3730a781ea4171059e33363953794e76a452513020795",
+        "size": 64110
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_6144.json": {
+        "sha256": "0822515d5eb12f2f9db804c01c1ca544dde2509057d624c6567035dc0a6efee7",
+        "size": 64326
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_7168.json": {
+        "sha256": "2af5250df70680f0710b3f3474e72e26886cab600862d33d606c61b215c9e79c",
+        "size": 64232
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_789.json": {
+        "sha256": "05a19773d2a7470fc415b891e98304c9a9b90b29d2005f8cceb04069dced37d1",
+        "size": 64041
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_8192.json": {
+        "sha256": "476bea798c83850b191ede2678ba02e5a092f8e3a6a94a8bca412218436ec6f3",
+        "size": 64127
+      },
+      "raw_results/exp_oracle_random/LevyRandom_1.5_9_9216.json": {
+        "sha256": "45c636a2f26495d84b6b9b03fdaf21ecbf742693e871f5c24342d7c736a0ff35",
+        "size": 64278
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_1024.json": {
+        "sha256": "2dcc65e9ebec2a62c300d2b40b57f71b7db35f5a13293f063eafe2acca67e982",
+        "size": 64451
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_10240.json": {
+        "sha256": "9966417a9d5251e8f30a65a9a6f57fe9decc198308754e545f181d871338c1ed",
+        "size": 65351
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_11264.json": {
+        "sha256": "36a8b26d2fa643235e3f06ff1f653f3b268fcbafd628c5aef9dd0de58b168e70",
+        "size": 65295
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_12288.json": {
+        "sha256": "0a838123e617286113f9e46b0d42cc9ab6dd55aa6f66140b01773368b61c079e",
+        "size": 65166
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_123.json": {
+        "sha256": "18e14a4562fe1259bd1e1ea10091fed7560b4f3b2548891fadba8bac523b10ea",
+        "size": 64469
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_13312.json": {
+        "sha256": "300233e071acc766a032a6a5c16ab91f03d63513c037e73cecd6acee88d53f8f",
+        "size": 65538
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_14336.json": {
+        "sha256": "8ac9fa5bc7e514fb855937bb7479a0c616307cc66ab7d409621a1f020e090232",
+        "size": 65277
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_15360.json": {
+        "sha256": "2f56dac97f66e998027997166dab36cfe6f19182b3e56b7ae58e8fb1729fe702",
+        "size": 65749
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_16384.json": {
+        "sha256": "48ea3a8b45f5e769656ae195c764812a56ab2f9f8e6077b428fe433585450514",
+        "size": 65487
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_2048.json": {
+        "sha256": "b345eda3231eab139b68849e8964e9ea38afacad8819c9f2e5e55238498bf5ce",
+        "size": 64110
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_3072.json": {
+        "sha256": "bb39586ee57225e809a70e4bf9e4c1826f510ff40eabbf4fb1d5b2e288760fe8",
+        "size": 65547
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_4096.json": {
+        "sha256": "939ff3160781875853128581aeddbd35c7d7cbf40bf930588c40571897802b9f",
+        "size": 65176
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_42.json": {
+        "sha256": "b1c8a0b5f403282a885f91d7dc33847676449e0f5d0299c90ea6a52e9a7eba9e",
+        "size": 64728
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_456.json": {
+        "sha256": "c6915450b144da43d86971a15503bc2b951c967b5eb9f6d82a9fe793fa48a7ee",
+        "size": 64784
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_5120.json": {
+        "sha256": "780be926decc11b10f22e0f98e4777110971e3057c2a4ca40475dfc289d5a430",
+        "size": 65512
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_6144.json": {
+        "sha256": "026a17391b47e6bfbc8a1515af8956c0447bdeb0b9186a9fe70667c9708134c3",
+        "size": 64201
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_7168.json": {
+        "sha256": "65a54e4529817230f499114c9172b7301b6cfc28fbd2b296a7a02c0b8e9199d2",
+        "size": 64151
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_789.json": {
+        "sha256": "a15ff0e10a25ae6073f188659bd98797648478e7e7026b44ae0514c7be4b2b4d",
+        "size": 64407
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_8192.json": {
+        "sha256": "0439906b9b4a4e1eb9c5d6e5d37da891ecf4e62682b8956bd2ae9c506dbaae8e",
+        "size": 64279
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_11_9216.json": {
+        "sha256": "2d8342882a9cb4f0f3ba24126e2cb32c07dc82804bb7d3f9a099124c5698ca29",
+        "size": 64176
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_1024.json": {
+        "sha256": "d40ca505b1d8d3fd1406af1c1bb391e15d4d6affab2029f640c578f9bacf647e",
+        "size": 65348
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_10240.json": {
+        "sha256": "99191d734acac2ffa82bc5afd1a172fb5bbbd844140ee2fa8185eca10c475365",
+        "size": 65719
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_11264.json": {
+        "sha256": "e16e0729a9cc27b24161673f48c8a443be2b3480610e5d71879e7074c7264107",
+        "size": 65851
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_12288.json": {
+        "sha256": "faeab627ad92dd488d3f5e2388c5f5cc7b13e81a010e91b17caff72cad4a6d46",
+        "size": 65639
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_123.json": {
+        "sha256": "929acdf468628e3042f9831177aa8034f262e082f7521ed1aed072398e57981e",
+        "size": 65602
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_13312.json": {
+        "sha256": "a5d30c366ba93f7cb28b248487531c987f8e0508c65a4c7fda69484e0c821f8b",
+        "size": 65971
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_14336.json": {
+        "sha256": "b419b073185ac805fe794047f7e90bf6ef8e5ba6cef4177c3aec68f39e39271f",
+        "size": 65811
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_15360.json": {
+        "sha256": "38e1703a4fca59205885a7c4921294c9f65e48a4a79848eea3e40d5d36ac5ad0",
+        "size": 65687
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_16384.json": {
+        "sha256": "05aae0ffd8cace44d63598bb4911f8ac4c27b0185aa6964cd790fe9bc44ceabc",
+        "size": 65877
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_2048.json": {
+        "sha256": "d1d2b20bf87c762c46ce663ee43b62d5a776e2a8b20cbf35c0a2aabe3102c71d",
+        "size": 65456
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_3072.json": {
+        "sha256": "46d58c49bda6b5668be7618497978990ebc456205538732a3d66d3ffcfae54b7",
+        "size": 65591
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_4096.json": {
+        "sha256": "576849831a484e8792ca824fa9412c1e57d1d7bcc71f485e793f378753390246",
+        "size": 65797
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_42.json": {
+        "sha256": "c001c5cf290578055a767e0f83061cbdeccca66ca8125668756ca94489c855fe",
+        "size": 65212
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_456.json": {
+        "sha256": "0b91403c1e3ac03637782cfb17d6f176633f0f0733f733429d3bc521aed3fbcc",
+        "size": 65396
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_5120.json": {
+        "sha256": "b97ffa743f3c4362d723348ab5fd66f412efee876f8aebdb09e6626c4981e3d6",
+        "size": 65274
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_6144.json": {
+        "sha256": "eed811b8972287961c8b71114ca99871892c29203538c745ddd5a5ced0cf4023",
+        "size": 65284
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_7168.json": {
+        "sha256": "487e95f951165bba4ff0edbef19f2dc1bb6b0015afa914cc3cede6413f50627b",
+        "size": 65331
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_789.json": {
+        "sha256": "a48578cfb4cc51fb101c17c15faa6a18e56af64b125a32e0df657c2ffe105db3",
+        "size": 65178
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_8192.json": {
+        "sha256": "148adf9293a7ce494216c7db1f095767470d806533c616f976b6d588b6e40482",
+        "size": 65478
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_13_9216.json": {
+        "sha256": "e87760429813350f8799ffdfda3d341334c1d058e7342c1e541ae17c2d610f96",
+        "size": 65486
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_1024.json": {
+        "sha256": "af6bba3c3aebaddf0c0a918ddddd35123bf79ea6e04a828d70b8fe625933203b",
+        "size": 66231
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_10240.json": {
+        "sha256": "6aab5c3cae61583667be2d9c1c264eb2217434403dbdcd5df55cff147ced0fba",
+        "size": 66358
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_11264.json": {
+        "sha256": "3a0c214da8b3764fd7ef68836f7160626a53bbc1f513be93e401a3aedfc1bdf4",
+        "size": 66427
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_12288.json": {
+        "sha256": "7ef29ebff1c01c2df7db49003077723801130cd35fc38f5db39ac4ce2c34c273",
+        "size": 66393
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_123.json": {
+        "sha256": "907088e2f88026e70d68b5ed87fa934f689b625379e5ec8f8cb66d3aecb769de",
+        "size": 65987
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_13312.json": {
+        "sha256": "4798e60374509cbea3e33e5e93b6e0b035afa160a2f837319b43a6d52fde3173",
+        "size": 66393
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_14336.json": {
+        "sha256": "0859f4527ee3123af26ceb2827abfd1044d40a7d60f00ff92e435d1cb2492eca",
+        "size": 66364
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_15360.json": {
+        "sha256": "b3994d2f87567522442c7471ec1f5338e94dc744f76f449bda091f7681f5df45",
+        "size": 66376
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_16384.json": {
+        "sha256": "ce868ba6c485859025f6888274aad08cf89a087cfe17ff86290e14b8d0ae8a32",
+        "size": 66295
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_2048.json": {
+        "sha256": "70a35dad69f4970b0666df069678a5c7223d0a60f776315a23951d1a85f73145",
+        "size": 66228
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_3072.json": {
+        "sha256": "6285a106a1356018a94947e086f910ace5fd43a323032aab52081a2fe79eb30c",
+        "size": 66241
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_4096.json": {
+        "sha256": "98d01f7d1db49fe5bacf2a7616d6d6ba62d29fb1934f5f1d6374b6a914ac942f",
+        "size": 66238
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_42.json": {
+        "sha256": "e790715f702fdad17664892b1bbc1d983416eacb6cba7007aefb3647dbe1e11f",
+        "size": 65885
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_456.json": {
+        "sha256": "74040b1c15e69af233ee81570aff74405a2341262ea9689c9b8cf508a94a00d2",
+        "size": 66027
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_5120.json": {
+        "sha256": "73909f1b63fcb5b3b69fe1366546fb18a7a82e75eb36527a40aabbeb27ac5304",
+        "size": 66241
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_6144.json": {
+        "sha256": "4e818dcc182f59faf76e37e2b1e7cef3511bbec2421ab3d78f669aad6e8fdf2c",
+        "size": 66214
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_7168.json": {
+        "sha256": "eb0ebccd2cf582a5d552a20e89a679f8bb047f0496e4b1e2589a42f1f7f2de1b",
+        "size": 66192
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_789.json": {
+        "sha256": "9d0f45a3f1249100121e96611b64eabfcde33843701f59024c73e02c1d264652",
+        "size": 66050
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_8192.json": {
+        "sha256": "4fa49b6248ef5551ab83bcd0bc292156533e938041060a4e56ba77bec2498f57",
+        "size": 65995
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_17_9216.json": {
+        "sha256": "e53308b14b3df0e799809d3018f6044ac8a16c20b068f644bf0c4a7299e9ddb4",
+        "size": 66237
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_1024.json": {
+        "sha256": "1149468a444e5e0c75c80fd680063c2df7af99860a9cf105835b0b4ed56d6a83",
+        "size": 66209
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_10240.json": {
+        "sha256": "36cd0cb64d0bc0de6b97291f53b131f13fe4f535f20e34e61359ecd99bd1d1c4",
+        "size": 66376
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_11264.json": {
+        "sha256": "0c79cda18039202f674298e65d09088bbc5b982aa0dcca73fcb835f85ad545b1",
+        "size": 66379
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_12288.json": {
+        "sha256": "34563c62f1131376f83501b661d2d0c1c94b963d92a0a1a98e16f894af14cd5f",
+        "size": 66372
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_123.json": {
+        "sha256": "45ebdf8ad8f5c07dad81ffbc15efa9b07405c9a7c387e65a8ebd7561d35dabb3",
+        "size": 66077
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_13312.json": {
+        "sha256": "baed6743bded1be84b5a5860d68e3d1746a691c350fd67d42da471dec08b3d03",
+        "size": 66379
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_14336.json": {
+        "sha256": "77f44f8248bf6522cd9a68c4d0a1a9f9608ad5a6838dd3d10cf179c44f0987fe",
+        "size": 66402
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_15360.json": {
+        "sha256": "cd146a30c2164715a781eeb5ed8f9553c4d2f621db5b816691ccedf683a5ad65",
+        "size": 66362
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_16384.json": {
+        "sha256": "be096768efe93d4582bb49bf44f2c2f06dc5723fcbabaeb6820ad6eea3be3754",
+        "size": 66357
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_2048.json": {
+        "sha256": "507899f2bda00bf2b8bd69a38797e383c2fa6731c5e2b2e94de84ebd3339ed78",
+        "size": 66217
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_3072.json": {
+        "sha256": "109bd4b81985135f602999ae194080e93c1e7d4a84ea001bed502cebdd4e3a8d",
+        "size": 66228
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_4096.json": {
+        "sha256": "875de5eb78de0073dd0ba863d716b73d08a1403811a3d23e32e323b8c14b3e47",
+        "size": 66222
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_42.json": {
+        "sha256": "b2dcf1e921d1a61863bd7016a767039c2840790bcd8c67d97afe391fa1aa4c61",
+        "size": 65925
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_456.json": {
+        "sha256": "cf73ee566e6a3f53669a5e93dde2ff89e0f8dd5de79957c17d40fc4de00de9b7",
+        "size": 66075
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_5120.json": {
+        "sha256": "8c9e8f1fdc3dbffa1dd4088007416b740c6b98c9d451c60ba069c35126a0a7ac",
+        "size": 66231
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_6144.json": {
+        "sha256": "e894dcc4045068293fa1d74466cc1917eef549eea1221117cf591f99359b79df",
+        "size": 66234
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_7168.json": {
+        "sha256": "58fb212d6fde19c4748292eb567acf2849110c928401e3dea2275b09c21581f4",
+        "size": 66216
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_789.json": {
+        "sha256": "d16b83089e407ce9b6e489eabc61e0713ba425e3b5b77a17fd22f36e0c850627",
+        "size": 66087
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_8192.json": {
+        "sha256": "d6de3d97539a7b4bf6535233169e2e5efb31069c4c618ca31d6fce6936529190",
+        "size": 66229
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_21_9216.json": {
+        "sha256": "3017173dd431cd8415c9897caec0baa5186172af08143fb00604eda08167e8cf",
+        "size": 66230
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_1024.json": {
+        "sha256": "d8bd38c21041fcde40aca6871ba4ab6b9943e35e402881685d4e69636992c34f",
+        "size": 66141
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_10240.json": {
+        "sha256": "ce7660a3b6ff236686f3413fdf5e33c10a62f0ef744b781a9b4145a7be217a63",
+        "size": 66234
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_11264.json": {
+        "sha256": "58b178bce7afe4adc87b071837cbaacf4f15a5e0f25bb2bc5b077f840cb5daea",
+        "size": 66232
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_12288.json": {
+        "sha256": "fbccdb88f6f1bad839c6b17eb72bca21a3209e9bbd49035c08547589b5405646",
+        "size": 66250
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_123.json": {
+        "sha256": "44924cb8156b841366eeeaf331f237afc173355802feb05c4edbe41d518b9bf1",
+        "size": 65939
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_13312.json": {
+        "sha256": "ee37c69c93135be886f6ff278a9e18c06233ca1bc22238af08dd9bb71d13dd94",
+        "size": 66279
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_14336.json": {
+        "sha256": "07c794371323ace4a574bf4c13fcd892c4f2c9c69cb20495ef15997770b6d06a",
+        "size": 66258
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_15360.json": {
+        "sha256": "5dec4fcd73756aec7a5bb90c67d824f2aff0625aaf106c52957bd743f80b3ae0",
+        "size": 66244
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_16384.json": {
+        "sha256": "3ceaa733b064575117d92f0019c209c0808668f4bc169cea2e60a88598463740",
+        "size": 66261
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_2048.json": {
+        "sha256": "c10fedaee7ae70bbb9b1f5c2558bf5310cc96028943378f39a3b6603aabebab6",
+        "size": 66130
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_3072.json": {
+        "sha256": "0b456c1497ebc35478e6ef436f2b76dcb3fb7439658427aa16162c7a3749bb47",
+        "size": 66094
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_4096.json": {
+        "sha256": "22451df66b8c7dbd4b2c1c34f1535aacf26e1ec9106b37ae6f8fe5a7d8547e25",
+        "size": 66115
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_42.json": {
+        "sha256": "7bd903abb21f6e96d748621a0ae1b6d7355e290b5f3b0f4ca8b10590a9887b50",
+        "size": 65820
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_456.json": {
+        "sha256": "7c79d984623d1a53fc4a3ec00b20cd720d33499625d94e6041150908e5a63ccf",
+        "size": 65958
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_5120.json": {
+        "sha256": "1a428186b1eab545b619781db83a368c6b281c1a3502a4225553622986780cf0",
+        "size": 66106
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_6144.json": {
+        "sha256": "f403f2635128b1389386ef07219e846a8c0da099ceefbf61d277b1a54962be5d",
+        "size": 66131
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_7168.json": {
+        "sha256": "00970a2a7b5bf313d60e1054580e2e7b4de0c1e43b3dedbb78eb110d02034497",
+        "size": 66109
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_789.json": {
+        "sha256": "4bd59f7b9efb386cdea8b3244904e85a6ce11528b578d68f5c0d5121e925b9f5",
+        "size": 65973
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_8192.json": {
+        "sha256": "e2361630955e31552522c94ffcf59517fe3e79f27fdb7380dc8b2e3a9a82c2e7",
+        "size": 66089
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_25_9216.json": {
+        "sha256": "6b3eab3a9b39ae53e7b48cb0070806a91c8b252954e9bab956781e1eb3edc9f0",
+        "size": 66097
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_1024.json": {
+        "sha256": "aa20bfdf01ddcddcf02f0ab8dc16b260017e08dacf50a089459d9229eec830b4",
+        "size": 64524
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_10240.json": {
+        "sha256": "afe4381a6ea17ec6b7db3405ef1cb9eef57b038500819faf7650b4024d877ce3",
+        "size": 64540
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_11264.json": {
+        "sha256": "4eda32f486496518704ad8ed1b87e48638edc439fb58101a03cb080be3f502df",
+        "size": 64409
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_12288.json": {
+        "sha256": "18344ca0bad8948285a06b5d0b8ff9ce1159193082c830fd4e94be3ba286de29",
+        "size": 64490
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_123.json": {
+        "sha256": "67c89e74a8a853e9397da2208d6fb29731c34790884f9088af5cb4c724fcdda7",
+        "size": 64539
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_13312.json": {
+        "sha256": "fc49af9185194afec418965608a0dccbbf2a28a55a644619a7b5bb277ee731c4",
+        "size": 64424
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_14336.json": {
+        "sha256": "abf140f5adddac764a996801cc039019536b1d9dc1df785bd3fafd6db864e327",
+        "size": 64412
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_15360.json": {
+        "sha256": "0ae4871e6b98d02ab4bd13c3c7665f563e16b12cd4e7274ec0428d24587e8675",
+        "size": 64389
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_16384.json": {
+        "sha256": "a8b70ea1e5c8ae77418636e857132257994ce57acf153ec19d15ec65687471a5",
+        "size": 64503
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_2048.json": {
+        "sha256": "c6c80bc6c3ffaee9ec388369d3c0e6e07224c0e479143d783485b10a929012e2",
+        "size": 64766
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_3072.json": {
+        "sha256": "28bf1a1906edbba8387dd52d3ba30c577e1d222b1a3f0792126a10cb45242aed",
+        "size": 64700
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_4096.json": {
+        "sha256": "e81bb421f0937f285675a34db4c2337a1d39bd17af5dff0e64d4dff00dab983c",
+        "size": 63964
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_42.json": {
+        "sha256": "c3ae61955b7be6152db604a8fa9eff46405768f4cf1fa47589612b1bc2eeb5c8",
+        "size": 64688
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_456.json": {
+        "sha256": "fb301ddfb6538309e250875e0b50f5f0d8833df84d81160a9c5402dbf2bace9c",
+        "size": 64383
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_5120.json": {
+        "sha256": "b2b6db72b4740fb9e9707624e47b655694d3825fc7903135d711f0c34f8cc907",
+        "size": 64167
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_6144.json": {
+        "sha256": "d0a79c4ad4b3937823e6c3dbef51ca543bbb36bca0fc64963ade2630cd5873e8",
+        "size": 64258
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_7168.json": {
+        "sha256": "badfe1779ee62ceaed18d908faa707802206d1ab7112832571278f37e4c19247",
+        "size": 64232
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_789.json": {
+        "sha256": "198ebac8532750bf56dfe1a8709a1afc86b67c3c146b336f6ec924da5752c61b",
+        "size": 64489
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_8192.json": {
+        "sha256": "cf253242037d441ac47509e50a97f9ae2181a247dc411d2c84c763c2c052e861",
+        "size": 64242
+      },
+      "raw_results/exp_oracle_random/LevyRandom_2.0_9_9216.json": {
+        "sha256": "f49281568fdc017e8a803c53c01e61b7037ac255f76786aae4b20c4109445db6",
+        "size": 64438
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_1024.json": {
+        "sha256": "1260bdc15463d7372116b8414c9c4b681b5d4b5e1f4e50c79998b91f35329bf9",
+        "size": 64367
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_10240.json": {
+        "sha256": "7e2a39bcd54b87fd1d328b058abcb6ae6144f620c5b302021ce6c34f66e35765",
+        "size": 64483
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_11264.json": {
+        "sha256": "6f7d6396f68e85d226a0bcf457a79d096b1e1aadd6682eff66d401ade545a816",
+        "size": 64919
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_12288.json": {
+        "sha256": "c9d8629c85c62f08fdd33e726720c4bc337bc4bd6e77323d9e017c6ed45d88b6",
+        "size": 65063
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_123.json": {
+        "sha256": "968e95a4b748b3dc47b21cf60e739bfa3cade8183d6a1ec70844cf146261f06f",
+        "size": 64227
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_13312.json": {
+        "sha256": "3e9aecdacf5623959eb7b33648eb6ac9000f4f1576251d48d8b4a8335bb951a0",
+        "size": 65348
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_14336.json": {
+        "sha256": "fdd5107de48488a6ba4ffefc59c1745fa53b254d398c96288291f8fc225df004",
+        "size": 65197
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_15360.json": {
+        "sha256": "d531f0240fcd8c22a95f6deac107f3b4a22f70afdc7f3c4d4f72b0de9c690a68",
+        "size": 64984
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_16384.json": {
+        "sha256": "dc2edd7ef0ee3df9cfd0d9b63e14e49a1728c2a6ff54f81d3b56473be22a8ac8",
+        "size": 65188
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_2048.json": {
+        "sha256": "bab5d39d78aece815991f3d5ec0843e8910bfbd9705bd08fdfee2a4f4e66e072",
+        "size": 64158
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_3072.json": {
+        "sha256": "e07652d84862244cad95a5b718591fcc7669a692315801ddaed7aaefb02eb76e",
+        "size": 64561
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_4096.json": {
+        "sha256": "0891be01b824a5f1abca06ea56b91f56e6ee8dcb723c104ab870f409325d9f4d",
+        "size": 64506
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_42.json": {
+        "sha256": "2c7d2cacbe5f82dba4bcdc643303024b1470cbfef554bbd58873cbf2cb2c39e3",
+        "size": 64420
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_456.json": {
+        "sha256": "dbd4f16bbb4a42a2455ef9dc21c756d7a11dd4246d855c935df93bfa3a7ada31",
+        "size": 64459
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_5120.json": {
+        "sha256": "daead57404644ea054bf43b73391629f23d80a36b697bb610f4f6c97d04ca44c",
+        "size": 65301
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_6144.json": {
+        "sha256": "e567e7e353cdfcc449d156ee188a8d40b89ab45fdcaf1946904843ce4c43baf9",
+        "size": 64839
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_7168.json": {
+        "sha256": "c76557bfb44956b573e838fc0b092f36c8bb9f43b3794e6ee13bbe0cb51612de",
+        "size": 64175
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_789.json": {
+        "sha256": "afd1f9f2b1928a066445c92b72c47d57782989393fd9dfb3d6597f8fb5c0699f",
+        "size": 64362
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_8192.json": {
+        "sha256": "4a4a23fd4bdc62fdcd587fcf630fa508d5665f2c103030cae7fc53f807145dad",
+        "size": 63770
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_11_9216.json": {
+        "sha256": "2d9349fa343252e0301d7522eb0787da240535805e638103d2ce49b05e9633fd",
+        "size": 64000
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_1024.json": {
+        "sha256": "f06045bdaf12bcfda47237fbc29fa5557a5d63dcda016baff2b61220c9435907",
+        "size": 64984
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_10240.json": {
+        "sha256": "30efd1ea5dc7c3b08b163c56f20e543d9e79775c2ea0d78d1e0e3d577e74be3a",
+        "size": 65178
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_11264.json": {
+        "sha256": "d70aa0670337f600230697a2661818c6a272490d9c008eaa28146500d3f0f1e7",
+        "size": 65217
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_12288.json": {
+        "sha256": "e56d987b168dc3405da644b5bc37fd381a138a1c83c3d435ba9413bdb94d81bc",
+        "size": 65280
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_123.json": {
+        "sha256": "a25b02d7ed9ab019edebbccaafc7c85af884270ef76539fc341449161fca6628",
+        "size": 65169
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_13312.json": {
+        "sha256": "9b1a99267377da362882bd2226cb8fd995fc73aa11f625e588d07d5fc9bbaa17",
+        "size": 65211
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_14336.json": {
+        "sha256": "c374b87e57e313c72fb6d9a81c7a93f626dc18abcf861ad6f1fdeebbf1122c89",
+        "size": 65515
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_15360.json": {
+        "sha256": "684649f6dbd249e5e736ec1b30a6a7b0be31333011a794c1ea2a08e212054ad0",
+        "size": 65385
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_16384.json": {
+        "sha256": "c277d2aa00eb276510eb16571b777949a3922a73ade0a083dee8946e52fa1907",
+        "size": 65449
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_2048.json": {
+        "sha256": "ed9468b0f1e377a20ffbac10fdbd13dd1f233e8f696c35513e7ce47bcfeac1ca",
+        "size": 64899
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_3072.json": {
+        "sha256": "67e2efca1fff6872675f27a7909e350f5c96de09e264a7b8e8ce44014df6a7fa",
+        "size": 64956
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_4096.json": {
+        "sha256": "45d92ab0652fb9eda51b751c9a1a7cc94ceb0e1fe83df468c7a35034c2db6163",
+        "size": 65210
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_42.json": {
+        "sha256": "bdca1f7cd7493193060e74298a6f6daf523b2260e431062e110bd64bd5150066",
+        "size": 64655
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_456.json": {
+        "sha256": "15f4c2f9d47e2773a4e47fa6bf1dac541766584ce13b244c6276fc59ada8b2f4",
+        "size": 65158
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_5120.json": {
+        "sha256": "394bb809d9fdb4256d89fd9765b6fdeb891abda395a730ea420a6ffb0f4318cc",
+        "size": 65540
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_6144.json": {
+        "sha256": "14966a31b4633d3decd5dba0f640fdf1ef45b09788928f144b7bb8b452c62abd",
+        "size": 64759
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_7168.json": {
+        "sha256": "c5d60c8fff48b5dcec1bf037a3b5f0041b23ceb0a762a75d92a0460fa368450b",
+        "size": 64814
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_789.json": {
+        "sha256": "300497d9a3fd7675a5c1e9840d58c3eb68846ca70580a164128fc57b6a4a8428",
+        "size": 65205
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_8192.json": {
+        "sha256": "ad6c818553efcc51683690a33cd4225eb439be20d4e71b99f93067ed4e83248f",
+        "size": 65276
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_13_9216.json": {
+        "sha256": "72d344d9d5b017580148bc1a306e0d2d6268581bb5e4765a8a4a05cf15ccb51e",
+        "size": 65193
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_1024.json": {
+        "sha256": "ea303c4202575b3e2e95a9387f87c78ddc6668a2401dd390ea783d659156f784",
+        "size": 65937
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_10240.json": {
+        "sha256": "5129a63b90fb80904c1b15f29325c485d258bd24bb0185e612c1aa71fe35f878",
+        "size": 66095
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_11264.json": {
+        "sha256": "ab5eba8b370c0a0355f179a11f0ade1991f244b3f89d74b1a56eb1707b56ad23",
+        "size": 66050
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_12288.json": {
+        "sha256": "06db50fe74acb7f5b2dffc76d4c2d913d2ee6d72460f223cdbb6ea8144143a0c",
+        "size": 66046
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_123.json": {
+        "sha256": "c5978ec95704b34717fcf397ca366977c0eaf4e98cc4ef09664150d4d8e02ea5",
+        "size": 65689
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_13312.json": {
+        "sha256": "33a3e3911d05d839f055c7e98e28e8f918906bf5ca50da3b8c0a8462f3eb8d76",
+        "size": 66082
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_14336.json": {
+        "sha256": "4c50eb408f7c08c143650d252143c6fc513eb24593aba420e425b770491a6f1e",
+        "size": 66057
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_15360.json": {
+        "sha256": "b115ed15e32c187f3bda66d8fe124ba2984cdbf91d2845d9881db9327c2f69de",
+        "size": 66085
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_16384.json": {
+        "sha256": "23d01a44ee6e5858d0cdd4de2a6bf7d43c3bd9b66fedd55b909f194e13eb2c49",
+        "size": 66059
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_2048.json": {
+        "sha256": "1bec1eeed928167da56def517de8999bd95a119c11706357e110185c75005866",
+        "size": 65939
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_3072.json": {
+        "sha256": "45999b533eeac6a09d8745535157811cc93200641593ed0d8a68fc7b4f87a513",
+        "size": 65885
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_4096.json": {
+        "sha256": "8d465a2dabd84fd6714b7b5c0bd28bc713ac560b4e29c7a1bce4804e053d23a5",
+        "size": 65917
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_42.json": {
+        "sha256": "ed5ea3d4bd1dbee30a7300c4196a469792a83e13421a8c2805e66cfc26d975be",
+        "size": 65548
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_456.json": {
+        "sha256": "bf2a8226b00685a9a217c6365b38916743e22fefbf8ec4c5d519bf6ef02f446d",
+        "size": 65703
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_5120.json": {
+        "sha256": "9da415596ed375cc7280002019e8a57cfed1f9de2f573bb92183b891181f7fe7",
+        "size": 65900
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_6144.json": {
+        "sha256": "165366e350a1a8937d52a11fd36b4cc75fe533ffef6fbedb4ea5d07aee88a9a0",
+        "size": 65893
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_7168.json": {
+        "sha256": "3c9405e2b6e37b99270e3c681327e6d4200c57a01129e7444e218c7fa1ebcdd5",
+        "size": 65920
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_789.json": {
+        "sha256": "89b3bab6aede749dcfbb80d0e3c5aa06c281e333ff1fffaf1b26b8b5fa57ae7e",
+        "size": 65739
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_8192.json": {
+        "sha256": "24af12d2dac5f8908b9f9e8c74baaf42ae159266744410c2199500ebbc1ab075",
+        "size": 65901
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_17_9216.json": {
+        "sha256": "6f5e46e579c9c98819e1ec639d83602624b3c3fa53945ff10780befd1936b0de",
+        "size": 65360
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_1024.json": {
+        "sha256": "82d42355c1b151ae21e32068801d0d0679b9e88149b416ab78c128827c9bce7a",
+        "size": 65933
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_10240.json": {
+        "sha256": "5a551fc6215949509f90611f7df2fff2d9a47d546e6a46397440fa2609b35411",
+        "size": 66072
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_11264.json": {
+        "sha256": "f88099779972f59b515bd2ac4510871baf9f7d19eeeed32cbd7a28b22d5fb173",
+        "size": 66084
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_12288.json": {
+        "sha256": "975a4a9de90d6ecdd76b53fceb572e8ce3224081ab53335419ac1f265f78f9a5",
+        "size": 66053
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_123.json": {
+        "sha256": "8839faa95e832026d556d0c6524852b82dbfd1ac92396b9a21e64c32ecd9341a",
+        "size": 65745
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_13312.json": {
+        "sha256": "1fc4e0a15078f92896fb26b84cfaab7662ca2882fe4d190cb95a0e87a3e76e36",
+        "size": 66088
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_14336.json": {
+        "sha256": "7744392f0c4e99ba7b6801b93789000b8b21735028b9081d4694837b75d2a665",
+        "size": 66087
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_15360.json": {
+        "sha256": "8d71cd5ce94b087294c9e945c8b439011f37a6aa64111e05266d78dc259d67ef",
+        "size": 66065
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_16384.json": {
+        "sha256": "e5ae0079eec9b8097ccdde2557e75a2db8914cf54dfca4ea914e4b9fda09cdd2",
+        "size": 66055
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_2048.json": {
+        "sha256": "2a3e325a14d8b5001f37f788b877b5b289da6cdfabfe83e80e5101aeb2ffc2cf",
+        "size": 65917
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_3072.json": {
+        "sha256": "f8c2b760a4fa84a4a914394a1e80b0e97baf003b6286a22e32f9fe040139d359",
+        "size": 65923
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_4096.json": {
+        "sha256": "d7da5cb6ac37d4b4d2a8bd76a5134ca7f194936d952e37bcfc006242d9918dd4",
+        "size": 65918
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_42.json": {
+        "sha256": "ae97dd691ef1921ac6d76c295ff34ae47927044642bbd89299145bef8ccbae40",
+        "size": 65613
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_456.json": {
+        "sha256": "73af3e86ef356cb2cc824fe1e1fe0d6bbb447f54a534d1d4e882ee6ec919f96c",
+        "size": 65771
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_5120.json": {
+        "sha256": "79341b84cee8de36b50677cfddfcdf4df9d40ec18d3a1724f355adc0b17923c1",
+        "size": 65918
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_6144.json": {
+        "sha256": "498e4f691201f1399d2d64dd5be97666cf5bc7e1befaf59fcdd1e93e68419fa2",
+        "size": 65915
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_7168.json": {
+        "sha256": "faf5043b46374479c1a62fe549b6378d6aadfc1557a7d6d2fe0137c6dc9d9af4",
+        "size": 65920
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_789.json": {
+        "sha256": "ba3d59754710204eb3d0517f7f47bfe3cfa463a198653a6bde52ae03814d72ea",
+        "size": 65735
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_8192.json": {
+        "sha256": "326e99b758e8c269396e4c34d30757cff7fd00fa11d2616ddeac21de7ce07bf8",
+        "size": 65920
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_21_9216.json": {
+        "sha256": "c820ca90becd82273a2ae5ad78c824106d393adc3e03b5b680c6fd1f31f77226",
+        "size": 65896
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_1024.json": {
+        "sha256": "5f47c8914d59f4b3d1bbceeb5ecd4552c29c45d8be5a8dd6352f6f5c4b980a57",
+        "size": 65810
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_10240.json": {
+        "sha256": "ebc29c3d4347255a19328768ef8bc5e69c752460132922a63a5df25dba102843",
+        "size": 65958
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_11264.json": {
+        "sha256": "2ce6c902cf09d99a1d2d5e823ab455b99a5b3ab9e41e0135cb7f8f8c6c9b7416",
+        "size": 65946
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_12288.json": {
+        "sha256": "15f71490daa10468dc8c025ab18a66b661d70b55206e8f1ce1b46d0e05b56ff4",
+        "size": 65955
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_123.json": {
+        "sha256": "eb835cd3dc8ced97d0286267368992a79f2f67252bc8b7b2994302714abfa47d",
+        "size": 65641
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_13312.json": {
+        "sha256": "6b7b6e2a94180723d2fc74cb34de67850171237be79ede4c5f543daac67e88e4",
+        "size": 65989
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_14336.json": {
+        "sha256": "b42c34e69a13d54bc963b92a83cd2aeacb63165b0e24fd0d4bdc2ae132950231",
+        "size": 65970
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_15360.json": {
+        "sha256": "5a2316ce7e4bf3055acc3bef96bcce20fa864a755bc4541323437a18858a8147",
+        "size": 65985
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_16384.json": {
+        "sha256": "f154e55e81f5ca9d4e95486979a5e9db07da8d594cdd24b8c871bf2341f585fa",
+        "size": 65938
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_2048.json": {
+        "sha256": "5dc0d15ab523ca7ab26a48b1ad148ea3b8a4d97792669db5a62ed6f6fa6d954b",
+        "size": 65799
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_3072.json": {
+        "sha256": "4453ddf6de9746a5dab37ba23efc295d7dd978efc293de7c93d15a86d34db0cb",
+        "size": 65805
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_4096.json": {
+        "sha256": "22fa303c5854099b39157e33d1ca99652d09115d92ec7aa476eec2af50cac308",
+        "size": 65816
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_42.json": {
+        "sha256": "53cfc7fcdc4cdd37016246cbbca3857de1a1925bc2e4eecc6325184760204fe8",
+        "size": 65522
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_456.json": {
+        "sha256": "2350d01d3fba405de08ff92dc812146db2803068a83214011e06649cc673c6d3",
+        "size": 65645
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_5120.json": {
+        "sha256": "277a087268b43fa9f16ed3eeff11a100307b8004c32fb2c3be09fe75699a4da0",
+        "size": 65792
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_6144.json": {
+        "sha256": "78a99644931d874f0a1db17407952d93b63651948ea568ae5ad3e78ad92e8c5c",
+        "size": 65804
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_7168.json": {
+        "sha256": "75bd250b0cde022c40aa7f9c0583bb03ad6a78b8d5983b89c7ce6e24568a22b9",
+        "size": 65820
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_789.json": {
+        "sha256": "b060316b4eb9294c62c88bc1777db9c8a168082d3bcb111c67a939d785441843",
+        "size": 65673
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_8192.json": {
+        "sha256": "965a87a9fbb565d882ba4cc68fcd01daa717a1b8175ee07c3529c9f901dc0ab7",
+        "size": 65806
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_25_9216.json": {
+        "sha256": "1f8fd987cfef0b4795756012966722a95ebdf70c096b5bd3ae84c5ea1573e951",
+        "size": 65811
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_1024.json": {
+        "sha256": "88c919fdb9d6bc205a99a9560b41b6a3558cb2a6acb21437036f1d42e0cc7165",
+        "size": 64382
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_10240.json": {
+        "sha256": "cad859d79207e13d418773ec07012d7e37c63193117633477ed87eff664a96b1",
+        "size": 64060
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_11264.json": {
+        "sha256": "f9a0fb5582acf1e7c50ebe52208d2a39e45c3f9d7396900d6c32e17af89f6d0e",
+        "size": 63984
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_12288.json": {
+        "sha256": "d91e1d273760a52561eb03786d7edee4ae7ff883b28bf2e0903bf15d50aa4624",
+        "size": 64286
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_123.json": {
+        "sha256": "e98137a95140a4f3a81bbf15cd905fc7732acc46edea563a507fc9610d0c4ca8",
+        "size": 63673
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_13312.json": {
+        "sha256": "1c8175af902243e4b8a57b8c85d9979f08ec7ef5c3b51b55a440bb8bea534cba",
+        "size": 64092
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_14336.json": {
+        "sha256": "40f14591fdf168f09e6eeced8d7ee4b673af08d7f84ce1064a033f8d3212b507",
+        "size": 64276
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_15360.json": {
+        "sha256": "37a6f57f1d6a46bb936f11ecb331deb954809bf4f0bb072286ad2537325f1ea0",
+        "size": 64288
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_16384.json": {
+        "sha256": "c01040d2230d9e2821f12a299e2e2aabfbe01835544171bd1bfb172773f76dd0",
+        "size": 64084
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_2048.json": {
+        "sha256": "3470f1b16cdc682e3f6456cb1794121689dad8ca85477832d06fe3f6cea0d7eb",
+        "size": 63881
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_3072.json": {
+        "sha256": "9859adf420812ccef766b7a0445787646be491a7c43792d5db566d39394d9a48",
+        "size": 64590
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_4096.json": {
+        "sha256": "19fcd2371b5a7bd454a1642f14cd32ca11d9e928148f4e31b27ad06bab1c4fe1",
+        "size": 63759
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_42.json": {
+        "sha256": "da219e9e67101d89e4e159db74e8a69b2579cf9b618b05c82a20ab3e88771312",
+        "size": 64153
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_456.json": {
+        "sha256": "a3a25f3e0bd1348b1409630b573d587be0fd9fcea4f89916820583387b6bfe84",
+        "size": 63488
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_5120.json": {
+        "sha256": "4fc0a050230c84b8f9af22165c257698b2f2cc41972f4659e8887996e35e79a6",
+        "size": 63774
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_6144.json": {
+        "sha256": "b94c40df0075e8ea539c1048eeb66d8d0b2b3b520ff030e44d98f79429d15cb2",
+        "size": 63736
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_7168.json": {
+        "sha256": "12b815f31b8548469e786d318942d18ee60915c4c7ee4b9e346eb77e088735b3",
+        "size": 64055
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_789.json": {
+        "sha256": "861f734109d7a904b31cc58cc95ea975967ea8f62954096890117ae1ed813922",
+        "size": 63347
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_8192.json": {
+        "sha256": "cc3ab55f549f46e190c201635ede57d8d2b5a066cd1aa00fa8fcc636ae5a3e8d",
+        "size": 63941
+      },
+      "raw_results/exp_oracle_random/NoBackRandom_9_9216.json": {
+        "sha256": "8dc1b0eb851cc9320bb45c67b87699b0778403aac5678f89d86c7b6c8caebe4a",
+        "size": 63845
+      },
+      "raw_results/exp_oracle_random/Random_11_1024.json": {
+        "sha256": "3f8c343dbb7fb11003880ef42b82d422fe458f9590662eea870b770956f3131b",
+        "size": 63510
+      },
+      "raw_results/exp_oracle_random/Random_11_10240.json": {
+        "sha256": "4fc044e77a6009a842c3c8d822ddd5df9b8ae6cb6d32ba9033e1f8e422d90883",
+        "size": 63906
+      },
+      "raw_results/exp_oracle_random/Random_11_11264.json": {
+        "sha256": "6081c87e8e7bdacce037e76e0bfba0c98d917af5b530fc68b44bef94f947b8e0",
+        "size": 63816
+      },
+      "raw_results/exp_oracle_random/Random_11_12288.json": {
+        "sha256": "7dac11cf72f9653143ed8e322a187f4d8aeba99fb27f204af0804ea2926a3d87",
+        "size": 64160
+      },
+      "raw_results/exp_oracle_random/Random_11_123.json": {
+        "sha256": "b1bff54e0a01ce169291ba100ed7ab11b9d087547eceb2d2bf1f77ae68e7dc2e",
+        "size": 64131
+      },
+      "raw_results/exp_oracle_random/Random_11_13312.json": {
+        "sha256": "b541b0e1f09a9e694c43e500a134efd248322e4726020158e13a2a7292d76824",
+        "size": 64250
+      },
+      "raw_results/exp_oracle_random/Random_11_14336.json": {
+        "sha256": "ac35c78bae41b5fffe104a23e95ad8cb6874254b5fca5bba8f582375e6433c8f",
+        "size": 64184
+      },
+      "raw_results/exp_oracle_random/Random_11_15360.json": {
+        "sha256": "b5f33b893081c1c475355431efe5282c3ee8a150586f39663ea65851aa8a09ac",
+        "size": 63953
+      },
+      "raw_results/exp_oracle_random/Random_11_16384.json": {
+        "sha256": "a1729a395f2ed60f2d529970d59105f45f4276bd2dd0adbb3a8c0b12bd49ba31",
+        "size": 64497
+      },
+      "raw_results/exp_oracle_random/Random_11_2048.json": {
+        "sha256": "0a3fe8d868b8d4aededa3a9fd0c05fae1081d93a14c48637780688555a605e83",
+        "size": 63184
+      },
+      "raw_results/exp_oracle_random/Random_11_3072.json": {
+        "sha256": "1163eaf2b180e13a85807fa32d798665cfa546c48a896bc9380fc050c9ef8272",
+        "size": 63458
+      },
+      "raw_results/exp_oracle_random/Random_11_4096.json": {
+        "sha256": "de666c2d3c439af8b3eb3e5995a05e374cf752f8182a6829c79511311bb5096d",
+        "size": 64152
+      },
+      "raw_results/exp_oracle_random/Random_11_42.json": {
+        "sha256": "51c938450d067aff83ca058bcd2fab0e788ae088de68bf59892bfd388da941e6",
+        "size": 63715
+      },
+      "raw_results/exp_oracle_random/Random_11_456.json": {
+        "sha256": "d5ff1bb590eb80f62ca13b3e8bcdcb6a76d9d3f6ddc323cec51457fca7f279eb",
+        "size": 63785
+      },
+      "raw_results/exp_oracle_random/Random_11_5120.json": {
+        "sha256": "3d8f39e6ac6843023ebef0152e6285ef2bb012b4eb60d1c3f2afa4cd372f7216",
+        "size": 63897
+      },
+      "raw_results/exp_oracle_random/Random_11_6144.json": {
+        "sha256": "717bbbbcc08956751bdb87694ea3af82428e9f24054ca2eb65e1d28065506109",
+        "size": 64266
+      },
+      "raw_results/exp_oracle_random/Random_11_7168.json": {
+        "sha256": "61bfee96051fe967b6621fa6214649787452078b7ba5614b82e6cffee7368699",
+        "size": 63934
+      },
+      "raw_results/exp_oracle_random/Random_11_789.json": {
+        "sha256": "d83bd81db8c020e3da3bad652b43fc15da8b9eca13a0d62504575c30e8692118",
+        "size": 63682
+      },
+      "raw_results/exp_oracle_random/Random_11_8192.json": {
+        "sha256": "a97639e7734855ffac041e558b1e2c64445731e21132a5f06235bdfe991a9c53",
+        "size": 62852
+      },
+      "raw_results/exp_oracle_random/Random_11_9216.json": {
+        "sha256": "5a8c741728c4f438163d472f00e7e3fa57b3297589bbd0c388b46790b6f7e6b0",
+        "size": 63645
+      },
+      "raw_results/exp_oracle_random/Random_13_1024.json": {
+        "sha256": "a139dc4fd37ed5f7ff866418be2831afc40a2306c3a433724ac8ab8468ec75ad",
+        "size": 64300
+      },
+      "raw_results/exp_oracle_random/Random_13_10240.json": {
+        "sha256": "5afe2ad60a6ed0268721515dc035d7b38a0128a0145b62e5d2e5ddd69421194f",
+        "size": 64511
+      },
+      "raw_results/exp_oracle_random/Random_13_11264.json": {
+        "sha256": "cc8a4c37e341f28835e90581d07aa2c8d040799fa15ff63fddc41592d7f64c7a",
+        "size": 64666
+      },
+      "raw_results/exp_oracle_random/Random_13_12288.json": {
+        "sha256": "68a842d53a7b448fc5cf28e80f9ae1c7a10676a1ac7e666fde4ddbbaaf949edc",
+        "size": 64558
+      },
+      "raw_results/exp_oracle_random/Random_13_123.json": {
+        "sha256": "4f113cbe8128fa8dfbda063edd684251316bdafbcce01e6ca441adbe3e8c61f2",
+        "size": 64427
+      },
+      "raw_results/exp_oracle_random/Random_13_13312.json": {
+        "sha256": "839792a71e4508fb2ce2d6c112b41a7fefe45fc4cfdc384286b03a018dba48ed",
+        "size": 64459
+      },
+      "raw_results/exp_oracle_random/Random_13_14336.json": {
+        "sha256": "0fc758526a0b5e8f899ac9189b7f961f997c8f63f239a4e79a8435ed70905a1e",
+        "size": 64597
+      },
+      "raw_results/exp_oracle_random/Random_13_15360.json": {
+        "sha256": "4635a7dcf5f322789c233fc889aba0a96631ef276464c5a782ff941a50a688bb",
+        "size": 64506
+      },
+      "raw_results/exp_oracle_random/Random_13_16384.json": {
+        "sha256": "8d4972e7f1189818d85ac4ebd9af9f404001b248af4dffe2a7f2364b352df86c",
+        "size": 64532
+      },
+      "raw_results/exp_oracle_random/Random_13_2048.json": {
+        "sha256": "0463934f8a62f0063662a38d15e9046007aaafcb5cd51291637ddf631109b347",
+        "size": 64437
+      },
+      "raw_results/exp_oracle_random/Random_13_3072.json": {
+        "sha256": "bbca0749e1594b5a3f48364c041e41e3654c629bd961572866e076d0c128cb68",
+        "size": 64270
+      },
+      "raw_results/exp_oracle_random/Random_13_4096.json": {
+        "sha256": "5469b490582a31c443cc34c7a23b6100059d2214fd22025f345a32df7edb8175",
+        "size": 64294
+      },
+      "raw_results/exp_oracle_random/Random_13_42.json": {
+        "sha256": "d199d2533ea98fafcd7ed423baef810e069dd1def50ff65e2d90339077a24cae",
+        "size": 64069
+      },
+      "raw_results/exp_oracle_random/Random_13_456.json": {
+        "sha256": "2652d8017792c1748c0db24e855a2ce41d42a8371234b254e289b028c8accb98",
+        "size": 64550
+      },
+      "raw_results/exp_oracle_random/Random_13_5120.json": {
+        "sha256": "e763782dc950be77b8de4ad4bc07d4c379528f7f295baa31aa15d0a846d22e84",
+        "size": 64191
+      },
+      "raw_results/exp_oracle_random/Random_13_6144.json": {
+        "sha256": "1b0a0fa11debc125d9aa5afd2c743571b1cdcc9f9e92cb6f40206bf06dcb9dde",
+        "size": 64080
+      },
+      "raw_results/exp_oracle_random/Random_13_7168.json": {
+        "sha256": "c774f901e991f7921c0e3156735a61e8050532caa6763f4c935aaa8d69ed8053",
+        "size": 64247
+      },
+      "raw_results/exp_oracle_random/Random_13_789.json": {
+        "sha256": "af3b70b944c5e462f74a94423d7c9acc7728115b775357042bbcddfc36705973",
+        "size": 64353
+      },
+      "raw_results/exp_oracle_random/Random_13_8192.json": {
+        "sha256": "11b9225f534eacd5e74253cec2d1c8e5f154aee8b6ebfee9c35062e25f7e3b7c",
+        "size": 64246
+      },
+      "raw_results/exp_oracle_random/Random_13_9216.json": {
+        "sha256": "f4a95e3f503beb4492996e730494bb27892d60279fee362f4721edfd681df890",
+        "size": 64302
+      },
+      "raw_results/exp_oracle_random/Random_17_1024.json": {
+        "sha256": "0e0d2362211bea46676c3cfa075c6b929321b32815d7612adef2230c0ec3869c",
+        "size": 65069
+      },
+      "raw_results/exp_oracle_random/Random_17_10240.json": {
+        "sha256": "1efa1810bb4ae359e08efc3915138b2836935cf6df3d3dbaba0a368069128ba8",
+        "size": 65225
+      },
+      "raw_results/exp_oracle_random/Random_17_11264.json": {
+        "sha256": "7eadc9c34004f1452ec6de4e72bce599ff3d4abb53c87f845a557fbfabc2d948",
+        "size": 65251
+      },
+      "raw_results/exp_oracle_random/Random_17_12288.json": {
+        "sha256": "e9068b61b3426887d1ea368c62ee0f38ddde58634473c5b44543432d9615f8ea",
+        "size": 65183
+      },
+      "raw_results/exp_oracle_random/Random_17_123.json": {
+        "sha256": "886b6102c90400a86e255b2404640c17622ef93a4092e96e44eb4ffed52e21d1",
+        "size": 64931
+      },
+      "raw_results/exp_oracle_random/Random_17_13312.json": {
+        "sha256": "8bd28992a0621b21298ecc28912f581fde0d93b4fbb4a77862dfaa313d37ed75",
+        "size": 65215
+      },
+      "raw_results/exp_oracle_random/Random_17_14336.json": {
+        "sha256": "665dce26ea234b5185b4aa2c672eca6909c108b6981ac2247dfbeca3514e64fc",
+        "size": 65177
+      },
+      "raw_results/exp_oracle_random/Random_17_15360.json": {
+        "sha256": "067a577c52ef125f6b528329bf776d1c076ebc6b0c2b7c57e44399fda35bba58",
+        "size": 65174
+      },
+      "raw_results/exp_oracle_random/Random_17_16384.json": {
+        "sha256": "566bd5f49208634bf436fcc6dce7e1505d96841099e3b91dab44e733fb8bf7ef",
+        "size": 65220
+      },
+      "raw_results/exp_oracle_random/Random_17_2048.json": {
+        "sha256": "362ec6a52613dc0c4a49d62abc4c7e672710f8a64599206a225720a5a02f23c3",
+        "size": 65100
+      },
+      "raw_results/exp_oracle_random/Random_17_3072.json": {
+        "sha256": "f7f3fbdfbd645110b03d37d6b7d34e63ce180110addf76831d711b7238c0931e",
+        "size": 65047
+      },
+      "raw_results/exp_oracle_random/Random_17_4096.json": {
+        "sha256": "120e8ee75e72321f75de66db10649377f713b9a55eed0261abcbdbc7a60b3fda",
+        "size": 65084
+      },
+      "raw_results/exp_oracle_random/Random_17_42.json": {
+        "sha256": "535ee10a0e81d4e2b4ff56af0563bfcad789a7cda495d39a051358db58accfc4",
+        "size": 64781
+      },
+      "raw_results/exp_oracle_random/Random_17_456.json": {
+        "sha256": "0db3378e897c661a71e4d803540ff636a3d43ab4d6cbdebde32a8cfb3aa2a661",
+        "size": 64929
+      },
+      "raw_results/exp_oracle_random/Random_17_5120.json": {
+        "sha256": "c899fb83194e9fd487f42db952ef62ba643b1fd4a30d65b37acb3b236b4a80d3",
+        "size": 65073
+      },
+      "raw_results/exp_oracle_random/Random_17_6144.json": {
+        "sha256": "4014c02f7800918d8b7d74310704556407a7164487a6ee226c769086ad119201",
+        "size": 64990
+      },
+      "raw_results/exp_oracle_random/Random_17_7168.json": {
+        "sha256": "8f5eaa0267ae33bf41e99d7f00b4e425f04bf14c6f97b7fb44db855af3893f87",
+        "size": 65105
+      },
+      "raw_results/exp_oracle_random/Random_17_789.json": {
+        "sha256": "fb01b250332629ad8139b0e195f6a76c2bd2be22d4f87898ad12514f83c8bc30",
+        "size": 64928
+      },
+      "raw_results/exp_oracle_random/Random_17_8192.json": {
+        "sha256": "b06d6ff79c58bf2e6b428f493489999e56251f2394fd10c878f9d70f562af06f",
+        "size": 65069
+      },
+      "raw_results/exp_oracle_random/Random_17_9216.json": {
+        "sha256": "bc437674c741f46cb2f3c5e4416af8a557e098fcebb549a7c059291f416f77e4",
+        "size": 64605
+      },
+      "raw_results/exp_oracle_random/Random_21_1024.json": {
+        "sha256": "7d513756608e8353d8885e18a502edb30fa3a44d42bf6186458270483610def6",
+        "size": 65036
+      },
+      "raw_results/exp_oracle_random/Random_21_10240.json": {
+        "sha256": "0bfb0b92540e70737333045edb832a4585404397e1686941b570a5bac887998d",
+        "size": 65191
+      },
+      "raw_results/exp_oracle_random/Random_21_11264.json": {
+        "sha256": "f1b988111e5341332f4e3a9739943c59fa6b57593b3a7852711e74312576d379",
+        "size": 65182
+      },
+      "raw_results/exp_oracle_random/Random_21_12288.json": {
+        "sha256": "cd91b64daf4c6ac1708da8a5f30009a748d0559cd8ca024b1d51a40d46521d6a",
+        "size": 65177
+      },
+      "raw_results/exp_oracle_random/Random_21_123.json": {
+        "sha256": "49df03d7ca0c4b80b00396d6fea707074fcb5300aa6e38c2eac176988962450d",
+        "size": 64882
+      },
+      "raw_results/exp_oracle_random/Random_21_13312.json": {
+        "sha256": "aead3a490964f4c45d4fd03856fc3b265ad0783dc539630a31fa62c0ce8e837b",
+        "size": 65200
+      },
+      "raw_results/exp_oracle_random/Random_21_14336.json": {
+        "sha256": "191df61a0b0f247f9a6f7dd949c4d3a2344603a96855da507914bc5338f976d1",
+        "size": 65170
+      },
+      "raw_results/exp_oracle_random/Random_21_15360.json": {
+        "sha256": "3de1e43e8a60b4f00edb82ad5b01ea87d5ad4777707bdb951c9cdb57631194bc",
+        "size": 65186
+      },
+      "raw_results/exp_oracle_random/Random_21_16384.json": {
+        "sha256": "e9fc2c667e9df0b1e90ddd8f4df8f9aaf3ca14914c71a97bfe0956169873575f",
+        "size": 65175
+      },
+      "raw_results/exp_oracle_random/Random_21_2048.json": {
+        "sha256": "388e2cba7b6f3f44d0bed3a871c50370e173aa70d8bfb6ea754696ed05abdfc2",
+        "size": 65044
+      },
+      "raw_results/exp_oracle_random/Random_21_3072.json": {
+        "sha256": "4e683038d2695c7668c9d5aa8061d443839b9c46bc5a1dda2a7b626113b22ebe",
+        "size": 65015
+      },
+      "raw_results/exp_oracle_random/Random_21_4096.json": {
+        "sha256": "ce68c35567fdd036b13ec637df66724a8ccc544e2f4583fec18ae8a26855d783",
+        "size": 65026
+      },
+      "raw_results/exp_oracle_random/Random_21_42.json": {
+        "sha256": "0b1586d6b278037e017d83bc308050b921b2288ad17d8f0aeba3e044a80e1940",
+        "size": 64729
+      },
+      "raw_results/exp_oracle_random/Random_21_456.json": {
+        "sha256": "3f98a8a1fc7d65fba95b8180991399646ea4dbda28aa2b9cb16aa28933877494",
+        "size": 64865
+      },
+      "raw_results/exp_oracle_random/Random_21_5120.json": {
+        "sha256": "7ece8e9cb2fef9c911f311c3b268c4bdb2590d0bc07131e482352b8dbabac96d",
+        "size": 65025
+      },
+      "raw_results/exp_oracle_random/Random_21_6144.json": {
+        "sha256": "db9a1090e859ac7e41bcff1ecb072df0b7db272775fac821f8ef28fe66fbc82d",
+        "size": 65027
+      },
+      "raw_results/exp_oracle_random/Random_21_7168.json": {
+        "sha256": "ec93cf268bab1b5c468d61e6de8532e151ab615c510fd769a3e862a33f6460a2",
+        "size": 65028
+      },
+      "raw_results/exp_oracle_random/Random_21_789.json": {
+        "sha256": "ad35e4df998e825f29bf56168f8d2e764c22e1b607f9e44068f094c50b598d83",
+        "size": 64890
+      },
+      "raw_results/exp_oracle_random/Random_21_8192.json": {
+        "sha256": "e8e9acaa56a4b615c7248321eddcc191e77681d350a8067d6ad4e1e4a5a61d34",
+        "size": 65037
+      },
+      "raw_results/exp_oracle_random/Random_21_9216.json": {
+        "sha256": "19cec2901091cdfc09b244def802efe0327ae83b6153ed448b031a050e8d6e1a",
+        "size": 65023
+      },
+      "raw_results/exp_oracle_random/Random_25_1024.json": {
+        "sha256": "a8e6f7e5147e811e6a595a24c6290424b8d4cddb99855a9a4af8b2336970ae80",
+        "size": 64964
+      },
+      "raw_results/exp_oracle_random/Random_25_10240.json": {
+        "sha256": "4a8eab965641de087499bc039d311f8f48e945ad85e93da2f6950723af325b72",
+        "size": 65112
+      },
+      "raw_results/exp_oracle_random/Random_25_11264.json": {
+        "sha256": "eef8b66bc779e64bd2f4beac662fd56b2b27fc2a10d74cef7de7f7521c9e1ed9",
+        "size": 65092
+      },
+      "raw_results/exp_oracle_random/Random_25_12288.json": {
+        "sha256": "0f06046b720d92988ca6eacb668f25049afb75a2d9adf27e30e8797f5920899b",
+        "size": 65067
+      },
+      "raw_results/exp_oracle_random/Random_25_123.json": {
+        "sha256": "2f64a32be4e576a2bee029be91712ded2828ef8192ca0420837b8615084caa91",
+        "size": 64815
+      },
+      "raw_results/exp_oracle_random/Random_25_13312.json": {
+        "sha256": "a09f2c1759142a81f2ba8012cdf90b86ae31392a52ef918b8fb6744e53250d48",
+        "size": 65110
+      },
+      "raw_results/exp_oracle_random/Random_25_14336.json": {
+        "sha256": "1d810a1fd30400d74c06056c36b0e89c79f2f044be57ef927395eb1ec0181929",
+        "size": 65133
+      },
+      "raw_results/exp_oracle_random/Random_25_15360.json": {
+        "sha256": "693a2b741e57605e4334d614686fd653a10e714c0dd048f80fc6af5e9509cc51",
+        "size": 65102
+      },
+      "raw_results/exp_oracle_random/Random_25_16384.json": {
+        "sha256": "48997cf5b367e1ee1984323c339f1661e5f57229025d7cbe4a9a8a952fb07173",
+        "size": 65095
+      },
+      "raw_results/exp_oracle_random/Random_25_2048.json": {
+        "sha256": "29855b63712f55407e6a150edcf88d789f8045b40141182e2d1c7779f9621e12",
+        "size": 64974
+      },
+      "raw_results/exp_oracle_random/Random_25_3072.json": {
+        "sha256": "813dfd64c1a49e9502700d1eb377664132f7b182d58aefc3cb57d3f8098367b8",
+        "size": 64939
+      },
+      "raw_results/exp_oracle_random/Random_25_4096.json": {
+        "sha256": "6fc4c8ec232f0b44529ea87377580e0aabc77e2d7e3ff2c4184014f63724d2b6",
+        "size": 64963
+      },
+      "raw_results/exp_oracle_random/Random_25_42.json": {
+        "sha256": "2da96311958cb976a1c6c0ac8166e50ebda850a139fdd51906a9515fa7a1f4cd",
+        "size": 64681
+      },
+      "raw_results/exp_oracle_random/Random_25_456.json": {
+        "sha256": "7d6eea588384d6dba4b9e7fae24bef2ad0b212e1a6a6a11eda60ae8e2aad4ddf",
+        "size": 64799
+      },
+      "raw_results/exp_oracle_random/Random_25_5120.json": {
+        "sha256": "ca9353822802c24bb0880d3dc9f1d579eeeaf571ffb34e9ba246b346ecdbb63b",
+        "size": 64947
+      },
+      "raw_results/exp_oracle_random/Random_25_6144.json": {
+        "sha256": "88a473431d14fbde02d7fa21a56ab776cb76bfef2e174ddc1016e1eb8ac3c8bf",
+        "size": 64939
+      },
+      "raw_results/exp_oracle_random/Random_25_7168.json": {
+        "sha256": "b11dfa2038c207ebc5344063c78ff8fa0e7d9dc0a808f878940b6f487f5cfa3a",
+        "size": 64937
+      },
+      "raw_results/exp_oracle_random/Random_25_789.json": {
+        "sha256": "5a663070b6ac8028076a4716f06038e04464b0765a8b3eacd1265b162b45bd73",
+        "size": 64813
+      },
+      "raw_results/exp_oracle_random/Random_25_8192.json": {
+        "sha256": "0e7f8c07a5b5a1a48ea6ab6ed2896a110f12109ddb820c522eb7d8688f1cb493",
+        "size": 64927
+      },
+      "raw_results/exp_oracle_random/Random_25_9216.json": {
+        "sha256": "3cbb1ffb719a631a2bc5ec047cfc8899cb35d557eee3b057ebfaabaaec630fe8",
+        "size": 64918
+      },
+      "raw_results/exp_oracle_random/Random_9_1024.json": {
+        "sha256": "48ffe5f2dcfaffa193eb9e96ffd3b21b18ae7fc840a87cc7a957554a086377d0",
+        "size": 63259
+      },
+      "raw_results/exp_oracle_random/Random_9_10240.json": {
+        "sha256": "2ea5fbd261c800d9be2aa55c4f103e19779e3ed985463d9249d7ed9d4b04b015",
+        "size": 63309
+      },
+      "raw_results/exp_oracle_random/Random_9_11264.json": {
+        "sha256": "a4406d66dfc5d7dcf47767657547e886bb743741c1689615476f317076bbd6e2",
+        "size": 63234
+      },
+      "raw_results/exp_oracle_random/Random_9_12288.json": {
+        "sha256": "3f0eb9a78023aba102ab18d7555888e977694987870d612530afd771d3d0020c",
+        "size": 63373
+      },
+      "raw_results/exp_oracle_random/Random_9_123.json": {
+        "sha256": "58f5970c81b881fb0a65187d185fd5655886fd42def8bd600c40d81bab69d4a1",
+        "size": 62900
+      },
+      "raw_results/exp_oracle_random/Random_9_13312.json": {
+        "sha256": "41de8f6882f40c7dc95070db8e727e5b74c0dccb3f92e53642f137efe3cdc521",
+        "size": 63099
+      },
+      "raw_results/exp_oracle_random/Random_9_14336.json": {
+        "sha256": "de3093b11943800e34144529cc9e47262719e47b1487358e8780991164ddd2e5",
+        "size": 63224
+      },
+      "raw_results/exp_oracle_random/Random_9_15360.json": {
+        "sha256": "a17430246ccc0d2c1dd7db5d59040ae7ec3d87cfb654792cdc70871a7a907c39",
+        "size": 63322
+      },
+      "raw_results/exp_oracle_random/Random_9_16384.json": {
+        "sha256": "f80e7fa5ca7638515eae0817832a4e20bb87b93377a95a08f9e390df622e5971",
+        "size": 63308
+      },
+      "raw_results/exp_oracle_random/Random_9_2048.json": {
+        "sha256": "c35864156615f8bea5840528f158b68af183d48a8d0b686350fad2ffe6498fe9",
+        "size": 63140
+      },
+      "raw_results/exp_oracle_random/Random_9_3072.json": {
+        "sha256": "e018c700a556bc0f851c1c5dab7bff092133315eb6aa48e216a6ff76e316b264",
+        "size": 63762
+      },
+      "raw_results/exp_oracle_random/Random_9_4096.json": {
+        "sha256": "15ee2d23be03960dc436ce1c24a48b88b61412dee59a9c3fefc38c08f82945cf",
+        "size": 63174
+      },
+      "raw_results/exp_oracle_random/Random_9_42.json": {
+        "sha256": "420f9a1a9061dc098a1267316e8ee17a0e026a9e309f8b81290941d978b57dd7",
+        "size": 62855
+      },
+      "raw_results/exp_oracle_random/Random_9_456.json": {
+        "sha256": "015961058b879e243b0983ddc1a97e509f7c2fe0e8590070d0f1357e3a07510e",
+        "size": 63306
+      },
+      "raw_results/exp_oracle_random/Random_9_5120.json": {
+        "sha256": "ec45484809ca1a0d38e4445261acaf21ff1815767722fd38c49e9cf687e9d681",
+        "size": 63111
+      },
+      "raw_results/exp_oracle_random/Random_9_6144.json": {
+        "sha256": "1620bf6e553f4d6c97916a2318fdfed43353e25f4985e3582b34c35ce3bf6a18",
+        "size": 62697
+      },
+      "raw_results/exp_oracle_random/Random_9_7168.json": {
+        "sha256": "4bd885f3fe03a19da273bbd8da68de691dc69fa4666334071670fb31a9043d6d",
+        "size": 63250
+      },
+      "raw_results/exp_oracle_random/Random_9_789.json": {
+        "sha256": "b2ccb13847ad2326e8fa598ff78dd69a5442ada085dd74e283a370710388105b",
+        "size": 62908
+      },
+      "raw_results/exp_oracle_random/Random_9_8192.json": {
+        "sha256": "1fe5c43e35e7d53fd56a00624ebc6f8afde333a715a9bae866e72d1b3ffdd1be",
+        "size": 63600
+      },
+      "raw_results/exp_oracle_random/Random_9_9216.json": {
+        "sha256": "d41fe08a9d8197ad7e69cc8b522e69476e4c16e813b65b560bf390f30eb6bd94",
+        "size": 63402
+      },
+      "raw_results/exp_oracle_random/checkpoint.json": {
+        "sha256": "2822df2cf3467d31efaf5bb5eb64e09ccf4d3b0681c433ccfd157200da5d5a6b",
+        "size": 13760
+      },
+      "raw_results/exp_reward_ablation/checkpoint.json": {
+        "sha256": "7079d21cbfda56469ea76c82de7831469f8f8201f4be162550ff6e8a3903cc37",
+        "size": 431
+      },
+      "raw_results/exp_reward_ablation/full_DoubleDQN_9_123.json": {
+        "sha256": "8a401d5233c384e97c8592874a911fb3e255106cae261c4a1fdeb41275c8786c",
+        "size": 65987
+      },
+      "raw_results/exp_reward_ablation/full_DoubleDQN_9_42.json": {
+        "sha256": "064f47a3aa20ac38d9c529707beac868dbfa0da67bf987042082a77940eb3217",
+        "size": 65913
+      },
+      "raw_results/exp_reward_ablation/full_DoubleDQN_9_456.json": {
+        "sha256": "6d89be03c1989df1991a4c305c6e791f9b86f301c19b4e9976140f4d647b0290",
+        "size": 66140
+      },
+      "raw_results/exp_reward_ablation/full_FeatureQ_9_123.json": {
+        "sha256": "6efe8833bb9b74e4c9c859c9860e2524772d2d3a4c106feeea21ef254316a2b1",
+        "size": 65006
+      },
+      "raw_results/exp_reward_ablation/full_FeatureQ_9_42.json": {
+        "sha256": "e03866f080140a13df45a3e6e6dc4135545a3bd1bf50dc4aa1abd6fdcb174b39",
+        "size": 64115
+      },
+      "raw_results/exp_reward_ablation/full_FeatureQ_9_456.json": {
+        "sha256": "9b2baa9a4672d9de0e3b9cb6f8cc6461e3b7c01d88e6a98770a86e0a5ef7dfd2",
+        "size": 64969
+      },
+      "raw_results/exp_reward_ablation/full_FeatureQ_9_789.json": {
+        "sha256": "d52665700e3f6ae08031eb89d55a5191324027b583b2f057eb6d51357530d7ef",
+        "size": 64761
+      },
+      "raw_results/exp_reward_ablation/full_MLP_DQN_9_123.json": {
+        "sha256": "a97f3474b02bbe3e88ec238eca10f05c1e58e2ac3bbdb4c526dde8f2546eb2f7",
+        "size": 65712
+      },
+      "raw_results/exp_reward_ablation/full_MLP_DQN_9_42.json": {
+        "sha256": "5aabc330cbd80559ef17faec2bdbffc570c30842ee970fa93e9a19e9b9b5ac41",
+        "size": 65552
+      },
+      "raw_results/exp_reward_ablation/full_MLP_DQN_9_456.json": {
+        "sha256": "6c91977c4c95c9d438770374bc94484c75a1e9ca84ecc9855689082fcc10a3fa",
+        "size": 65493
+      },
+      "raw_results/exp_reward_ablation/full_MLP_DQN_9_789.json": {
+        "sha256": "64e1d91b2e3ec5f7f354f5f56ed1f586e045c6c69e122d5afedb355f94267def",
+        "size": 65678
+      },
+      "raw_results/exp_reward_ablation/full_NoBackRand_9_123.json": {
+        "sha256": "3c4995ffb89880e1ad3a4acd0d482c824f2a2489d13abcaca9aa5299f5a3e381",
+        "size": 64553
+      },
+      "raw_results/exp_reward_ablation/full_NoBackRand_9_42.json": {
+        "sha256": "f0166f2cff39a6eb33dd1d9d25827cdac7fb36e9a7484904f7251f67ee570b63",
+        "size": 63826
+      },
+      "raw_results/exp_reward_ablation/full_NoBackRand_9_456.json": {
+        "sha256": "3fecb9b6ff36b5cea9eb1f222fced6eada78ec307ec646930fd62d0a67977b63",
+        "size": 65073
+      },
+      "raw_results/exp_reward_ablation/full_NoBackRand_9_789.json": {
+        "sha256": "c1f2cc1d106686c2292d1a23b90112fe6bae4bab2c79c437751e37b93a7540aa",
+        "size": 65165
+      },
+      "raw_results/exp_reward_ablation/full_Random_9_123.json": {
+        "sha256": "09b2dacf1e0b7802c2e7c6e2cd101a5327e61590520d027d34801fc8d6643bfb",
+        "size": 64057
+      },
+      "raw_results/exp_reward_ablation/full_Random_9_42.json": {
+        "sha256": "06331a7614dd700e8b5d688296717d5642fad3a056889a7bd65e207f9c87b11f",
+        "size": 63304
+      },
+      "raw_results/exp_reward_ablation/full_Random_9_456.json": {
+        "sha256": "d48ef8676df512da3ca6a893a3b55a4c88c696c5977f40623c5d5a074d775644",
+        "size": 64666
+      },
+      "raw_results/exp_reward_ablation/full_Random_9_789.json": {
+        "sha256": "81a7f7146d5c79967b128bb98f05d45db3b900dabf4a10163bd416cbe4cd63ce",
+        "size": 64284
+      }
+    },
+    "n_files": 621,
+    "total_bytes": 39986885
+  }
+}

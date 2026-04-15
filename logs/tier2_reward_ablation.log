@@ -1,0 +1,30 @@
+Device: cuda
+GPU: NVIDIA GeForce RTX 5070 Ti Laptop GPU
+
+Tier 2: Reward ablation — 1500 runs, 0 already done
+Configs: ['full', 'no_visit', 'no_shape', 'vanilla', 'vanilla_noham']
+Agents: ['Random', 'NoBackRand', 'FeatureQ', 'MLP_DQN', 'DoubleDQN']
+Sizes: [9, 13, 21], Seeds: 20
+Output: C:\Users\tejas\engram\raw_results\exp_reward_ablation
+Code hash: fe0b8142940e55de
+
+  [0/1500] full Random 9x9 s=42... done (0.3s) test=26%
+  [1/1500] full NoBackRand 9x9 s=42... done (0.3s) test=46%
+  [2/1500] full FeatureQ 9x9 s=42... done (0.8s) test=40%
+  [3/1500] full MLP_DQN 9x9 s=42... done (53.7s) test=22%
+  [4/1500] full DoubleDQN 9x9 s=42... done (66.7s) test=8%
+  [5/1500] full Random 9x9 s=123... done (0.4s) test=32%
+  [6/1500] full NoBackRand 9x9 s=123... done (0.4s) test=62%
+  [7/1500] full FeatureQ 9x9 s=123... done (1.3s) test=38%
+  [8/1500] full MLP_DQN 9x9 s=123... done (62.4s) test=18%
+  [9/1500] full DoubleDQN 9x9 s=123... done (78.7s) test=20%
+  [10/1500] full Random 9x9 s=456... done (0.4s) test=34%
+  [11/1500] full NoBackRand 9x9 s=456... done (0.4s) test=56%
+  [12/1500] full FeatureQ 9x9 s=456... done (1.2s) test=42%
+  [13/1500] full MLP_DQN 9x9 s=456... done (52.6s) test=32%
+  [14/1500] full DoubleDQN 9x9 s=456... done (66.6s) test=8%
+  [15/1500] full Random 9x9 s=789... done (0.5s) test=34%
+  [16/1500] full NoBackRand 9x9 s=789... done (0.4s) test=52%
+  [17/1500] full FeatureQ 9x9 s=789... done (1.1s) test=38%
+  [18/1500] full MLP_DQN 9x9 s=789... done (68.2s) test=14%
+  [19/1500] full DoubleDQN 9x9 s=789... 

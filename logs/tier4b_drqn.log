@@ -1,0 +1,16 @@
+Device: cuda
+
+Tier 4b: DRQN memory agent — 20 runs, 1 done
+Code hash: fe0b8142940e55de
+
+  [1/20] DRQN 9x9 s=123... done (149.2s) test=38%
+  [2/20] DRQN 9x9 s=456... done (224.2s) test=8%
+  [3/20] DRQN 9x9 s=789... done (248.1s) test=28%
+  [4/20] DRQN 9x9 s=1024... done (247.2s) test=12%
+  [5/20] DRQN 9x9 s=2048... done (18593.5s) test=4%
+  [6/20] DRQN 9x9 s=3072... done (79.8s) test=18%
+  [7/20] DRQN 9x9 s=4096... done (161.9s) test=4%
+  [8/20] DRQN 9x9 s=5120... done (151.9s) test=14%
+  [9/20] DRQN 9x9 s=6144... done (140.2s) test=20%
+  [10/20] DRQN 9x9 s=7168... done (76.5s) test=30%
+  [11/20] DRQN 9x9 s=8192... 
