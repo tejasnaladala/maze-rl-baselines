@@ -1,0 +1,66 @@
+Device: cuda
+
+Tier 2 FAST: reward ablation @ 9x9 — 200 runs, 139 done
+Configs: ['full', 'vanilla']
+Agents: ['Random', 'NoBackRandom', 'FeatureQ', 'MLP_DQN', 'DoubleDQN']
+Seeds: 20, Size: 9x9
+Code hash: fe0b8142940e55de
+
+  [139/200] full MLP_DQN s=16384... done (60.1s) test=6%
+  [140/200] vanilla MLP_DQN s=42... done (58.5s) test=12%
+  [141/200] vanilla MLP_DQN s=123... done (66.7s) test=16%
+  [142/200] vanilla MLP_DQN s=456... done (55.7s) test=42%
+  [143/200] vanilla MLP_DQN s=789... done (71.4s) test=6%
+  [144/200] vanilla MLP_DQN s=1024... done (64.7s) test=8%
+  [145/200] vanilla MLP_DQN s=2048... done (62.9s) test=10%
+  [146/200] vanilla MLP_DQN s=3072... done (60.6s) test=10%
+  [147/200] vanilla MLP_DQN s=4096... done (71.2s) test=14%
+  [148/200] vanilla MLP_DQN s=5120... done (66.9s) test=12%
+  [149/200] vanilla MLP_DQN s=6144... done (114.4s) test=24%
+  [150/200] vanilla MLP_DQN s=7168... done (102.6s) test=10%
+  [151/200] vanilla MLP_DQN s=8192... done (95.3s) test=16%
+  [152/200] vanilla MLP_DQN s=9216... done (102.1s) test=14%
+  [153/200] vanilla MLP_DQN s=10240... done (251.7s) test=22%
+  [154/200] vanilla MLP_DQN s=11264... done (298.5s) test=10%
+  [155/200] vanilla MLP_DQN s=12288... done (210.0s) test=6%
+  [156/200] vanilla MLP_DQN s=13312... done (152.8s) test=24%
+  [157/200] vanilla MLP_DQN s=14336... done (176.6s) test=12%
+  [158/200] vanilla MLP_DQN s=15360... done (122.3s) test=2%
+  [159/200] vanilla MLP_DQN s=16384... done (158.2s) test=2%
+  [160/200] full DoubleDQN s=42... done (90.9s) test=8%
+  [161/200] full DoubleDQN s=123... done (170.9s) test=20%
+  [162/200] full DoubleDQN s=456... done (55.6s) test=8%
+  [163/200] full DoubleDQN s=789... done (103.8s) test=14%
+  [164/200] full DoubleDQN s=1024... done (107.0s) test=22%
+  [165/200] full DoubleDQN s=2048... done (56.5s) test=14%
+  [166/200] full DoubleDQN s=3072... done (54.8s) test=10%
+  [167/200] full DoubleDQN s=4096... done (61.5s) test=16%
+  [168/200] full DoubleDQN s=5120... done (59.8s) test=12%
+  [169/200] full DoubleDQN s=6144... done (48.5s) test=30%
+  [170/200] full DoubleDQN s=7168... done (45.7s) test=20%
+  [171/200] full DoubleDQN s=8192... done (53.2s) test=32%
+  [172/200] full DoubleDQN s=9216... done (52.0s) test=20%
+  [173/200] full DoubleDQN s=10240... done (58.5s) test=12%
+  [174/200] full DoubleDQN s=11264... done (42.5s) test=14%
+  [175/200] full DoubleDQN s=12288... done (56.3s) test=12%
+  [176/200] full DoubleDQN s=13312... done (53.5s) test=16%
+  [177/200] full DoubleDQN s=14336... done (54.9s) test=24%
+  [178/200] full DoubleDQN s=15360... done (74.8s) test=18%
+  [179/200] full DoubleDQN s=16384... done (75.0s) test=16%
+  [180/200] vanilla DoubleDQN s=42... done (76.2s) test=12%
+  [181/200] vanilla DoubleDQN s=123... done (98.4s) test=26%
+  [182/200] vanilla DoubleDQN s=456... done (81.3s) test=16%
+  [183/200] vanilla DoubleDQN s=789... done (100.2s) test=16%
+  [184/200] vanilla DoubleDQN s=1024... done (95.8s) test=16%
+  [185/200] vanilla DoubleDQN s=2048... done (90.3s) test=6%
+  [186/200] vanilla DoubleDQN s=3072... done (104.3s) test=4%
+  [187/200] vanilla DoubleDQN s=4096... done (110.7s) test=2%
+  [188/200] vanilla DoubleDQN s=5120... done (140.0s) test=6%
+  [189/200] vanilla DoubleDQN s=6144... done (146.1s) test=16%
+  [190/200] vanilla DoubleDQN s=7168... done (126.8s) test=8%
+  [191/200] vanilla DoubleDQN s=8192... done (137.7s) test=6%
+  [192/200] vanilla DoubleDQN s=9216... done (136.2s) test=12%
+  [193/200] vanilla DoubleDQN s=10240... done (136.6s) test=18%
+  [194/200] vanilla DoubleDQN s=11264... done (145.3s) test=10%
+  [195/200] vanilla DoubleDQN s=12288... done (149.7s) test=4%
+  [196/200] vanilla DoubleDQN s=13312... 
