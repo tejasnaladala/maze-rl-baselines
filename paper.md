@@ -152,17 +152,17 @@ We decompose each test episode's total reward into `goal_contribution` (+10 if s
 
 *\*\*\* = p_Holm < 0.001, \*\* = p_Holm < 0.01, \* = p_Holm < 0.05. Bold = neural RL agents, which are significantly WORSE than Random at every scale. The Cohen's d range for neural RL vs Random is [−1.64, −3.14]. 10/10 neural-vs-Random comparisons at 9–21 are p < 0.001. BFSOracle, NoBackRandom, and LevyRand(α=2.0) are significantly BETTER than Random at nearly every scale (25/26 cells significant).*
 
-### Table 3: K4 Reward Ablation at 9×9 [COMPLETE for Random/NoBack/FeatureQ/MLP_DQN; DoubleDQN in progress]
+### Table 3: K4 Reward Ablation at 9×9 [COMPLETE — 200/200 paired runs]
 
-| Agent | Full reward | Vanilla reward | Δ (vanilla−full) | Cohen's d | p_Holm |
+| Agent | Full reward | Vanilla reward | Δ (vanilla−full) | Cohen's d | p (paired bootstrap) |
 |---|---|---|---|---|---|
 | Random | 31.7% [29.6, 34.0] | 31.7% [29.6, 34.0] | 0.0% | 0.00 | 1.000 |
 | NoBackRandom | 52.2% [49.2, 55.2] | 52.2% [49.2, 55.2] | 0.0% | 0.00 | 1.000 |
 | **FeatureQ_v2** | **35.3% [32.2, 38.0]** | **17.4% [14.5, 20.3]** | **−17.9%** | **−2.66** | **<.001** |
 | **MLP_DQN** | **19.3% [16.5, 22.4]** | **13.6% [10.1, 17.8]** | **−5.7%** | **−0.70** | **0.0068** |
-| DoubleDQN | [IN PROGRESS] | [IN PROGRESS] | — | — | — |
+| **DoubleDQN** | **16.9% [14.5, 19.4]** | **11.6% [9.2, 14.4]** | **−5.3%** | **−0.84** | **0.0020** |
 
-**Interpretation:** Removing reward shaping (distance shaping + revisit penalty) HURTS every learner we tested. FeatureQ_v2 drops by 17.9 percentage points (d = −2.66). MLP_DQN drops by 5.7 percentage points (d = −0.70, p < 0.01). Random and NoBackRandom are unchanged because they ignore the reward signal. **The reward shaping was helping the learners, not the random walkers**. This refutes the naive K4 hypothesis that "Random wins because shaping punishes directed policies" — the opposite is true.
+**Interpretation (triple confirmation):** Removing reward shaping (distance shaping + revisit penalty) HURTS **every learner** we tested. FeatureQ_v2 drops by 17.9 percentage points (d = −2.66). MLP_DQN drops by 5.7 (d = −0.70, p = .007). DoubleDQN drops by 5.3 (d = −0.84, p = .002). Random and NoBackRandom are unchanged at the second decimal (they ignore the reward signal). **The reward shaping was helping the learners, not the random walkers** — across a tabular Q-learner, an MLP DQN, and a DoubleDQN. This is a triple-replicated refutation of the naive K4 hypothesis "Random wins because shaping punishes directed policies." The opposite is true: shaping was the only thing keeping the learners competitive.
 
 ### Table 4.5: Cover-time decomposition at 9×9
 

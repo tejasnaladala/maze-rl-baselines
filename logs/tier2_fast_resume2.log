@@ -1,0 +1,14 @@
+Device: cuda
+
+Tier 2 FAST: reward ablation @ 9x9 — 200 runs, 196 done
+Configs: ['full', 'vanilla']
+Agents: ['Random', 'NoBackRandom', 'FeatureQ', 'MLP_DQN', 'DoubleDQN']
+Seeds: 20, Size: 9x9
+Code hash: fe0b8142940e55de
+
+  [196/200] vanilla DoubleDQN s=13312... done (139.2s) test=18%
+  [197/200] vanilla DoubleDQN s=14336... done (88.8s) test=14%
+  [198/200] vanilla DoubleDQN s=15360... done (109.0s) test=8%
+  [199/200] vanilla DoubleDQN s=16384... done (97.1s) test=14%
+
+Tier 2 FAST complete. 200 runs in C:\Users\tejas\engram\raw_results\exp_reward_ablation_fast

@@ -1,0 +1,17 @@
+Device: cuda
+
+Tier 4b: DRQN memory agent — 20 runs, 10 done
+Code hash: fe0b8142940e55de
+
+  [10/20] DRQN 9x9 s=7168... done (85.0s) test=30%
+  [11/20] DRQN 9x9 s=8192... done (103.7s) test=22%
+  [12/20] DRQN 9x9 s=9216... done (122.8s) test=14%
+  [13/20] DRQN 9x9 s=10240... done (135.0s) test=34%
+  [14/20] DRQN 9x9 s=11264... done (132.8s) test=2%
+  [15/20] DRQN 9x9 s=12288... done (112.1s) test=26%
+  [16/20] DRQN 9x9 s=13312... done (158.6s) test=18%
+  [17/20] DRQN 9x9 s=14336... done (104.0s) test=20%
+  [18/20] DRQN 9x9 s=15360... done (91.9s) test=36%
+  [19/20] DRQN 9x9 s=16384... done (142.1s) test=26%
+
+Tier 4b DRQN complete. 20 runs in C:\Users\tejas\engram\raw_results\exp_memory_agents
