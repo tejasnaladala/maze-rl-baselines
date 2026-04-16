@@ -11,13 +11,13 @@ Run via `python phase4_reviewer_attacks.py`. CSV at `analysis_output/phase4_atta
 
 | Status | Count | Meaning |
 |---|---|---|
-| **DEFEATED** | 5 | Current evidence directly refutes the attack |
+| **DEFEATED** | 6 | Current evidence directly refutes the attack |
 | **PARTIALLY ADDRESSED** | 2 | Some evidence but needs appendix experiment |
 | **PARTIAL** | 1 | Partial evidence, needs more data |
-| **PENDING** | 2 | Experiment in progress, will be defeated when data lands |
+| **PENDING** | 1 | Experiment in progress, will be defeated when data lands |
 | **NOT TESTED** | 1 | Would require new experiment; paper must document as limitation |
 
-**Defended:** 5 + 2 + 2 (pending) = 9/11 with current data trajectory.
+**Defended:** 6 + 2 + 1 (pending) = 9/11 with current data trajectory.
 **Open:** A1 (undertrained — partial), A4 (hyperparams — would require LR sweep).
 
 ---
@@ -56,15 +56,19 @@ Run via `python phase4_reviewer_attacks.py`. CSV at `analysis_output/phase4_atta
 
 ---
 
-### A3 — "The 24-dim observation causes state aliasing → POMDP." [PENDING]
+### A3 — "The 24-dim observation causes state aliasing → POMDP." [DEFEATED]
 
 **Attack:** "Your ego-centric features map many distinct global states to similar feature vectors. This turns the MDP into a POMDP (Ghosh et al. 2021). A recurrent agent with memory would fix it."
 
-**Evidence:** DRQN deterministic rerun is currently in progress (4/20 seeds complete as of last check). Non-deterministic baseline: DRQN ≈ 16.5% at 9×9, still below Random 31.7%.
+**Evidence:** DRQN deterministic sweep COMPLETE (20/20 seeds at 9×9 with `set_all_seeds(deterministic=True)`, LSTM hidden=64, seq_len=8):
+- DRQN mean = **19.0%** (sd=10.8, 95%CI=[3.0, 37.0])
+- Random = 31.7% — DRQN trails Random by **−12.7pp** (d ≈ −1.45)
+- NoBackRandom = 52.2% — DRQN trails NoBackRandom by **−33.2pp**
+- DRQN ≈ MLP_DQN (19.3%) — adding LSTM memory provides no rescue.
 
-**Verdict:** When DRQN completes, the attack will be DEFEATED — a recurrent Q-learner with LSTM memory matches the failure pattern of non-recurrent neural Q-learners.
+**Verdict:** DEFEATED. A recurrent Q-learner with explicit memory still loses to a memoryless non-backtracking random walk by 33pp. The POMDP/aliasing hypothesis cannot explain the failure — neural agents have the architectural capacity to integrate history but converge to the same local optimum (safe idling, see A8).
 
-**Decisive experiment to fully close:** Finish the 20-seed DRQN sweep at 9×9. Optional: extend to 13×13 and 21×21 to show the POMDP argument fails at multiple scales.
+**Decisive experiment to fully close:** Already done. Optional: extend to 13×13 and 21×21 — but the 9×9 result is unambiguous.
 
 ---
 
@@ -200,15 +204,15 @@ Effect sizes (Cohen's d up to −3.1) are much larger than per-seed noise. 20 se
 
 ## What remains
 
-1. **Complete Phase 2 runs** to close A2 (vanilla::MLP_DQN and vanilla::DoubleDQN) and A3 (DRQN det sweep).
-2. **Run Phase 3B capacity study** to close A5.
+1. ~~**Complete Phase 2 runs** to close A2 and A3.~~ DONE — both at 20/20 seeds.
+2. **Run Phase 3B capacity study** to close A5. IN PROGRESS (~20/160 done; partial h32 already shows 13.4% << NoBackRandom 52.2%).
 3. **Run LR sweep** to close A4 (optional, low priority).
-4. **Write cover-time appendix** to close A9 (no new runs needed).
+4. **Write cover-time appendix** to close A9 (no new runs needed; data already analyzed in `cover_time_analysis.py`).
 5. **Write feature-collision-rate appendix** to close A6 (no new runs needed).
 
-When items 1-3 complete, the attack matrix will read:
+When item 2 completes, the attack matrix will read:
 - DEFEATED: 7
-- PARTIALLY ADDRESSED: 2  
+- PARTIALLY ADDRESSED: 2
 - PENDING: 0
 - NOT TESTED: 2 (A4 and A1 if SB3 not re-run)
 

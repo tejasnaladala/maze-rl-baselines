@@ -1,0 +1,8 @@
+Device: cuda
+
+Phase 3B: Capacity sensitivity — 160 runs, 2 done
+Capacities: [32, 64, 128, 256]
+Sizes: [9, 13], Seeds: 20
+Code hash: fe0b8142940e55de
+
+  [2/160] MLP_DQN_h32 9x9 s=456... 
