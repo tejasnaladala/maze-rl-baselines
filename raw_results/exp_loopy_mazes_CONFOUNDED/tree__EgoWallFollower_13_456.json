@@ -1,0 +1,1 @@
+[{"agent_name": "tree__EgoWallFollower", "base_agent": "EgoWallFollower", "topology": "tree", "extra_openings_frac": 0.0, "maze_size": 13, "seed": 456, "phase": "test", "wall_time_s": 0.03346824645996094, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 50, "success_rate": 1.0, "mean_steps": 54.48}]
