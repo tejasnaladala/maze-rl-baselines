@@ -1,0 +1,1 @@
+[{"agent_name": "DQN_large", "maze_size": 9, "seed": 123, "phase": "test", "wall_time_s": 410.11321997642517, "code_hash": "ed681d75c27fe352", "total_env_steps": 500000, "n_eps": 50, "solved": 50, "success_rate": 1.0, "mean_steps": 13.6, "train_time_s": 409.9457538127899, "total_timesteps": 500000}]

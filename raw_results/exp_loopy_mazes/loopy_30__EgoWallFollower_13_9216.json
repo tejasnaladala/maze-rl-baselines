@@ -1,1 +1,0 @@
-[{"agent_name": "loopy_30__EgoWallFollower", "base_agent": "EgoWallFollower", "topology": "loopy_30", "extra_openings_frac": 0.3, "maze_size": 13, "seed": 9216, "phase": "test", "wall_time_s": 0.03498268127441406, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 50, "success_rate": 1.0, "mean_steps": 37.0}]

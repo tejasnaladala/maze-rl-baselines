@@ -1,1 +1,0 @@
-[{"agent_name": "tree__NoBackRandom", "base_agent": "NoBackRandom", "topology": "tree", "extra_openings_frac": 0.0, "maze_size": 9, "seed": 12288, "phase": "test", "wall_time_s": 0.11840391159057617, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 28, "success_rate": 0.56, "mean_steps": 269.58}]
