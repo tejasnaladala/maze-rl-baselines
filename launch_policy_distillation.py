@@ -1,23 +1,25 @@
 """KILLER EXPERIMENT (per Codex adversarial review):
 
-  Policy Distillation from NoBackRandom into neural networks.
+  Policy Distillation from MULTIPLE teachers into neural networks.
 
-If a supervised-trained MLP/LSTM that imitates NoBackRandom's actions
-reaches NoBackRandom's success rate, then the failure of MLP_DQN is
-about EXPLORATION, not FUNCTION APPROXIMATION.
+Distill from 3 different teachers and test on unseen mazes:
+  - BFSOracle (perfect knowledge): if MLP can't match, real function
+    approx failure proven.
+  - NoBackRandom (exploration prior, 52.2% baseline): if MLP can't match,
+    exploration is not the only issue.
+  - FeatureQ_v2 (tabular learner, 35.3%): tests whether tabular
+    decisions transfer to neural.
 
-If the distilled neural agent FAILS to match NoBackRandom (despite having
-optimal-on-this-distribution labels), then the failure is genuinely
-about neural function approximation -- and our paper's claim survives
-the strongest critique.
-
-Either outcome is a NeurIPS-grade finding.
+Either outcome is a NeurIPS-grade finding:
+  - If all 3 distilled MLPs match their teachers -> failure is EXPLORATION
+  - If distilled MLP < teacher -> neural function approx genuinely fails
+  - Mixed results -> teacher-specific failure modes
 
 Setup:
-  - Roll out NoBackRandom for 500 episodes per seed -> (state, action) pairs
-  - Train MLP (h64) and LSTM (h64) on these via cross-entropy
+  - Roll out teacher for ~100-500 successful episodes per seed
+  - Train MLP (h64) and LSTM (h64) on demos via cross-entropy
   - Test on 50 unseen mazes per seed
-  - 2 architectures x 20 seeds x 9x9 = 40 runs
+  - 3 teachers x 2 architectures x 20 seeds x 9x9 = 120 runs
 """
 
 from __future__ import annotations
@@ -37,6 +39,10 @@ from experiment_lib_v2 import (
     ego_features,
     is_solvable,
     NoBacktrackRandomAgent,
+    BFSOracleAgent,
+    FeatureQAgent,
+    RandomAgent,
+    run_experiment,
     OBS_DIM,
     NUM_ACTIONS,
     ACTIONS,
@@ -91,21 +97,39 @@ class LSTMPolicy(nn.Module):
         return self.head(out), hx_new
 
 
-def collect_demos(num_episodes: int, maze_size: int, seed: int) -> tuple[np.ndarray, np.ndarray]:
-    """Roll out NoBackRandom and return (states, actions) tensors."""
+def make_teacher(name: str):
+    if name == "BFSOracle": return BFSOracleAgent()
+    if name == "NoBackRandom": return NoBacktrackRandomAgent()
+    if name == "FeatureQ_v2": return FeatureQAgent()
+    raise ValueError(name)
+
+
+def collect_demos(teacher_name: str, num_episodes: int, maze_size: int,
+                  seed: int) -> tuple[np.ndarray, np.ndarray]:
+    """Roll out teacher and return (states, actions) tensors. For learning
+    teachers (FeatureQ), train them first via a separate run_experiment call."""
     rng = np.random.default_rng(seed)
+
+    # For learning teachers, pre-train on a few episodes to get a good policy
+    if teacher_name == "FeatureQ_v2":
+        teacher = FeatureQAgent()
+        # Quick training run to bring the teacher up to speed
+        _ = run_experiment(teacher, "teacher_pretrain", maze_size, 100, 0, seed)
+    else:
+        teacher = make_teacher(teacher_name)
+
     all_states = []
     all_actions = []
     collected = 0
     attempts = 0
-    while collected < num_episodes and attempts < num_episodes * 5:
+    while collected < num_episodes and attempts < num_episodes * 10:
         attempts += 1
         s = int(rng.integers(0, 10**9))
         maze = make_maze(maze_size, seed=s)
         if not is_solvable(maze, maze_size):
             continue
-        agent = NoBacktrackRandomAgent()
-        agent.reset_for_new_maze()
+        if hasattr(teacher, "reset_for_new_maze"):
+            teacher.reset_for_new_maze()
         ax, ay = 1, 1
         gx, gy = maze_size - 2, maze_size - 2
         max_steps = 4 * maze_size * maze_size
@@ -115,7 +139,10 @@ def collect_demos(num_episodes: int, maze_size: int, seed: int) -> tuple[np.ndar
         for step in range(max_steps):
             obs = get_obs(maze, ax, ay, gx, gy, maze_size, action_hist)
             ep_states.append(obs.copy())
-            action = agent.act(obs, step)
+            if hasattr(teacher, "eval_action"):
+                action = teacher.eval_action(obs)
+            else:
+                action = teacher.act(obs, step)
             ep_actions.append(action)
             new_ax, new_ay, _, _, _ = step_env(maze, ax, ay, action, maze_size)
             ax, ay = new_ax, new_ay
@@ -255,52 +282,59 @@ def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     completed = load_checkpoint(CHECKPOINT_FILE)
 
-    AGENTS = ["DistilledMLP", "DistilledLSTM"]
-    total = len(AGENTS) * len(SEEDS)
+    TEACHERS = ["BFSOracle", "NoBackRandom", "FeatureQ_v2"]
+    STUDENTS = ["MLP", "LSTM"]
+    total = len(TEACHERS) * len(STUDENTS) * len(SEEDS)
     done = len(completed)
     print(f"\nPolicy Distillation: {total} runs, {done} done")
+    print(f"Teachers: {TEACHERS}, Students: {STUDENTS}")
     print(f"Code hash: {code_hash()}\n")
 
-    for agent_name in AGENTS:
-        for seed in SEEDS:
-            key = run_key(agent_name, MAZE_SIZE, seed)
-            if key in completed:
-                continue
-            print(f"  [{done}/{total}] {agent_name} s={seed}...", end=" ", flush=True)
-            t0 = time.time()
+    for teacher_name in TEACHERS:
+        for student_name in STUDENTS:
+            agent_name = f"Distilled{student_name}_from_{teacher_name}"
+            for seed in SEEDS:
+                key = run_key(agent_name, MAZE_SIZE, seed)
+                if key in completed:
+                    continue
+                print(f"  [{done}/{total}] {agent_name} s={seed}...", end=" ", flush=True)
+                t0 = time.time()
 
-            set_all_seeds(seed, deterministic=False)
+                set_all_seeds(seed, deterministic=False)
 
-            # 1. Collect NoBack demos
-            states, actions = collect_demos(NUM_DEMO_EPISODES, MAZE_SIZE, seed)
-            n_demos = len(states)
+                # 1. Collect demos from teacher
+                states, actions = collect_demos(teacher_name, NUM_DEMO_EPISODES,
+                                                MAZE_SIZE, seed)
+                n_demos = len(states)
 
-            # 2. Train via supervised learning
-            if agent_name == "DistilledMLP":
-                model = train_mlp(states, actions, epochs=50, batch_size=256, lr=1e-3)
-                result = test_mlp(model, NUM_TEST_EPS, seed)
-            else:  # DistilledLSTM
-                model = train_lstm(states, actions, epochs=30, seq_len=8, batch_size=64, lr=1e-3)
-                result = test_lstm(model, NUM_TEST_EPS, seed, seq_len=8)
+                # 2. Train student
+                if student_name == "MLP":
+                    model = train_mlp(states, actions, epochs=50, batch_size=256, lr=1e-3)
+                    result = test_mlp(model, NUM_TEST_EPS, seed)
+                else:  # LSTM
+                    model = train_lstm(states, actions, epochs=30, seq_len=8, batch_size=64, lr=1e-3)
+                    result = test_lstm(model, NUM_TEST_EPS, seed, seq_len=8)
 
-            elapsed = time.time() - t0
-            run_file = OUT_DIR / f"{agent_name}_{MAZE_SIZE}_{seed}.json"
-            atomic_save([{
-                "agent_name": agent_name,
-                "maze_size": MAZE_SIZE,
-                "seed": seed,
-                "phase": "test",
-                "wall_time_s": elapsed,
-                "code_hash": code_hash(),
-                "n_demonstrations": n_demos,
-                "n_demo_eps": NUM_DEMO_EPISODES,
-                **result,
-            }], run_file)
+                elapsed = time.time() - t0
+                run_file = OUT_DIR / f"{agent_name}_{MAZE_SIZE}_{seed}.json"
+                atomic_save([{
+                    "agent_name": agent_name,
+                    "teacher": teacher_name,
+                    "student": student_name,
+                    "maze_size": MAZE_SIZE,
+                    "seed": seed,
+                    "phase": "test",
+                    "wall_time_s": elapsed,
+                    "code_hash": code_hash(),
+                    "n_demonstrations": n_demos,
+                    "n_demo_eps_target": NUM_DEMO_EPISODES,
+                    **result,
+                }], run_file)
 
-            completed.add(key)
-            save_checkpoint(CHECKPOINT_FILE, completed)
-            done += 1
-            print(f"done ({elapsed:.0f}s) demos={n_demos} test={100*result['success_rate']:.0f}%")
+                completed.add(key)
+                save_checkpoint(CHECKPOINT_FILE, completed)
+                done += 1
+                print(f"done ({elapsed:.0f}s) demos={n_demos} test={100*result['success_rate']:.0f}%")
 
     print(f"\nPolicy distillation complete in {OUT_DIR}")
 
