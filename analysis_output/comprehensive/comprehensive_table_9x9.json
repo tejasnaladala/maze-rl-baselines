@@ -137,18 +137,18 @@
   {
     "tier": "Tier5: Neural (K4)",
     "agent": "full__MLP_DQN",
-    "mean_pct": 19.5,
-    "sd_pct": 6.244997998398398,
-    "n_seeds": 32,
+    "mean_pct": 19.3,
+    "sd_pct": 6.731270311018568,
+    "n_seeds": 40,
     "min_pct": 6.0,
     "max_pct": 36.0
   },
   {
     "tier": "Tier5: Neural (K4)",
     "agent": "full__DoubleDQN",
-    "mean_pct": 16.9,
-    "sd_pct": 6.371028174478591,
-    "n_seeds": 20,
+    "mean_pct": 16.166666666666668,
+    "sd_pct": 6.374863832968425,
+    "n_seeds": 24,
     "min_pct": 8.0,
     "max_pct": 32.0
   }
