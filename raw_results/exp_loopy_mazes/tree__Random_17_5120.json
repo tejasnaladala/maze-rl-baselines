@@ -1,0 +1,1 @@
+[{"agent_name": "tree__Random", "base_agent": "Random", "topology": "tree", "extra_openings_frac": 0.0, "maze_size": 17, "seed": 5120, "phase": "test", "wall_time_s": 0.3822643756866455, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 2, "success_rate": 0.04, "mean_steps": 1144.2}]
