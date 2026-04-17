@@ -128,10 +128,13 @@ def collect_demos(teacher_name: str, num_episodes: int, maze_size: int,
         maze = make_maze(maze_size, seed=s)
         if not is_solvable(maze, maze_size):
             continue
-        if hasattr(teacher, "reset_for_new_maze"):
-            teacher.reset_for_new_maze()
         ax, ay = 1, 1
         gx, gy = maze_size - 2, maze_size - 2
+        # BFSOracle needs the environment map to plan; call set_env() each maze.
+        if hasattr(teacher, "set_env"):
+            teacher.set_env(maze, maze_size, gx, gy)
+        if hasattr(teacher, "reset_for_new_maze"):
+            teacher.reset_for_new_maze()
         max_steps = 4 * maze_size * maze_size
         ep_states = []
         ep_actions = []
