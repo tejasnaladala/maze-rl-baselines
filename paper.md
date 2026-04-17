@@ -1,12 +1,30 @@
-# A Non-Backtracking Random Walk Is a Strong Baseline for Procedural Maze RL: Neural Function Approximation Optimizes the Wrong Objective
+# Baseline Blindness in Procedural Maze RL: A 5-Line Wall-Follower Beats Trained Neural Networks by 80 Percentage Points, and the Failure is Exploration, Not Function Approximation
 
-**Status**: Draft, awaiting final data (Tier 2 DoubleDQN K4 completion, DRQN deterministic rerun, Phase 3B capacity sensitivity). All core findings locked.
+**Status**: Draft v2 (post adversarial review, post Phase 3B + LR sweep + wall-following + policy distillation + information parity audit + maze topology audit). All core findings locked.
 
 ---
 
 ## Abstract
 
-We report a counterintuitive systematic finding across six procedurally-generated maze scales (9×9 through 25×25, 20 seeds per cell, paired bootstrap with Holm-Bonferroni correction): **deep reinforcement learning agents with neural function approximators are dominated by uninformed random policies at every scale tested.** A no-backtrack random walk — a simple "don't immediately reverse" heuristic — achieves 52.2% success on 9×9 mazes, while the best neural RL agent (DoubleDQN) reaches only 15.8% (d = −3.14, p_Holm < 0.001). Uniform random (31.7%) outperforms all tested neural baselines at every scale, by Cohen's d = −1.64 to −3.14.
+We report a systematic empirical inversion of the apparent progress story on procedurally-generated maze RL. Across six maze scales (9×9 through 25×25, 20+ seeds per cell, paired bootstrap with Holm-Bonferroni correction, code-hash-pinned reproducibility), the agent ladder reads:
+
+| Tier | Method | 9×9 success |
+|---|---|---|
+| 1: Oracle (BFS) | full-knowledge planner | **100%** |
+| 2: Heuristic (5 lines) | wall-following / DFS | **100%** |
+| 3: Random walks | NoBackRandom / Levy / uniform | 31–52% |
+| 4: Tabular learning | FeatureQ / TabularQ | 30–35% |
+| 5: Neural function approx | MLP_DQN / DoubleDQN / DRQN | **13–20%** ← worst |
+
+The headline is **monotonic decrease**: more sophisticated learning machinery performs worse than trivial structure-aware baselines. We rule out every standard explanation — capacity (8× sweep h32→h256 produces *identical* 13.6% at 9×9), hyperparameters (default LR is the local optimum across 1.5 orders of magnitude), memory (DRQN with LSTM matches MLP_DQN), reward shaping (K4 ablation: trained agents collapse without it, random walks unchanged), maze topology (loopy multi-path mazes don't change wall-follower's 100%), and information parity (wall-following with *only* the 24-dim ego-features observation neural agents see still solves 100%).
+
+**The clean diagnostic** — supervised distillation: **a vanilla MLP trained on BFS-Oracle action labels achieves 99.9% test success** with the same architecture, observation space, and capacity that DQN-trained reaches only 19.3%. Therefore the failure of neural RL on this task is **exploration + credit assignment, not function approximation**. The architecture *can* represent the optimal policy; it cannot *discover* it under reward-driven gradient descent.
+
+We further empirically confirm the Alon–Benjamini–Lubetzky–Sodin (2007) non-backtracking cover-time theorem in an RL setting (NoBackRandom takes 13.6% fewer steps than Random per success, exactly matching theory). We fit a formal scaling law `success ~ a · n^b` across maze sizes and observe NoBackRandom decays at b = −2.07 [bootstrap 95% CI: −2.21, −1.94], slower than uniform Random (b = −2.81) by exactly the gap predicted by theory.
+
+**Reframing.** This paper is not a triumph of NoBackRandom; it is a **warning about baseline blindness in procedural RL**. Many published works on procedural maze tasks do not include heuristic, random-walk, or distillation baselines and consequently overinterpret neural results. Our 11-attack adversarial review matrix defends 9 attacks at full strength.
+
+**Key numbers.** n = 20+ seeds × 50 test mazes = 1,000+ unseen test instances per (agent, size) cell. ~3,500 total runs across 14 launchers, two compute platforms (RTX 5070 Ti laptop + 4× H200), SHA-256 manifest pin. Code hash `ed681d75c27fe352`. Cohen's d up to −3.14 (Random vs neural at 9×9), +3.32 (NoBackRandom vs Random), and effectively ∞ (wall-follower vs neural). All p_Holm < 0.001 for headline comparisons.
 
 **The deeper diagnosis is sharper**: when neural agents succeed, they do so *optimally* — reaching the goal in 14 steps, matching the BFS-optimal path length (17.5 steps) on 9×9. But they succeed on only 15–20% of unseen mazes. Random policies reach the goal in 170–190 steps (10× BFS-optimal) but succeed on 32–52% of mazes. **Paradoxically, *slower* exploration achieves higher success** because broader coverage beats narrow optimization on the procedural maze distribution. A reward decomposition confirms that neural agents successfully learn to *avoid* walls and hazards (pain-per-step −0.14 for MLP_DQN vs −0.24 for Random) — their failure is not hazard-dominance but a local optimum where safe idling dominates goal-seeking exploration.
 
