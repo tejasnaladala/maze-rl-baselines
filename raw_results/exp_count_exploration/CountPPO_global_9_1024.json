@@ -1,1 +1,0 @@
-[{"agent_name": "CountPPO_global", "maze_size": 9, "seed": 1024, "phase": "test", "wall_time_s": 166.64887309074402, "code_hash": "ed681d75c27fe352", "total_env_steps": 200000, "n_eps": 50, "solved": 5, "success_rate": 0.1, "mean_steps": 293.1}]
