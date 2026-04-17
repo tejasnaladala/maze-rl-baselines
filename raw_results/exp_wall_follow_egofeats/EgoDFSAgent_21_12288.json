@@ -1,0 +1,1 @@
+[{"agent_name": "EgoDFSAgent", "maze_size": 21, "seed": 12288, "phase": "test", "wall_time_s": 0.4524190425872803, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 50, "success_rate": 1.0, "mean_steps": 137.44}]
