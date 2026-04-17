@@ -1,0 +1,1 @@
+[{"agent_name": "DFSAgent", "maze_size": 17, "seed": 6144, "phase": "test", "wall_time_s": 0.3398294448852539, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 50, "success_rate": 1.0, "mean_steps": 82.88}]
