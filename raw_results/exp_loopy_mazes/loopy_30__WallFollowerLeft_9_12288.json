@@ -1,1 +1,0 @@
-[{"agent_name": "loopy_30__WallFollowerLeft", "base_agent": "WallFollowerLeft", "topology": "loopy_30", "extra_openings_frac": 0.3, "maze_size": 9, "seed": 12288, "phase": "test", "wall_time_s": 0.019959688186645508, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 0, "success_rate": 0.0, "mean_steps": 324.0}]

@@ -1,1 +1,0 @@
-[{"agent_name": "loopy_60__NoBackRandom", "base_agent": "NoBackRandom", "topology": "loopy_60", "extra_openings_frac": 0.6, "maze_size": 9, "seed": 8192, "phase": "test", "wall_time_s": 0.1005558967590332, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 40, "success_rate": 0.8, "mean_steps": 216.34}]
