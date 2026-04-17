@@ -31,6 +31,7 @@ from experiment_lib_v2 import (
     load_checkpoint, save_checkpoint, run_key, atomic_save,
     set_all_seeds, code_hash,
 )
+from maze_env_helpers import get_obs, step_env
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Device: {DEVICE}")
@@ -59,25 +60,23 @@ def test_at_size(agent, test_size: int, n_test: int, seed: int) -> dict:
             test_seeds.append(s)
     for s in test_seeds:
         maze = make_maze(test_size, seed=s)
-        n = len(maze)
-        pos = (1, 1)
-        goal = (n - 2, n - 2)
+        ax, ay = 1, 1
+        gx, gy = test_size - 2, test_size - 2
         if hasattr(agent, "reset_for_new_maze"):
-            agent.reset_for_new_maze(maze)
+            agent.reset_for_new_maze()
         max_steps = 4 * test_size * test_size
+        action_hist: list = []
         step = 0
         for step in range(max_steps):
-            obs = ego_features(maze, pos, goal)
+            obs = get_obs(maze, ax, ay, gx, gy, test_size, action_hist)
             if hasattr(agent, "eval_action"):
                 action = agent.eval_action(obs)
             else:
                 action = agent.act(obs, step + NUM_TRAIN * 1000)
-            dr, dc = DELTAS[action]
-            new_pos = (pos[0] + dr, pos[1] + dc)
-            if (0 <= new_pos[0] < n and 0 <= new_pos[1] < n
-                    and maze[new_pos[0]][new_pos[1]] != 1):
-                pos = new_pos
-            if pos == goal:
+            new_ax, new_ay, _, _, _ = step_env(maze, ax, ay, action, test_size)
+            ax, ay = new_ax, new_ay
+            action_hist.append(action)
+            if (ax, ay) == (gx, gy):
                 solved += 1
                 break
         total_steps += step + 1

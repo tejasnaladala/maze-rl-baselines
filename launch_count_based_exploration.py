@@ -34,6 +34,7 @@ from experiment_lib_v2 import (
     is_solvable,
     OBS_DIM,
     NUM_ACTIONS,
+    ACTIONS,
     load_checkpoint,
     save_checkpoint,
     run_key,
@@ -41,6 +42,7 @@ from experiment_lib_v2 import (
     set_all_seeds,
     code_hash,
 )
+from maze_env_helpers import get_obs, step_env
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Device: {DEVICE}")
@@ -86,17 +88,20 @@ def collect_rollout(policy, count_table: Counter, n_steps: int, maze_size: int,
     logp_buf = []
     done_buf = []
 
-    maze = make_maze(maze_size, seed=int(rng.integers(0, 10**9)))
-    while not is_solvable(maze):
-        maze = make_maze(maze_size, seed=int(rng.integers(0, 10**9)))
-    pos = (1, 1)
-    goal = (maze.shape[0] - 2, maze.shape[1] - 2)
+    s = int(rng.integers(0, 10**9))
+    maze = make_maze(maze_size, seed=s)
+    while not is_solvable(maze, maze_size):
+        s = int(rng.integers(0, 10**9))
+        maze = make_maze(maze_size, seed=s)
+    ax, ay = 1, 1
+    gx, gy = maze_size - 2, maze_size - 2
     ep_steps = 0
     max_ep_steps = 4 * maze_size * maze_size
     episode_counts: Counter = Counter()
+    action_hist: list = []
 
     for _ in range(n_steps):
-        obs = ego_features(maze, pos, goal)
+        obs = get_obs(maze, ax, ay, gx, gy, maze_size, action_hist)
         obs_t = torch.from_numpy(obs).float().to(DEVICE).unsqueeze(0)
         with torch.no_grad():
             logits, value = policy(obs_t)
@@ -105,22 +110,19 @@ def collect_rollout(policy, count_table: Counter, n_steps: int, maze_size: int,
             logp = dist.log_prob(action)
 
         a = int(action.item())
-        dr, dc = [(-1, 0), (1, 0), (0, -1), (0, 1)][a]
-        new_pos = (pos[0] + dr, pos[1] + dc)
-        if (0 <= new_pos[0] < maze.shape[0] and 0 <= new_pos[1] < maze.shape[1]
-                and maze[new_pos] != 1):
-            pos = new_pos
+        new_ax, new_ay, _, _, _ = step_env(maze, ax, ay, a, maze_size)
+        ax, ay = new_ax, new_ay
+        action_hist.append(a)
         ep_steps += 1
 
         ext = -0.04
         done = False
-        if pos == goal:
+        if (ax, ay) == (gx, gy):
             ext = 10.0
             done = True
         elif ep_steps >= max_ep_steps:
             done = True
 
-        # Intrinsic bonus
         state_id = discretize_obs(obs)
         if episodic:
             episode_counts[state_id] += 1
@@ -138,13 +140,16 @@ def collect_rollout(policy, count_table: Counter, n_steps: int, maze_size: int,
         done_buf.append(done)
 
         if done:
-            maze = make_maze(maze_size, seed=int(rng.integers(0, 10**9)))
-            while not is_solvable(maze):
-                maze = make_maze(maze_size, seed=int(rng.integers(0, 10**9)))
-            pos = (1, 1)
-            goal = (maze.shape[0] - 2, maze.shape[1] - 2)
+            s = int(rng.integers(0, 10**9))
+            maze = make_maze(maze_size, seed=s)
+            while not is_solvable(maze, maze_size):
+                s = int(rng.integers(0, 10**9))
+                maze = make_maze(maze_size, seed=s)
+            ax, ay = 1, 1
+            gx, gy = maze_size - 2, maze_size - 2
             ep_steps = 0
             episode_counts = Counter()
+            action_hist = []
 
     return {
         "obs": np.array(obs_buf, dtype=np.float32),
@@ -228,27 +233,25 @@ def _test_policy(policy, seed: int) -> dict:
     test_seeds: list[int] = []
     while len(test_seeds) < NUM_TEST_EPS:
         s = int(rng.integers(0, 10**9))
-        maze = make_maze(MAZE_SIZE, seed=s)
-        if is_solvable(maze):
+        if is_solvable(make_maze(MAZE_SIZE, seed=s), MAZE_SIZE):
             test_seeds.append(s)
 
     for s in test_seeds:
         maze = make_maze(MAZE_SIZE, seed=s)
-        pos = (1, 1)
-        goal = (maze.shape[0] - 2, maze.shape[1] - 2)
+        ax, ay = 1, 1
+        gx, gy = MAZE_SIZE - 2, MAZE_SIZE - 2
         max_steps = 4 * MAZE_SIZE * MAZE_SIZE
+        action_hist: list = []
         step = 0
         for step in range(max_steps):
-            obs = ego_features(maze, pos, goal)
+            obs = get_obs(maze, ax, ay, gx, gy, MAZE_SIZE, action_hist)
             with torch.no_grad():
                 logits, _ = policy(torch.from_numpy(obs).float().to(DEVICE).unsqueeze(0))
                 action = int(logits.argmax(dim=-1).item())
-            dr, dc = [(-1, 0), (1, 0), (0, -1), (0, 1)][action]
-            new_pos = (pos[0] + dr, pos[1] + dc)
-            if (0 <= new_pos[0] < maze.shape[0] and 0 <= new_pos[1] < maze.shape[1]
-                    and maze[new_pos] != 1):
-                pos = new_pos
-            if pos == goal:
+            new_ax, new_ay, _, _, _ = step_env(maze, ax, ay, action, MAZE_SIZE)
+            ax, ay = new_ax, new_ay
+            action_hist.append(action)
+            if (ax, ay) == (gx, gy):
                 solved += 1
                 break
         total_steps += step + 1

@@ -39,6 +39,7 @@ from experiment_lib_v2 import (
     NoBacktrackRandomAgent,
     OBS_DIM,
     NUM_ACTIONS,
+    ACTIONS,
     load_checkpoint,
     save_checkpoint,
     run_key,
@@ -46,6 +47,7 @@ from experiment_lib_v2 import (
     set_all_seeds,
     code_hash,
 )
+from maze_env_helpers import get_obs, step_env
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Device: {DEVICE}")
@@ -100,27 +102,25 @@ def collect_demos(num_episodes: int, maze_size: int, seed: int) -> tuple[np.ndar
         attempts += 1
         s = int(rng.integers(0, 10**9))
         maze = make_maze(maze_size, seed=s)
-        if not is_solvable(maze):
+        if not is_solvable(maze, maze_size):
             continue
         agent = NoBacktrackRandomAgent()
-        agent.reset_for_new_maze(maze)
-        pos = (1, 1)
-        goal = (maze.shape[0] - 2, maze.shape[1] - 2)
+        agent.reset_for_new_maze()
+        ax, ay = 1, 1
+        gx, gy = maze_size - 2, maze_size - 2
         max_steps = 4 * maze_size * maze_size
         ep_states = []
         ep_actions = []
+        action_hist: list = []
         for step in range(max_steps):
-            obs = ego_features(maze, pos, goal)
+            obs = get_obs(maze, ax, ay, gx, gy, maze_size, action_hist)
             ep_states.append(obs.copy())
             action = agent.act(obs, step)
             ep_actions.append(action)
-            dr, dc = [(-1, 0), (1, 0), (0, -1), (0, 1)][action]
-            new_pos = (pos[0] + dr, pos[1] + dc)
-            if (0 <= new_pos[0] < maze.shape[0] and 0 <= new_pos[1] < maze.shape[1]
-                    and maze[new_pos] != 1):
-                pos = new_pos
-            if pos == goal:
-                # Only keep successful trajectories (the optimal lessons)
+            new_ax, new_ay, _, _, _ = step_env(maze, ax, ay, action, maze_size)
+            ax, ay = new_ax, new_ay
+            action_hist.append(action)
+            if (ax, ay) == (gx, gy):
                 all_states.extend(ep_states)
                 all_actions.extend(ep_actions)
                 collected += 1
@@ -188,26 +188,24 @@ def test_mlp(model: MLPPolicy, n_test: int, seed: int) -> dict:
     test_seeds: list[int] = []
     while len(test_seeds) < n_test:
         s = int(rng.integers(0, 10**9))
-        maze = make_maze(MAZE_SIZE, seed=s)
-        if is_solvable(maze):
+        if is_solvable(make_maze(MAZE_SIZE, seed=s), MAZE_SIZE):
             test_seeds.append(s)
     for s in test_seeds:
         maze = make_maze(MAZE_SIZE, seed=s)
-        pos = (1, 1)
-        goal = (maze.shape[0] - 2, maze.shape[1] - 2)
+        ax, ay = 1, 1
+        gx, gy = MAZE_SIZE - 2, MAZE_SIZE - 2
         max_steps = 4 * MAZE_SIZE * MAZE_SIZE
+        action_hist: list = []
         step = 0
         for step in range(max_steps):
-            obs = ego_features(maze, pos, goal)
+            obs = get_obs(maze, ax, ay, gx, gy, MAZE_SIZE, action_hist)
             with torch.no_grad():
                 logits = model(torch.from_numpy(obs).float().to(DEVICE).unsqueeze(0))
                 action = int(logits.argmax(dim=-1).item())
-            dr, dc = [(-1, 0), (1, 0), (0, -1), (0, 1)][action]
-            new_pos = (pos[0] + dr, pos[1] + dc)
-            if (0 <= new_pos[0] < maze.shape[0] and 0 <= new_pos[1] < maze.shape[1]
-                    and maze[new_pos] != 1):
-                pos = new_pos
-            if pos == goal:
+            new_ax, new_ay, _, _, _ = step_env(maze, ax, ay, action, MAZE_SIZE)
+            ax, ay = new_ax, new_ay
+            action_hist.append(action)
+            if (ax, ay) == (gx, gy):
                 solved += 1
                 break
         total_steps += step + 1
@@ -223,32 +221,29 @@ def test_lstm(model: LSTMPolicy, n_test: int, seed: int, seq_len: int = 8) -> di
     test_seeds: list[int] = []
     while len(test_seeds) < n_test:
         s = int(rng.integers(0, 10**9))
-        maze = make_maze(MAZE_SIZE, seed=s)
-        if is_solvable(maze):
+        if is_solvable(make_maze(MAZE_SIZE, seed=s), MAZE_SIZE):
             test_seeds.append(s)
     for s in test_seeds:
         maze = make_maze(MAZE_SIZE, seed=s)
-        pos = (1, 1)
-        goal = (maze.shape[0] - 2, maze.shape[1] - 2)
+        ax, ay = 1, 1
+        gx, gy = MAZE_SIZE - 2, MAZE_SIZE - 2
         max_steps = 4 * MAZE_SIZE * MAZE_SIZE
         history: list = []
-        hx = None
+        action_hist: list = []
         step = 0
         for step in range(max_steps):
-            obs = ego_features(maze, pos, goal)
+            obs = get_obs(maze, ax, ay, gx, gy, MAZE_SIZE, action_hist)
             history.append(obs)
             if len(history) > seq_len:
                 history = history[-seq_len:]
             seq = np.array(history, dtype=np.float32)
             with torch.no_grad():
-                logits, hx = model(torch.from_numpy(seq).to(DEVICE).unsqueeze(0))
+                logits, _ = model(torch.from_numpy(seq).to(DEVICE).unsqueeze(0))
                 action = int(logits[0, -1].argmax(dim=-1).item())
-            dr, dc = [(-1, 0), (1, 0), (0, -1), (0, 1)][action]
-            new_pos = (pos[0] + dr, pos[1] + dc)
-            if (0 <= new_pos[0] < maze.shape[0] and 0 <= new_pos[1] < maze.shape[1]
-                    and maze[new_pos] != 1):
-                pos = new_pos
-            if pos == goal:
+            new_ax, new_ay, _, _, _ = step_env(maze, ax, ay, action, MAZE_SIZE)
+            ax, ay = new_ax, new_ay
+            action_hist.append(action)
+            if (ax, ay) == (gx, gy):
                 solved += 1
                 break
         total_steps += step + 1
