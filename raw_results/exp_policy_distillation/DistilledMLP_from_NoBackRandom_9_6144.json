@@ -1,0 +1,1 @@
+[{"agent_name": "DistilledMLP_from_NoBackRandom", "teacher": "NoBackRandom", "student": "MLP", "maze_size": 9, "seed": 6144, "phase": "test", "wall_time_s": 20.940131902694702, "code_hash": "ed681d75c27fe352", "n_demonstrations": 56036, "n_demo_eps_target": 500, "n_eps": 50, "solved": 2, "success_rate": 0.04, "mean_steps": 311.74}]

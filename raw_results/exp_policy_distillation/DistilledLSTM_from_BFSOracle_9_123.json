@@ -1,0 +1,1 @@
+[{"agent_name": "DistilledLSTM_from_BFSOracle", "teacher": "BFSOracle", "student": "LSTM", "maze_size": 9, "seed": 123, "phase": "test", "wall_time_s": 16.719550848007202, "code_hash": "ed681d75c27fe352", "n_demonstrations": 6824, "n_demo_eps_target": 500, "n_eps": 50, "solved": 43, "success_rate": 0.86, "mean_steps": 61.22}]

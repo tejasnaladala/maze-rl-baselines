@@ -1,0 +1,1 @@
+[{"agent_name": "DistilledLSTM_from_NoBackRandom", "teacher": "NoBackRandom", "student": "LSTM", "maze_size": 9, "seed": 456, "phase": "test", "wall_time_s": 113.33917593955994, "code_hash": "ed681d75c27fe352", "n_demonstrations": 54814, "n_demo_eps_target": 500, "n_eps": 50, "solved": 26, "success_rate": 0.52, "mean_steps": 214.66}]
