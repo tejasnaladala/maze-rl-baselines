@@ -11,15 +11,15 @@ Run via `python phase4_reviewer_attacks.py`. CSV at `analysis_output/phase4_atta
 
 | Status | Count | Meaning |
 |---|---|---|
-| **DEFEATED** | 7 | Current evidence directly refutes the attack |
+| **DEFEATED** | 8 | Current evidence directly refutes the attack |
 | **PARTIALLY ADDRESSED** | 2 | Some evidence but needs appendix experiment |
 | **PARTIAL** | 1 | Partial evidence, needs more data |
 | **PENDING** | 0 | All in-flight experiments complete |
-| **NOT TESTED** | 1 | Would require new experiment; paper must document as limitation |
+| **NOT TESTED** | 0 | All have at least partial evidence |
 
-**Defended:** 7 + 2 = 9/11 with current data.
-**Open:** A1 (undertrained — partial; H200 SB3 budget-matched run will close), A4 (hyperparams — H200 LR sweep will close).
-**Phase 6 plan:** All remaining attacks closed by end of H200 run.
+**Defended:** 8 + 2 = 10/11 with current data.
+**Open:** A1 (undertrained — partial; H200 SB3 budget-matched run will close to DEFEATED).
+**Phase 6 plan:** A1 closes during H200 run. Final state: 9 DEFEATED + 2 PARTIALLY ADDRESSED.
 
 ---
 
@@ -73,15 +73,27 @@ Run via `python phase4_reviewer_attacks.py`. CSV at `analysis_output/phase4_atta
 
 ---
 
-### A4 — "Hyperparameters weren't tuned." [NOT TESTED]
+### A4 — "Hyperparameters weren't tuned." [DEFEATED]
 
 **Attack:** "Your MLP_DQN uses lr=5e-4 and ε-decay=20000. Did you try lr=1e-3 or 1e-4? Maybe the defaults are wrong for this task."
 
-**Evidence:** Used standard defaults (Adam lr=5×10⁻⁴, eps_decay=20000, buffer=20000, target_update=300, γ=0.99) matching MiniGrid/ProcGen paper conventions. No grid search.
+**Evidence:** Learning rate sweep COMPLETE (40/40 runs: 4 LRs × 10 seeds × 9×9):
 
-**Verdict:** NOT TESTED. This is a legitimate limitation and will be acknowledged in §6 of the paper.
+| LR | mean | sd | min | max |
+|---|---|---|---|---|
+| 1e-4 | 7.4% | 3.7 | 4 | 14 |
+| **5e-4 (default)** | **19.6%** ← optimum | 5.6 | 12 | 32 |
+| 1e-3 | 11.0% | 6.9 | 0 | 22 |
+| 3e-3 | 4.8% | 5.3 | 0 | 18 |
 
-**Decisive experiment to fully close:** LR sweep (1e-4, 5e-4, 1e-3) × 10 seeds × 1 size (9×9) = 30 runs. ~30 minutes on 5070 Ti. Low priority — the effect size (d = −1.82) is so large that a 2-3 percentage point improvement from tuning would not reverse the finding.
+**Verdict:** DEFEATED. The attack is empirically refuted on three counts:
+1. **The default LR (5e-4) is the local optimum.** Lowering to 1e-4 cuts performance by 12pp; raising to 1e-3 cuts by 9pp; 3e-3 collapses to 4.8% (training instability).
+2. **At the OPTIMAL LR, MLP_DQN still trails NoBackRandom by 32.6pp** (19.6% vs 52.2%). LR tuning cannot close this gap.
+3. The 19.6% optimum perfectly replicates the main sweep value of 19.3% — confirming the headline tables used the right hyperparameters.
+
+The reviewer's implicit hypothesis ("better hyperparams will close the gap") is unsupported. Even the best of 4 LRs spanning 1.5 orders of magnitude does not approach the memoryless random-walk baseline.
+
+**Decisive experiment to fully close:** Already done — `launch_lr_sweep.py` produced 40 runs with code hash `ed681d75c27fe352`.
 
 ---
 

@@ -4,4 +4,45 @@ LR sweep (A4 closure): 40 runs, 0 done
 LRs: [0.0001, 0.0005, 0.001, 0.003], seeds: 10, size: 9x9
 Code hash: ed681d75c27fe352
 
-  [0/40] MLP_DQN_lr1e-4 s=42... 
+  [0/40] MLP_DQN_lr1e-4 s=42... done (125.4s) test=4%
+  [1/40] MLP_DQN_lr1e-4 s=123... done (132.6s) test=8%
+  [2/40] MLP_DQN_lr1e-4 s=456... done (114.0s) test=12%
+  [3/40] MLP_DQN_lr1e-4 s=789... done (111.0s) test=4%
+  [4/40] MLP_DQN_lr1e-4 s=1024... done (100.5s) test=14%
+  [5/40] MLP_DQN_lr1e-4 s=2048... done (93.1s) test=6%
+  [6/40] MLP_DQN_lr1e-4 s=3072... done (90.9s) test=4%
+  [7/40] MLP_DQN_lr1e-4 s=4096... done (95.1s) test=4%
+  [8/40] MLP_DQN_lr1e-4 s=5120... done (100.5s) test=6%
+  [9/40] MLP_DQN_lr1e-4 s=6144... done (96.8s) test=12%
+  [10/40] MLP_DQN_lr5e-4 s=42... done (102.5s) test=22%
+  [11/40] MLP_DQN_lr5e-4 s=123... done (93.0s) test=18%
+  [12/40] MLP_DQN_lr5e-4 s=456... done (77.4s) test=32%
+  [13/40] MLP_DQN_lr5e-4 s=789... done (97.9s) test=14%
+  [14/40] MLP_DQN_lr5e-4 s=1024... done (98.7s) test=16%
+  [15/40] MLP_DQN_lr5e-4 s=2048... done (86.7s) test=20%
+  [16/40] MLP_DQN_lr5e-4 s=3072... done (104.8s) test=20%
+  [17/40] MLP_DQN_lr5e-4 s=4096... done (100.8s) test=26%
+  [18/40] MLP_DQN_lr5e-4 s=5120... done (99.9s) test=12%
+  [19/40] MLP_DQN_lr5e-4 s=6144... done (85.6s) test=16%
+  [20/40] MLP_DQN_lr1e-3 s=42... done (94.7s) test=10%
+  [21/40] MLP_DQN_lr1e-3 s=123... done (112.3s) test=14%
+  [22/40] MLP_DQN_lr1e-3 s=456... done (95.2s) test=22%
+  [23/40] MLP_DQN_lr1e-3 s=789... done (103.9s) test=2%
+  [24/40] MLP_DQN_lr1e-3 s=1024... done (76.4s) test=8%
+  [25/40] MLP_DQN_lr1e-3 s=2048... done (67.2s) test=10%
+  [26/40] MLP_DQN_lr1e-3 s=3072... done (77.6s) test=0%
+  [27/40] MLP_DQN_lr1e-3 s=4096... done (74.5s) test=14%
+  [28/40] MLP_DQN_lr1e-3 s=5120... done (67.6s) test=8%
+  [29/40] MLP_DQN_lr1e-3 s=6144... done (68.5s) test=22%
+  [30/40] MLP_DQN_lr3e-3 s=42... done (77.7s) test=0%
+  [31/40] MLP_DQN_lr3e-3 s=123... done (84.8s) test=2%
+  [32/40] MLP_DQN_lr3e-3 s=456... done (72.2s) test=8%
+  [33/40] MLP_DQN_lr3e-3 s=789... done (74.1s) test=0%
+  [34/40] MLP_DQN_lr3e-3 s=1024... done (69.7s) test=6%
+  [35/40] MLP_DQN_lr3e-3 s=2048... done (76.3s) test=8%
+  [36/40] MLP_DQN_lr3e-3 s=3072... done (76.8s) test=2%
+  [37/40] MLP_DQN_lr3e-3 s=4096... done (80.4s) test=4%
+  [38/40] MLP_DQN_lr3e-3 s=5120... done (87.1s) test=0%
+  [39/40] MLP_DQN_lr3e-3 s=6144... done (64.9s) test=18%
+
+LR sweep complete. 40 runs in C:\Users\tejas\engram\raw_results\exp_lr_sweep
