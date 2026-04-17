@@ -733,11 +733,16 @@ def atomic_save(data, path: Path) -> None:
 # ============================================================
 
 def set_all_seeds(seed: int, deterministic: bool = True) -> None:
-    """FIX: full determinism bootstrap."""
+    """Full determinism bootstrap.
+
+    Note: PYTHONHASHSEED is intentionally NOT set here. It only affects
+    Python's hash() at process start, so setting it at runtime is a no-op.
+    To enable hash determinism, run with `PYTHONHASHSEED=N python ...` from the
+    shell, or set it before importing any module that uses dict/set ordering.
+    """
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
-    os.environ['PYTHONHASHSEED'] = str(seed)
     if torch.cuda.is_available():
         torch.cuda.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
@@ -746,13 +751,20 @@ def set_all_seeds(seed: int, deterministic: bool = True) -> None:
         torch.backends.cudnn.benchmark = False
 
 
+_CODE_HASH_CACHE: str | None = None
+
+
 def code_hash() -> str:
-    """SHA-256 of this file — used to pin results to a code version."""
+    """SHA-256 (first 16 hex chars) of this file. Memoized after first call."""
+    global _CODE_HASH_CACHE
+    if _CODE_HASH_CACHE is not None:
+        return _CODE_HASH_CACHE
     try:
         with open(__file__, 'rb') as f:
-            return hashlib.sha256(f.read()).hexdigest()[:16]
+            _CODE_HASH_CACHE = hashlib.sha256(f.read()).hexdigest()[:16]
     except Exception:
-        return "unknown"
+        _CODE_HASH_CACHE = "unknown"
+    return _CODE_HASH_CACHE
 
 
 def run_experiment(

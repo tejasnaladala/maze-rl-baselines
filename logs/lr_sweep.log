@@ -1,0 +1,7 @@
+Device: cuda
+
+LR sweep (A4 closure): 40 runs, 0 done
+LRs: [0.0001, 0.0005, 0.001, 0.003], seeds: 10, size: 9x9
+Code hash: ed681d75c27fe352
+
+  [0/40] MLP_DQN_lr1e-4 s=42... 
