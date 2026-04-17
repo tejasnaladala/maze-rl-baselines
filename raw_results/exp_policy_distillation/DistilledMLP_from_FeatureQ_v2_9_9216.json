@@ -1,0 +1,1 @@
+[{"agent_name": "DistilledMLP_from_FeatureQ_v2", "teacher": "FeatureQ_v2", "student": "MLP", "maze_size": 9, "seed": 9216, "phase": "test", "wall_time_s": 27.326444625854492, "code_hash": "ed681d75c27fe352", "n_demonstrations": 43770, "n_demo_eps_target": 500, "n_eps": 50, "solved": 18, "success_rate": 0.36, "mean_steps": 214.98}]

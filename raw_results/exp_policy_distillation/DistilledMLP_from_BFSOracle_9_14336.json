@@ -1,0 +1,1 @@
+[{"agent_name": "DistilledMLP_from_BFSOracle", "teacher": "BFSOracle", "student": "MLP", "maze_size": 9, "seed": 14336, "phase": "test", "wall_time_s": 2.3531334400177, "code_hash": "ed681d75c27fe352", "n_demonstrations": 6920, "n_demo_eps_target": 500, "n_eps": 50, "solved": 50, "success_rate": 1.0, "mean_steps": 13.2}]
