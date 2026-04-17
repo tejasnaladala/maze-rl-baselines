@@ -4,26 +4,6 @@
 
 ---
 
-## Honesty preamble (Methodology Contribution)
-
-During development we caught a subtle evaluation bug that inflated several auxiliary baselines by 10–25 percentage points. Custom test harnesses in launchers for policy distillation, count-based PPO, cross-env transfer, and the loopy-maze topology audit applied an `is_solvable(maze, avoid_hazards=True)` filter that rejected mazes where reaching the goal required stepping through a hazard. The main-sweep `run_experiment` applies no such filter — it tests on the full make-maze distribution including hazard-blocked layouts.
-
-A canonical validation (`validate_harness.py`, committed) on n=20 seeds at 9×9:
-
-|              | Custom harness (filtered) | Main-sweep harness |
-|---|---|---|
-| Random       | 53.8% | 34.4% |
-| NoBackRandom | 72.5% | 51.8% |
-| FeatureQ     | 47.7% | 30.7% |
-
-Reference (main run_experiment): Random 31.7%, NoBackRandom 52.2%, FeatureQ_v2 35.3%. The fixed harness reproduces within ~3pp.
-
-We **re-ran the policy distillation experiment** on the corrected harness — the headline finding (MLP-from-BFS = 99.9% in the buggy version) **holds at 97.4%** (sd 2.5, n=20) on the corrected harness. We **dropped** the loopy/cross-env/count-based results from the headline tables. The original raw data is preserved in quarantine for transparency.
-
-This bug-discovery-and-fix exemplifies why we believe the broader paper's call — *include heuristic, distillation, and random-walk baselines on identical harnesses* — is a real methodological contribution.
-
----
-
 ## Abstract
 
 We report a systematic empirical inversion of the apparent progress story on procedurally-generated maze RL. Across six maze scales (9×9 through 25×25, 20+ seeds per cell, paired bootstrap with Holm-Bonferroni correction, code-hash-pinned reproducibility), the agent ladder reads:
@@ -135,6 +115,20 @@ We test 9 distinct agent classes in three groups:
 - **SpikingDQN** [optional, not in main table] — snnTorch LIF with surrogate gradients, 8 timesteps per step, leaky-integrator readout.
 
 All neural agents: Adam lr = 5×10⁻⁴, γ = 0.99, ε from 1.0 → 0.05 over 20,000 steps, 100 training episodes, 50 zero-shot test episodes per seed. Test phase uses deterministic-greedy evaluation (no exploration).
+
+### 3.2.1 Evaluation Protocol & Harness Validation (audited)
+
+The main-sweep test phase (used in all headline tables) draws maze seeds via `random.Random(seed).randint(0, 10_000_000) + 10_000_000`, applies no `is_solvable` filter, and uses identical step semantics for all agents. During development we standardised all auxiliary launchers (policy distillation, exploration baselines, topology audits) to this harness after a canonical validation revealed earlier custom test harnesses had inadvertently filtered to mazes where the goal was reachable without stepping through a hazard, inflating raw success rates by 10-25 percentage points.
+
+Validation (`validate_harness.py`, committed; n=20 seeds at 9×9):
+
+| Agent | Filtered harness | Main-sweep harness | Reference (main sweep) |
+|---|---|---|---|
+| Random | 53.8% | 34.4% | 31.7% |
+| NoBackRandom | 72.5% | 51.8% | 52.2% |
+| FeatureQ | 47.7% | 30.7% | 35.3% |
+
+The corrected harness reproduces the main-sweep references within ~3pp. All headline numbers in this paper are on the main-sweep harness; data generated under the filtered variant is preserved in `raw_results/*_CONFOUNDED/` for transparency and excluded from headline tables.
 
 ### 3.3 Evaluation Protocol
 
@@ -308,9 +302,7 @@ Sub-findings:
 | PPO + global state-count bonus | sparse | 0.5% | 2.2 | 20 (CONFOUNDED — old harness) |
 | PPO + episodic state-count bonus | sparse | 0.0% | 0.0 | 20 (CONFOUNDED — old harness) |
 
-**Headline-quality preliminary result:** PPO with the *exact same shaped reward as MLP_DQN*, 500K env steps, the same 24-d ego-feature observation, and the same maze training distribution gets ~1.3% on the first 3 seeds — **even worse than MLP_DQN's 19.3%**. This suggests the failure mode is not specific to value-based DQN; policy-gradient PPO also fails to find the maze-solving policy from reward-driven exploration alone.
-
-The count-based exploration runs are quarantined because they were generated under the buggy harness; we will re-run them on the corrected harness in v1.1. The PPO_shaped result, on the corrected harness, supersedes them as the cleaner test of "modern exploration on this task."
+**Preliminary diagnostic.** PPO with the *exact same shaped reward as MLP_DQN*, 500K env steps, the same 24-d ego-feature observation, and the same maze training distribution scores ~1.3% on early seeds. We treat this as preliminary only and flag two open verifications: (a) PPO+MlpPolicy may be undertrained at 500K steps for the small step cost in this maze family; (b) we have not yet positive-controlled PPO on a hazard-free easy variant. We therefore do **not** report PPO as a defended baseline in headline; the result is an indicative direction pending the verification suite. The count-based exploration runs are quarantined and pending re-run on the corrected harness in v1.1.
 
 ### Table 10: MiniGrid cross-environment generalization [240/240 runs, 4 envs × 3 agents × 20 seeds]
 
