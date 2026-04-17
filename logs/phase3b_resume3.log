@@ -15,4 +15,52 @@ Code hash: fe0b8142940e55de
   [10/160] MLP_DQN_h32 9x9 s=7168... done (66.7s) test=16%
   [11/160] MLP_DQN_h32 9x9 s=8192... done (93.8s) test=32%
   [12/160] MLP_DQN_h32 9x9 s=9216... done (103.9s) test=10%
-  [13/160] MLP_DQN_h32 9x9 s=10240... 
+  [13/160] MLP_DQN_h32 9x9 s=10240... done (86.1s) test=10%
+  [14/160] MLP_DQN_h32 9x9 s=11264... done (65.8s) test=14%
+  [15/160] MLP_DQN_h32 9x9 s=12288... done (59.9s) test=4%
+  [16/160] MLP_DQN_h32 9x9 s=13312... done (88.3s) test=18%
+  [17/160] MLP_DQN_h32 9x9 s=14336... done (79.8s) test=18%
+  [18/160] MLP_DQN_h32 9x9 s=15360... done (56.6s) test=12%
+  [19/160] MLP_DQN_h32 9x9 s=16384... done (42.8s) test=10%
+  [20/160] MLP_DQN_h32 13x13 s=42... done (133.6s) test=2%
+  [21/160] MLP_DQN_h32 13x13 s=123... done (117.9s) test=2%
+  [22/160] MLP_DQN_h32 13x13 s=456... done (120.8s) test=2%
+  [23/160] MLP_DQN_h32 13x13 s=789... done (164.6s) test=2%
+  [24/160] MLP_DQN_h32 13x13 s=1024... done (108.8s) test=4%
+  [25/160] MLP_DQN_h32 13x13 s=2048... done (115.6s) test=2%
+  [26/160] MLP_DQN_h32 13x13 s=3072... done (118.8s) test=2%
+  [27/160] MLP_DQN_h32 13x13 s=4096... done (122.2s) test=0%
+  [28/160] MLP_DQN_h32 13x13 s=5120... done (120.2s) test=10%
+  [29/160] MLP_DQN_h32 13x13 s=6144... Traceback (most recent call last):
+  File "C:\Users\tejas\engram\launch_capacity_study.py", line 99, in <module>
+    main()
+  File "C:\Users\tejas\engram\launch_capacity_study.py", line 75, in main
+    results = run_experiment(agent, agent_name, maze_size, NUM_TRAIN, NUM_TEST, seed)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tejas\engram\experiment_lib_v2.py", line 860, in run_experiment
+    run_phase('train', num_train, learn=True, seed_offset=0)
+  File "C:\Users\tejas\engram\experiment_lib_v2.py", line 846, in run_phase
+    agent.learn(obs, action, reward, next_obs, done)
+  File "C:\Users\tejas\engram\experiment_lib_v2.py", line 511, in learn
+    self.opt.step()
+  File "C:\Users\tejas\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\optim\optimizer.py", line 526, in wrapper
+    out = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tejas\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\optim\optimizer.py", line 81, in _use_grad
+    ret = func(*args, **kwargs)
+          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tejas\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\optim\adam.py", line 248, in step
+    adam(
+  File "C:\Users\tejas\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\optim\optimizer.py", line 151, in maybe_fallback
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\tejas\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\optim\adam.py", line 970, in adam
+    func(
+  File "C:\Users\tejas\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\torch\optim\adam.py", line 793, in _multi_tensor_adam
+    torch._foreach_div_(exp_avg_sq_sqrt, bias_correction2_sqrt)
+torch.AcceleratorError: CUDA error: unknown error
+Search for `cudaErrorUnknown' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
