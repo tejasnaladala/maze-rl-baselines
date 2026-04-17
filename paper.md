@@ -18,7 +18,11 @@ We report a systematic empirical inversion of the apparent progress story on pro
 
 The headline is **monotonic decrease**: more sophisticated learning machinery performs worse than trivial structure-aware baselines. We rule out every standard explanation — capacity (8× sweep h32→h256 produces *identical* 13.6% at 9×9), hyperparameters (default LR is the local optimum across 1.5 orders of magnitude), memory (DRQN with LSTM matches MLP_DQN), reward shaping (K4 ablation: trained agents collapse without it, random walks unchanged), maze topology (loopy multi-path mazes don't change wall-follower's 100%), and information parity (wall-following with *only* the 24-dim ego-features observation neural agents see still solves 100%).
 
-**The clean diagnostic** — supervised distillation: **a vanilla MLP trained on BFS-Oracle action labels achieves 99.9% test success** with the same architecture, observation space, and capacity that DQN-trained reaches only 19.3%. Therefore the failure of neural RL on this task is **exploration + credit assignment, not function approximation**. The architecture *can* represent the optimal policy; it cannot *discover* it under reward-driven gradient descent.
+**The clean diagnostic** — supervised distillation: a vanilla MLP trained on BFS-Oracle action labels achieves **99.9% test success** with the same architecture, observation space, and capacity that DQN-trained reaches only 19.3%. We therefore make the precise statement:
+
+> **A supervised MLP recovers the BFS oracle at 99.9%, so the failure of MLP-DQN is not representational capacity but the inability of online RL to discover and credit the simple maze-solving policy from sparse interaction.**
+
+We do not claim that "neural function approximation fails." We claim that **standard neural RL fails despite sufficient function approximation**. The architecture *can* represent the optimal policy; it cannot *discover* it under reward-driven gradient descent.
 
 We further empirically confirm the Alon–Benjamini–Lubetzky–Sodin (2007) non-backtracking cover-time theorem in an RL setting (NoBackRandom takes 13.6% fewer steps than Random per success, exactly matching theory). We fit a formal scaling law `success ~ a · n^b` across maze sizes and observe NoBackRandom decays at b = −2.07 [bootstrap 95% CI: −2.21, −1.94], slower than uniform Random (b = −2.81) by exactly the gap predicted by theory.
 
