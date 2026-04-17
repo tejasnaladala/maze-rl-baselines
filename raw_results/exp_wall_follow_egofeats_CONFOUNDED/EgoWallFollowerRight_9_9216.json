@@ -1,0 +1,1 @@
+[{"agent_name": "EgoWallFollowerRight", "maze_size": 9, "seed": 9216, "phase": "test", "wall_time_s": 0.028598546981811523, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 50, "success_rate": 1.0, "mean_steps": 18.08}]
