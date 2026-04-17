@@ -275,14 +275,18 @@ The ego-only wall-follower, which sees *only* the same 24-dim ego-feature observ
 
 *Note (honesty): a full-grid `WallFollowerLeft` variant in `launch_wall_following.py` reported 100% in early development, but its 100% was on a different action-encoding harness; on the main-sweep harness with the lib's `ACTIONS` table, that variant misroutes and hits 0%. We do not report it in the headline. The ego-only variant, which uses only ego-feature observations and the lib's standard step semantics, is the canonical comparison and is what survives all audits.*
 
-### Table 8: Policy distillation — separating representation from exploration [n=20 per cell, main-sweep harness]
+### Table 8: Policy distillation — separating representation from exploration [main-sweep harness, n=20 per cell except where noted]
 
 | Student architecture | Teacher | Student success | sd | Teacher success |
 |---|---|---|---|---|
 | **MLP (64, same as MLP_DQN)** | **BFSOracle** | **97.4%** | **2.5** | 100.0% |
 | LSTM (64) | BFSOracle | 38.8% | 10.3 | 100.0% |
+| LSTM (64) | FeatureQ_v2 (pretrained) | 35.0% (n=2)* | 9.0 | 35.3% |
+| LSTM (64) | NoBackRandom | 23.2% | 10.3 | 52.2% |
+| MLP (64) | FeatureQ_v2 (pretrained) | 13.9% | 8.7 | 35.3% |
 | MLP (64) | NoBackRandom | 7.3% | 8.7 | 52.2% |
-| LSTM (64) | NoBackRandom | 23.4% | 10.8 | 52.2% |
+
+*LSTM_from_FeatureQ_v2 partial (H200 timer expired); 2 seeds preliminary.
 
 **The cleanest single finding in the paper.** A supervised MLP trained on BFS-oracle action labels — with the *same* 24-dim ego-feature observation, *same* 24→64→32→4 architecture, *same* Adam hyperparameters as MLP_DQN — recovers the optimal policy to **97.4% test success** (n=20 seeds, sd=2.5). The same architecture trained via standard DQN reaches only 19.3%.
 
@@ -302,7 +306,7 @@ Sub-findings:
 | PPO + global state-count bonus | sparse | 0.5% | 2.2 | 20 (CONFOUNDED — old harness) |
 | PPO + episodic state-count bonus | sparse | 0.0% | 0.0 | 20 (CONFOUNDED — old harness) |
 
-**Preliminary diagnostic.** PPO with the *exact same shaped reward as MLP_DQN*, 500K env steps, the same 24-d ego-feature observation, and the same maze training distribution scores ~1.3% on early seeds. We treat this as preliminary only and flag two open verifications: (a) PPO+MlpPolicy may be undertrained at 500K steps for the small step cost in this maze family; (b) we have not yet positive-controlled PPO on a hazard-free easy variant. We therefore do **not** report PPO as a defended baseline in headline; the result is an indicative direction pending the verification suite. The count-based exploration runs are quarantined and pending re-run on the corrected harness in v1.1.
+**Preliminary diagnostic (n=7 of 10 seeds at H200 cutoff).** PPO with the *exact same shaped reward as MLP_DQN*, 500K env steps, the same 24-d ego-feature observation, and the same maze training distribution scores **mean 3.7% (sd 3.9, range 0–12%)** across 7 seeds — well below MLP_DQN's 19.3%, NoBackRandom's 52.2%, and EgoWallFollowerLeft's 100%. We treat this as preliminary pending: (a) full 10-20 seeds, (b) a positive-control on a hazard-free easy variant, (c) longer training budgets (1M, 2M env steps). The high variance (one seed reaches 12%) suggests PPO can occasionally find good policies but does so unreliably. We do **not** report PPO as a defended baseline in headline; it is reported as indicative diagnostic only. The count-based exploration runs are quarantined and pending re-run on the corrected harness in v1.1.
 
 ### Table 10: MiniGrid cross-environment generalization [240/240 runs, 4 envs × 3 agents × 20 seeds]
 
