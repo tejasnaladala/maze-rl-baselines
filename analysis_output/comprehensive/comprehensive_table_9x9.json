@@ -1,0 +1,155 @@
+[
+  {
+    "tier": "Tier1: Oracle",
+    "agent": "BFSOracle",
+    "mean_pct": 100.0,
+    "sd_pct": 0.0,
+    "n_seeds": 20,
+    "min_pct": 100.0,
+    "max_pct": 100.0
+  },
+  {
+    "tier": "Tier2: Heuristic",
+    "agent": "WallFollowerLeft",
+    "mean_pct": 100.0,
+    "sd_pct": 0.0,
+    "n_seeds": 20,
+    "min_pct": 100.0,
+    "max_pct": 100.0
+  },
+  {
+    "tier": "Tier2: Heuristic",
+    "agent": "WallFollowerRight",
+    "mean_pct": 100.0,
+    "sd_pct": 0.0,
+    "n_seeds": 20,
+    "min_pct": 100.0,
+    "max_pct": 100.0
+  },
+  {
+    "tier": "Tier2: Heuristic",
+    "agent": "DFSAgent",
+    "mean_pct": 100.0,
+    "sd_pct": 0.0,
+    "n_seeds": 20,
+    "min_pct": 100.0,
+    "max_pct": 100.0
+  },
+  {
+    "tier": "Tier3: Random walk",
+    "agent": "NoBackRandom",
+    "mean_pct": 52.2,
+    "sd_pct": 6.80881781221968,
+    "n_seeds": 20,
+    "min_pct": 40.0,
+    "max_pct": 62.0
+  },
+  {
+    "tier": "Tier3: Random walk",
+    "agent": "LevyRandom_2.0",
+    "mean_pct": 40.3,
+    "sd_pct": 6.701492371106604,
+    "n_seeds": 20,
+    "min_pct": 30.0,
+    "max_pct": 52.0
+  },
+  {
+    "tier": "Tier3: Random walk",
+    "agent": "LevyRandom_1.5",
+    "mean_pct": 34.3,
+    "sd_pct": 7.1070387644925646,
+    "n_seeds": 20,
+    "min_pct": 22.0,
+    "max_pct": 46.0
+  },
+  {
+    "tier": "Tier3: Random walk",
+    "agent": "Random",
+    "mean_pct": 31.7,
+    "sd_pct": 5.109794516416486,
+    "n_seeds": 20,
+    "min_pct": 24.0,
+    "max_pct": 44.0
+  },
+  {
+    "tier": "Tier4: Tabular",
+    "agent": "FeatureQ_v2",
+    "mean_pct": 35.3,
+    "sd_pct": 6.581033353509158,
+    "n_seeds": 20,
+    "min_pct": 18.0,
+    "max_pct": 46.0
+  },
+  {
+    "tier": "Tier4: Tabular",
+    "agent": "TabularQ_v2",
+    "mean_pct": 29.8,
+    "sd_pct": 8.829496021857647,
+    "n_seeds": 20,
+    "min_pct": 18.0,
+    "max_pct": 48.0
+  },
+  {
+    "tier": "Tier5: Neural",
+    "agent": "MLP_DQN_h32",
+    "mean_pct": 13.6,
+    "sd_pct": 8.13879597975032,
+    "n_seeds": 20,
+    "min_pct": 4.0,
+    "max_pct": 34.0
+  },
+  {
+    "tier": "Tier5: Neural",
+    "agent": "MLP_DQN_h64",
+    "mean_pct": 19.3,
+    "sd_pct": 6.731270311018568,
+    "n_seeds": 20,
+    "min_pct": 6.0,
+    "max_pct": 36.0
+  },
+  {
+    "tier": "Tier5: Neural",
+    "agent": "MLP_DQN_h128",
+    "mean_pct": 15.7,
+    "sd_pct": 8.444524853418336,
+    "n_seeds": 20,
+    "min_pct": 2.0,
+    "max_pct": 34.0
+  },
+  {
+    "tier": "Tier5: Neural",
+    "agent": "MLP_DQN_h256",
+    "mean_pct": 13.6,
+    "sd_pct": 8.309031231136395,
+    "n_seeds": 20,
+    "min_pct": 0.0,
+    "max_pct": 28.000000000000004
+  },
+  {
+    "tier": "Tier5: Neural+Memory",
+    "agent": "DRQN",
+    "mean_pct": 19.0,
+    "sd_pct": 10.761040841851685,
+    "n_seeds": 40,
+    "min_pct": 2.0,
+    "max_pct": 38.0
+  },
+  {
+    "tier": "Tier5: Neural (K4)",
+    "agent": "full__MLP_DQN",
+    "mean_pct": 19.5,
+    "sd_pct": 6.244997998398398,
+    "n_seeds": 32,
+    "min_pct": 6.0,
+    "max_pct": 36.0
+  },
+  {
+    "tier": "Tier5: Neural (K4)",
+    "agent": "full__DoubleDQN",
+    "mean_pct": 16.9,
+    "sd_pct": 6.371028174478591,
+    "n_seeds": 20,
+    "min_pct": 8.0,
+    "max_pct": 32.0
+  }
+]
