@@ -53,7 +53,7 @@ from experiment_lib_v2 import (
     set_all_seeds,
     code_hash,
 )
-from maze_env_helpers import get_obs, step_env
+from maze_env_helpers import get_obs, step_env, main_sweep_test_seeds
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 print(f"Device: {DEVICE}")
@@ -106,14 +106,17 @@ def make_teacher(name: str):
 
 def collect_demos(teacher_name: str, num_episodes: int, maze_size: int,
                   seed: int) -> tuple[np.ndarray, np.ndarray]:
-    """Roll out teacher and return (states, actions) tensors. For learning
-    teachers (FeatureQ), train them first via a separate run_experiment call."""
-    rng = np.random.default_rng(seed)
+    """Roll out teacher and return (states, actions) tensors.
 
-    # For learning teachers, pre-train on a few episodes to get a good policy
+    HARNESS FIX: uses the MAIN SWEEP training distribution
+    (rng=Random(seed), seed_offset=0) so demos are collected from the same
+    distribution MLP_DQN trains on.
+    """
+    import random as _random
+    train_rng = _random.Random(seed)
+
     if teacher_name == "FeatureQ_v2":
         teacher = FeatureQAgent()
-        # Quick training run to bring the teacher up to speed
         _ = run_experiment(teacher, "teacher_pretrain", maze_size, 100, 0, seed)
     else:
         teacher = make_teacher(teacher_name)
@@ -124,13 +127,11 @@ def collect_demos(teacher_name: str, num_episodes: int, maze_size: int,
     attempts = 0
     while collected < num_episodes and attempts < num_episodes * 10:
         attempts += 1
-        s = int(rng.integers(0, 10**9))
+        s = train_rng.randint(0, 10_000_000)  # train-phase seed_offset=0
         maze = make_maze(maze_size, seed=s)
-        if not is_solvable(maze, maze_size):
-            continue
+        # NO is_solvable filter — match main sweep
         ax, ay = 1, 1
         gx, gy = maze_size - 2, maze_size - 2
-        # BFSOracle needs the environment map to plan; call set_env() each maze.
         if hasattr(teacher, "set_env"):
             teacher.set_env(maze, maze_size, gx, gy)
         if hasattr(teacher, "reset_for_new_maze"):
@@ -211,15 +212,15 @@ def train_lstm(states: np.ndarray, actions: np.ndarray, epochs: int = 30,
 
 
 def test_mlp(model: MLPPolicy, n_test: int, seed: int) -> dict:
-    rng = np.random.default_rng(seed + 1_000_000)
+    """Tests on the SAME maze distribution as the main sweep run_experiment
+    test phase: rng=Random(seed), maze_seed = rng.randint(0,10M) + 10M, no
+    is_solvable filter. This makes the result directly comparable to MLP_DQN
+    (19.3%) etc.
+    """
     model.train(False)
     solved = 0
     total_steps = 0
-    test_seeds: list[int] = []
-    while len(test_seeds) < n_test:
-        s = int(rng.integers(0, 10**9))
-        if is_solvable(make_maze(MAZE_SIZE, seed=s), MAZE_SIZE):
-            test_seeds.append(s)
+    test_seeds = main_sweep_test_seeds(seed, n_test)
     for s in test_seeds:
         maze = make_maze(MAZE_SIZE, seed=s)
         ax, ay = 1, 1
@@ -244,15 +245,11 @@ def test_mlp(model: MLPPolicy, n_test: int, seed: int) -> dict:
 
 
 def test_lstm(model: LSTMPolicy, n_test: int, seed: int, seq_len: int = 8) -> dict:
-    rng = np.random.default_rng(seed + 1_000_000)
+    """Tests on main-sweep distribution (matches MLP_DQN test phase)."""
     model.train(False)
     solved = 0
     total_steps = 0
-    test_seeds: list[int] = []
-    while len(test_seeds) < n_test:
-        s = int(rng.integers(0, 10**9))
-        if is_solvable(make_maze(MAZE_SIZE, seed=s), MAZE_SIZE):
-            test_seeds.append(s)
+    test_seeds = main_sweep_test_seeds(seed, n_test)
     for s in test_seeds:
         maze = make_maze(MAZE_SIZE, seed=s)
         ax, ay = 1, 1
