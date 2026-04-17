@@ -1,1 +1,0 @@
-[{"agent_name": "DistilledLSTM_from_FeatureQ_v2", "teacher": "FeatureQ_v2", "student": "LSTM", "maze_size": 9, "seed": 789, "phase": "test", "wall_time_s": 118.68852615356445, "code_hash": "ed681d75c27fe352", "n_demonstrations": 47962, "n_demo_eps_target": 500, "n_eps": 50, "solved": 27, "success_rate": 0.54, "mean_steps": 230.68}]
