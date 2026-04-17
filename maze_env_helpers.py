@@ -19,10 +19,25 @@ from experiment_lib_v2 import (
     make_maze,
 )
 
+import random as _random
+
+
+def main_sweep_test_seeds(seed: int, n_test: int) -> list:
+    """Returns a list of maze seeds matching the MAIN SWEEP test-phase
+    distribution (no is_solvable filter, seed_offset=10_000_000).
+
+    This fixes the harness bug where custom launchers filtered mazes to only
+    those with hazard-avoiding paths — producing an easier distribution than
+    the main run_experiment uses.
+    """
+    rng = _random.Random(seed)
+    return [rng.randint(0, 10_000_000) + 10_000_000 for _ in range(n_test)]
+
 
 def make_solvable_maze(size: int, seed: int) -> tuple:
-    """Returns (maze, ax, ay, gx, gy, size).
-    Loops on different seeds until is_solvable() returns True.
+    """[DEPRECATED — DO NOT USE FOR EVALUATION]
+    Returns (maze, ax, ay, gx, gy, size). Uses is_solvable filter that does
+    NOT match main-sweep test distribution.
     """
     s = seed
     while True:
