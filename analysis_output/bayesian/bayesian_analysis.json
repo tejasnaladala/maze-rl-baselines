@@ -33,20 +33,20 @@
       "hdi_hi": 0.9999991676520353
     },
     "NoBackRandom": {
-      "n_seeds": 20,
-      "alpha": 523.0,
-      "beta": 479.0,
-      "mean": 0.5221144933732996,
-      "hdi_lo": 0.4915021153909161,
-      "hdi_hi": 0.5534156512625282
+      "n_seeds": 50,
+      "alpha": 1289.0,
+      "beta": 1213.0,
+      "mean": 0.5152889766902076,
+      "hdi_lo": 0.49592283387874847,
+      "hdi_hi": 0.5351320277353373
     },
     "Random": {
-      "n_seeds": 20,
-      "alpha": 318.0,
-      "beta": 684.0,
-      "mean": 0.31724329792043593,
-      "hdi_lo": 0.2875936786580271,
-      "hdi_hi": 0.3442866991659854
+      "n_seeds": 50,
+      "alpha": 818.0,
+      "beta": 1684.0,
+      "mean": 0.32704813060489807,
+      "hdi_lo": 0.3093476219675532,
+      "hdi_hi": 0.34614894275326047
     },
     "LevyRandom_2.0": {
       "n_seeds": 20,
@@ -65,12 +65,28 @@
       "hdi_hi": 0.37048695581071306
     },
     "FeatureQ_v2": {
-      "n_seeds": 20,
-      "alpha": 354.0,
-      "beta": 648.0,
-      "mean": 0.3531629891976549,
-      "hdi_lo": 0.32252532945260565,
-      "hdi_hi": 0.38069104201249915
+      "n_seeds": 50,
+      "alpha": 913.0,
+      "beta": 1589.0,
+      "mean": 0.36501778847559574,
+      "hdi_lo": 0.34565099618900264,
+      "hdi_hi": 0.38351481964559325
+    },
+    "MLP_DQN": {
+      "n_seeds": 30,
+      "alpha": 235.0,
+      "beta": 1267.0,
+      "mean": 0.1563988827242538,
+      "hdi_lo": 0.13795990503739608,
+      "hdi_hi": 0.17442543115894912
+    },
+    "DoubleDQN": {
+      "n_seeds": 30,
+      "alpha": 225.0,
+      "beta": 1277.0,
+      "mean": 0.14974305592566012,
+      "hdi_lo": 0.1314686020446216,
+      "hdi_hi": 0.1673141195983069
     },
     "DRQN": {
       "n_seeds": 40,
@@ -91,7 +107,12 @@
   },
   "pair_probabilities": {
     "NoBackRandom > Random": 1.0,
+    "NoBackRandom > DoubleDQN": 1.0,
+    "NoBackRandom > MLP_DQN": 1.0,
     "NoBackRandom > FeatureQ_v2": 1.0,
-    "WallFollowerLeft > NoBackRandom": 1.0
+    "WallFollowerLeft > NoBackRandom": 1.0,
+    "WallFollowerLeft > MLP_DQN": 1.0,
+    "FeatureQ_v2 > MLP_DQN": 1.0,
+    "Random > MLP_DQN": 1.0
   }
 }
