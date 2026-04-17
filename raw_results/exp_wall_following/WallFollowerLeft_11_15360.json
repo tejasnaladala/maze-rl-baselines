@@ -1,0 +1,1 @@
+[{"agent_name": "WallFollowerLeft", "maze_size": 11, "seed": 15360, "phase": "test", "wall_time_s": 0.033972740173339844, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 50, "success_rate": 1.0, "mean_steps": 36.16}]
