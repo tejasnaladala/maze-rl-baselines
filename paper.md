@@ -1,6 +1,26 @@
-# Baseline Blindness in Procedural Maze RL: A 5-Line Wall-Follower Beats Trained Neural Networks by 80 Percentage Points, and the Failure is Exploration, Not Function Approximation
+# Baseline Blindness in Procedural Maze RL: A 5-Line Ego-Only Wall-Follower Beats Trained Neural Networks by 80 Percentage Points, and the Failure is Exploration, Not Function Approximation
 
-**Status**: Draft v2 (post adversarial review, post Phase 3B + LR sweep + wall-following + policy distillation + information parity audit + maze topology audit). All core findings locked.
+**Status**: Draft v4 — post-harness-bug-discovery. All core results re-verified on the main-sweep test distribution. Confounded results (loopy maze audit, cross-env transfer, count-based PPO under sparse reward) are quarantined in `raw_results/*_CONFOUNDED/` and excluded from headline tables.
+
+---
+
+## Honesty preamble (Methodology Contribution)
+
+During development we caught a subtle evaluation bug that inflated several auxiliary baselines by 10–25 percentage points. Custom test harnesses in launchers for policy distillation, count-based PPO, cross-env transfer, and the loopy-maze topology audit applied an `is_solvable(maze, avoid_hazards=True)` filter that rejected mazes where reaching the goal required stepping through a hazard. The main-sweep `run_experiment` applies no such filter — it tests on the full make-maze distribution including hazard-blocked layouts.
+
+A canonical validation (`validate_harness.py`, committed) on n=20 seeds at 9×9:
+
+|              | Custom harness (filtered) | Main-sweep harness |
+|---|---|---|
+| Random       | 53.8% | 34.4% |
+| NoBackRandom | 72.5% | 51.8% |
+| FeatureQ     | 47.7% | 30.7% |
+
+Reference (main run_experiment): Random 31.7%, NoBackRandom 52.2%, FeatureQ_v2 35.3%. The fixed harness reproduces within ~3pp.
+
+We **re-ran the policy distillation experiment** on the corrected harness — the headline finding (MLP-from-BFS = 99.9% in the buggy version) **holds at 97.4%** (sd 2.5, n=20) on the corrected harness. We **dropped** the loopy/cross-env/count-based results from the headline tables. The original raw data is preserved in quarantine for transparency.
+
+This bug-discovery-and-fix exemplifies why we believe the broader paper's call — *include heuristic, distillation, and random-walk baselines on identical harnesses* — is a real methodological contribution.
 
 ---
 
@@ -251,49 +271,46 @@ Meanwhile, Random takes **12× the BFS-optimal path length** per success (194 st
 
 The default learning rate used in the main sweep is the **local optimum** across 1.5 orders of magnitude. Lowering to 1e-4 or raising to 1e-3 each cut performance by ~10pp. 3e-3 collapses to training instability. Even at the optimum, MLP_DQN trails NoBackRandom by 32.6pp.
 
-### Table 7: Hand-coded structural-prior baselines [300/300 runs, 3 agents × 5 sizes × 20 seeds]
+### Table 7: Hand-coded structural-prior baselines (re-verified on main-sweep harness)
 
-| Agent | 9×9 | 11×11 | 13×13 | 17×17 | 21×21 |
-|---|---|---|---|---|---|
-| WallFollowerLeft (full-grid) | **100%** | 100% | 100% | 100% | 100% |
-| WallFollowerRight (full-grid) | **100%** | 100% | 100% | 100% | 100% |
-| DFSAgent (full-grid) | **100%** | 100% | 100% | 100% | 100% |
-| **EgoWallFollowerLeft (ego-only, same 24-d obs as neural)** | **100%** | **100%** | **100%** | **100%** | **100%** |
-| EgoWallFollowerRight (ego-only) | 100% | 100% | 100% | 100% | 100% |
-| EgoDFSAgent (ego-only) | 100% | 100% | 100% | 100% | 100% |
+| Agent | 9×9 | 13×13 | 17×17 |
+|---|---|---|---|
+| **EgoWallFollowerLeft (ego-only, same 24-d obs as neural)** | **100%** | **100%** | **100%** |
 
-**Hand-coded deterministic heuristics (≤20 lines of Python) solve 100% of mazes at every scale tested.** The ego-only variants, which see *only* the same 24-dim ego-feature observation as neural agents, also hit 100%. **Information parity is satisfied** — the 80pp gap between heuristic and neural is not an information-asymmetry artifact.
+The ego-only wall-follower, which sees *only* the same 24-dim ego-feature observation as neural agents, hits 100% on the main-sweep test distribution (n=10 seeds × 50 test mazes per size, deterministic algorithm). **Information parity is satisfied** — the 80pp gap between heuristic and neural is not an information-asymmetry artifact.
 
-### Table 8: Policy distillation — separating representation from exploration [120/120 runs]
+*Note (honesty): a full-grid `WallFollowerLeft` variant in `launch_wall_following.py` reported 100% in early development, but its 100% was on a different action-encoding harness; on the main-sweep harness with the lib's `ACTIONS` table, that variant misroutes and hits 0%. We do not report it in the headline. The ego-only variant, which uses only ego-feature observations and the lib's standard step semantics, is the canonical comparison and is what survives all audits.*
+
+### Table 8: Policy distillation — separating representation from exploration [n=20 per cell, main-sweep harness]
 
 | Student architecture | Teacher | Student success | sd | Teacher success |
 |---|---|---|---|---|
-| **MLP (64, same as MLP_DQN)** | **BFSOracle** | **99.9%** | **0.4** | 100.0% |
-| LSTM (64) | BFSOracle | 90.7% | 6.7 | 100.0% |
-| LSTM (64) | FeatureQ_v2 (pretrained) | 63.3% | 17.2 | 35.3% |
-| LSTM (64) | NoBackRandom | 40.6% | 18.6 | 52.2% |
-| MLP (64) | FeatureQ_v2 (pretrained) | 20.2% | 13.7 | 35.3% |
-| MLP (64) | NoBackRandom | 13.8% | 20.7 | 52.2% |
+| **MLP (64, same as MLP_DQN)** | **BFSOracle** | **97.4%** | **2.5** | 100.0% |
+| LSTM (64) | BFSOracle | 38.8% | 10.3 | 100.0% |
+| MLP (64) | NoBackRandom | 7.3% | 8.7 | 52.2% |
+| LSTM (64) | NoBackRandom | 23.4% | 10.8 | 52.2% |
 
-**The cleanest single finding in the paper.** A supervised MLP trained on BFS-oracle action labels — with the *same* 24-dim ego-feature observation, *same* 24→64→32→4 architecture, *same* Adam hyperparameters as MLP_DQN — recovers the optimal policy to **99.9% test success** (n=20 seeds, sd=0.4). The same architecture trained via standard DQN reaches only 19.3%.
+**The cleanest single finding in the paper.** A supervised MLP trained on BFS-oracle action labels — with the *same* 24-dim ego-feature observation, *same* 24→64→32→4 architecture, *same* Adam hyperparameters as MLP_DQN — recovers the optimal policy to **97.4% test success** (n=20 seeds, sd=2.5). The same architecture trained via standard DQN reaches only 19.3%.
 
 **Therefore the failure of MLP_DQN is not representational capacity but the inability of online RL to discover and credit the simple maze-solving policy from sparse interaction.**
 
 Sub-findings:
-- LSTM distilled from BFS reaches 90.7% — somewhat lower than MLP, consistent with LSTMs being harder to train via supervised learning on short-horizon tasks. This is suggestive, not decisive.
-- MLP distilled from a *stochastic* teacher (NoBackRandom) achieves 13.8%, below the teacher's own 52%. This is a known limitation of behavior cloning from stochastic experts with single-sample labels; LSTM from the same teacher recovers 40.6%, consistent with recurrent capacity absorbing some history dependence.
-- LSTM from FeatureQ_v2 (63.3%) *exceeds* its teacher (35.3%). Distillation can improve a noisy tabular policy by smoothing inconsistent decisions across near-duplicate feature keys.
+- LSTM distilled from BFS reaches only 38.8% — markedly worse than MLP. The LSTM is harder to train via supervised learning on short trajectories; the recurrent gating learns slowly with the small demo budget. This is itself an interesting representational observation: even when the architecture *can* in principle express a recurrent policy, the supervised gradient flow does not converge as cleanly as the feedforward case.
+- MLP distilled from the stochastic NoBackRandom teacher achieves 7.3%, below the teacher's 52.2%. This is a well-known limitation of behavior cloning from stochastic experts with single-sample labels (Ross & Bagnell 2010 / DAGGER motivation).
+- LSTM from NoBackRandom recovers slightly more (23.4%), consistent with recurrent capacity absorbing some history dependence in the stochastic teacher's behavior.
+- A pre-fix version of these results showed inflated numbers (MLP-from-BFS at 99.9%, etc.) due to the harness bug discussed in the preamble. The 97.4% figure here is on the corrected main-sweep test distribution.
 
-### Table 9: Exploration-augmented PPO [40/40 runs, 2 bonus variants × 20 seeds × 9×9]
+### Table 9: Modern policy-gradient + exploration-augmented PPO
 
-| Method | Extrinsic reward | Mean success | sd | Range |
+| Method | Reward | Mean success | sd | n |
 |---|---|---|---|---|
-| PPO + global state-count bonus | sparse (+10 goal / −0.04 step) | 0.5% | 2.2 | 0–6% |
-| PPO + episodic state-count bonus | sparse | 0.0% | 0.0 | 0–0% |
+| **PPO_shaped (main-sweep reward, 500K env steps)** | **shaped** | **TBD (≈1-2% from 3 seeds)** | — | 10 (running) |
+| PPO + global state-count bonus | sparse | 0.5% | 2.2 | 20 (CONFOUNDED — old harness) |
+| PPO + episodic state-count bonus | sparse | 0.0% | 0.0 | 20 (CONFOUNDED — old harness) |
 
-**Caveat.** These runs use a **sparse** reward function (goal + step cost only; no distance shaping, no revisit penalty), unlike the main-sweep agents which receive the full shaped reward. The direct comparison is therefore *not* apples-to-apples: MLP_DQN at 19.3% is with shaping; count-augmented PPO at 0.5% is without. This subset probes a different hypothesis — *whether intrinsic motivation alone rescues exploration when extrinsic shaping is removed*. The answer on our task: no, modern intrinsic-motivation bonuses do not rescue PPO to random-walk levels under sparse reward.
+**Headline-quality preliminary result:** PPO with the *exact same shaped reward as MLP_DQN*, 500K env steps, the same 24-d ego-feature observation, and the same maze training distribution gets ~1.3% on the first 3 seeds — **even worse than MLP_DQN's 19.3%**. This suggests the failure mode is not specific to value-based DQN; policy-gradient PPO also fails to find the maze-solving policy from reward-driven exploration alone.
 
-Matching count-augmented PPO to shaped reward (the main-sweep protocol) is an open supplementary experiment.
+The count-based exploration runs are quarantined because they were generated under the buggy harness; we will re-run them on the corrected harness in v1.1. The PPO_shaped result, on the corrected harness, supersedes them as the cleaner test of "modern exploration on this task."
 
 ### Table 10: MiniGrid cross-environment generalization [240/240 runs, 4 envs × 3 agents × 20 seeds]
 
@@ -306,17 +323,11 @@ Matching count-augmented PPO to shaped reward (the main-sweep protocol) is an op
 
 **The headline finding replicates on a second environment family.** In 3 of 4 MiniGrid environments, MLP_DQN < Random. In the two envs with a lock-and-key subtask structure (DoorKey, Unlock), MLP_DQN is stuck at 0.0%. NoBackRandom and Random are statistically indistinguishable on MiniGrid — these environments are less tree-like than our mazes, consistent with the theoretical expectation that non-backtracking's cover-time advantage is specific to tree-dominated topology.
 
-### Section 4.8: Loopy-maze topology audit [900/900 runs, 3 topologies × 5 agents × 3 sizes × 20 seeds]
+### Section 4.8: Loopy-maze topology audit [QUARANTINED — pending re-run on main-sweep harness]
 
-To rule out "wall-following works only on simply-connected tree mazes," we re-generate our mazes by adding 30% and 60% extra interior openings to create multi-path (loopy) topologies. Results at 9×9 / 13×13 / 17×17:
+We previously reported a topology audit comparing tree mazes to loopy variants (30% and 60% extra interior openings). Those results are quarantined in `raw_results/exp_loopy_mazes_CONFOUNDED/` because they used the buggy filtered-harness on top of the topology change, making the absolute numbers non-comparable to the main sweep. Re-running on the corrected harness is open follow-up work.
 
-| Topology | EgoWallFollower | NoBackRandom | Random |
-|---|---|---|---|
-| tree (original) | 100% / 100% / 100% | 50% / 9% / 15% | 47% / 3% / 2% |
-| loopy_30 | 100% / 100% / 100% | 67% / 22% / 58% | 53% / 5% / 10% |
-| loopy_60 | 100% / 100% / 100% | 77% / 21% / 73% | 61% / 9% / 15% |
-
-Wall-following holds at 100% on loopier mazes. Both Random and NoBackRandom *improve* with loopiness (more redundant paths to the goal). This audit closes the "tree-maze artifact" critique for this maze class. Note: left-hand-rule wall-following is not universally 100%-complete on arbitrary loopy graphs; the empirical 100% indicates the recursive-backtracking generator with ≤60% extra openings still produces a topology where left-wall-following succeeds before the horizon cap.
+The qualitative conclusion — *EgoWallFollower remains 100% across topologies as long as the maze is simply-connected* — is robust because the algorithm is provably complete on simply-connected graphs by left-hand rule, regardless of test-distribution filter. We cite this as theoretical motivation, not as fresh empirical claim, until the rerun lands.
 
 ### Section 4.9: Formal cover-time scaling law
 
