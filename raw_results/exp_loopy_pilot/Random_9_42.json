@@ -1,0 +1,1 @@
+[{"agent_name": "Random", "maze_size": 9, "seed": 42, "phase": "test", "extra_passages": 4, "wall_time_s": 0.047739267349243164, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 37, "success_rate": 0.74, "mean_steps": 208.78}]
