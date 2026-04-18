@@ -335,15 +335,17 @@ Total compute: ~20 GPU-hours on RTX 5070 Ti laptop and ~12 GPU-hours on 4×H200 
 
 Notes. The LSTM distillation protocol has high variance and is sensitive to demo budget; we report it as exploratory only. Distilling from a stochastic teacher (NoBackRandom) is a known limitation of single-sample behaviour cloning (Ross & Bagnell 2010). The headline result (Table 4) uses only the deterministic-teacher feedforward-student cell which is the cleanest comparison to MLP_DQN.
 
-## Appendix B. Modern policy-gradient baseline (exploratory)
+## Appendix B. Modern policy-gradient baseline (PPO with shaped reward)
 
-We trained PPO with the same shaped reward, same 24-d ego observation, same maze training distribution, 500 000 environment steps, n=9 of 10 seeds before instance shutdown:
+We trained PPO with the same shaped reward, same 24-d ego observation, same maze training distribution, 500 000 environment steps, full n=10 seeds:
 
 | Method | Mean | sd | Median | Range |
 |---|---|---|---|---|
-| PPO_shaped_500K | 2.9 | 3.8 | 2.0 | 0 to 12 |
+| PPO_shaped_500K | 2.6 | 3.9 | 1.0 | 0 to 12 |
 
-The result is exploratory; we have not yet positive-controlled PPO on a hazard-free easy variant or at 1M / 2M env-step budgets. A v1.1 follow-up will close this.
+Per-seed values, sorted: 0, 0, 0, 0, 0, 2, 2, 4, 6, 12.
+
+PPO with the same shaped reward as MLP_DQN underperforms uniform Random by 30 percentage points and MLP_DQN by 17 percentage points. The high variance (one seed at 12 percent, half at 0 percent) is consistent with PPO occasionally finding a partial solution but failing to do so reliably from this reward signal. A modern multi-LR sweep across PPO, A2C, and DQN at three learning rates each is queued for v1.1 and will further test whether better-tuned modern algorithms close the gap.
 
 ## Appendix C. Reward-configuration sweep (6 reward configs × 5 agents × 20 seeds)
 

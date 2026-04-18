@@ -180,7 +180,7 @@ The headline ordering is posterior-certain at the 0.001 level.
 
 - Single primary maze class (recursive backtracking with hazards). Results may not extend to other generators or to partially-observable variants beyond DRQN.
 - Modest network sizes (24 to 64 to 32 to 4 MLPs). Capacity sensitivity rules out "size too small" within the 32 to 256 hidden range; we did not test the 10M-parameter regime.
-- Modern policy-gradient and intrinsic-motivation baselines on the main benchmark are queued for follow-up. A preliminary PPO-with-shaped-reward run (n=9 of 10 seeds) reaches 2.9 percent at 9x9, indicative but not headline-grade until additional seeds and a positive-control run land.
+- A modern PPO-with-shaped-reward baseline on the main benchmark, full n=10 seeds at 500K environment steps each (same shaped reward, observation, and maze training distribution as MLP_DQN), reaches mean 2.6 percent (sd 3.9, median 1.0, range 0 to 12, per-seed [0, 0, 0, 0, 0, 2, 2, 4, 6, 12]). PPO underperforms uniform Random by 30 percentage points and MLP_DQN by 17 percentage points on this harness. A modern multi-LR sweep across PPO, A2C, and DQN (3 LRs each, 10 seeds each, 70 runs total) is in progress and will land in v1.1.
 - A single research team. All code, raw data, manifests, and analyses are public; every numerical claim is regenerable from raw data via `python reproduce.py verify`. Independent reproduction is welcomed.
 
 ---
