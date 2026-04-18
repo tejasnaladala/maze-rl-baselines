@@ -1,0 +1,47 @@
+Device: cuda
+Device: cuda
+Modern baseline suite: 70 runs (7 configs x 10 seeds)
+Code hash: ed681d75c27fe352
+
+  [30/70] DQN_lr1e-4 s=42... done (417s) test=12%
+  [31/70] DQN_lr1e-4 s=123... done (556s) test=30%
+  [32/70] DQN_lr1e-4 s=456... done (809s) test=16%
+  [33/70] DQN_lr1e-4 s=789... done (888s) test=36%
+  [34/70] DQN_lr1e-4 s=1024... done (680s) test=44%
+  [35/70] DQN_lr1e-4 s=2048... done (1033s) test=36%
+  [36/70] DQN_lr1e-4 s=3072... done (605s) test=26%
+  [37/70] DQN_lr1e-4 s=4096... done (506s) test=8%
+  [38/70] DQN_lr1e-4 s=5120... done (1012s) test=38%
+  [39/70] DQN_lr1e-4 s=6144... done (1006s) test=38%
+  [40/70] DQN_lr5e-4 s=42... done (549s) test=24%
+  [41/70] DQN_lr5e-4 s=123... done (464s) test=36%
+  [42/70] DQN_lr5e-4 s=456... done (655s) test=16%
+  [43/70] DQN_lr5e-4 s=789... done (523s) test=36%
+  [44/70] DQN_lr5e-4 s=1024... done (574s) test=32%
+  [45/70] DQN_lr5e-4 s=2048... done (921s) test=40%
+  [46/70] DQN_lr5e-4 s=3072... done (582s) test=26%
+  [47/70] DQN_lr5e-4 s=4096... done (435s) test=36%
+  [48/70] DQN_lr5e-4 s=5120... done (813s) test=34%
+  [49/70] DQN_lr5e-4 s=6144... done (561s) test=34%
+  [50/70] DQN_lr1e-3 s=42... done (675s) test=18%
+  [51/70] DQN_lr1e-3 s=123... done (876s) test=28%
+  [52/70] DQN_lr1e-3 s=456... done (778s) test=16%
+  [53/70] DQN_lr1e-3 s=789... done (827s) test=10%
+  [54/70] DQN_lr1e-3 s=1024... done (825s) test=52%
+  [55/70] DQN_lr1e-3 s=2048... done (804s) test=4%
+  [56/70] DQN_lr1e-3 s=3072... done (578s) test=38%
+  [57/70] DQN_lr1e-3 s=4096... done (355s) test=28%
+  [58/70] DQN_lr1e-3 s=5120... done (487s) test=24%
+  [59/70] DQN_lr1e-3 s=6144... done (549s) test=18%
+  [60/70] A2C_default s=42... done (525s) test=8%
+  [61/70] A2C_default s=123... done (519s) test=12%
+  [62/70] A2C_default s=456... done (520s) test=6%
+  [63/70] A2C_default s=789... done (514s) test=14%
+  [64/70] A2C_default s=1024... done (518s) test=6%
+  [65/70] A2C_default s=2048... done (515s) test=2%
+  [66/70] A2C_default s=3072... done (515s) test=8%
+  [67/70] A2C_default s=4096... done (513s) test=6%
+  [68/70] A2C_default s=5120... done (516s) test=6%
+  [69/70] A2C_default s=6144... done (493s) test=16%
+
+Modern baselines complete: 70 runs in C:\Users\tejas\engram\raw_results\exp_modern_baselines
