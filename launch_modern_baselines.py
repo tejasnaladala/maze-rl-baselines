@@ -61,7 +61,15 @@ def train_and_test(agent_cls, hp: dict, seed: int) -> dict:
     set_all_seeds(seed, deterministic=False)
     train_env = MazeShapedEnv(size=MAZE_SIZE, seed=seed)
 
-    common = dict(verbose=0, seed=seed, device=DEVICE)
+    # SB3 explicitly recommends CPU for PPO/A2C with MlpPolicy (the PCIe
+    # round-trip dominates for tiny MLPs). DQN benefits from GPU due to
+    # the replay-buffer minibatch sampling.
+    if agent_cls in (PPO, A2C):
+        device = "cpu"
+    else:
+        device = DEVICE
+
+    common = dict(verbose=0, seed=seed, device=device)
     if agent_cls is PPO:
         model = PPO("MlpPolicy", train_env, n_steps=512, batch_size=64, n_epochs=4,
                     gamma=0.99, gae_lambda=0.95, clip_range=0.2, ent_coef=0.01,

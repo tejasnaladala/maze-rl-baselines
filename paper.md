@@ -302,11 +302,11 @@ Sub-findings:
 
 | Method | Reward | Mean success | sd | n |
 |---|---|---|---|---|
-| **PPO_shaped (main-sweep reward, 500K env steps)** | **shaped** | **TBD (≈1-2% from 3 seeds)** | — | 10 (running) |
+| **PPO_shaped (main-sweep reward, 500K env steps)** | **shaped** | **2.6%** | **3.9** | **10 (final)** |
 | PPO + global state-count bonus | sparse | 0.5% | 2.2 | 20 (CONFOUNDED — old harness) |
 | PPO + episodic state-count bonus | sparse | 0.0% | 0.0 | 20 (CONFOUNDED — old harness) |
 
-**Result (n=9 of 10 seeds — H200 instance was reclaimed before final seed).** PPO with the *exact same shaped reward as MLP_DQN*, 500K env steps, the same 24-d ego-feature observation, and the same maze training distribution scores **mean 2.9% (sd 3.8, median 2.0%, range 0–12%)** across 9 seeds. Per-seed values: 0, 0, 0, 0, 2, 2, 4, 6, 12. PPO with shaped reward — the modern policy-gradient method one would naturally try as a baseline — performs **substantially worse than MLP_DQN's 19.3%**, well below uniform Random (31.7%), and 50pp below NoBackRandom (52.2%). The high variance (one seed reaches 12%) suggests PPO can occasionally find good policies but does so unreliably from this reward signal. Open verifications for v1.1: (a) finish the 10th seed, (b) a positive-control on a hazard-free easy variant, (c) longer training budgets (1M, 2M env steps). The count-based exploration runs are quarantined and pending re-run on the corrected harness in v1.1.
+**Result (full n=10 seeds).** PPO with the *exact same shaped reward as MLP_DQN*, 500K env steps, the same 24-d ego-feature observation, and the same maze training distribution scores **mean 2.6% (sd 3.9, median 1.0%, range 0 to 12%)** across 10 seeds. Per-seed values, sorted: 0, 0, 0, 0, 0, 2, 2, 4, 6, 12. PPO with shaped reward, the modern policy-gradient method one would naturally try as a baseline, performs **substantially worse than MLP_DQN's 19.3%**, well below uniform Random (32.7%), and ~49pp below NoBackRandom (51.5%). Half of the seeds collapse to zero. The seed at 12 percent suggests PPO can occasionally find a partial solution from this reward signal but does so unreliably. Open follow-ups for v1.1: a positive-control on a hazard-free easy variant, longer training budgets (1M, 2M env steps), and a multi-LR sweep across PPO, A2C, and DQN at three LRs each (70 runs total, in progress on the audited main-sweep harness). The count-based exploration runs from the previous version are quarantined and pending re-run on the corrected harness in v1.1.
 
 ### Table 10: MiniGrid cross-environment generalization [240/240 runs, 4 envs × 3 agents × 20 seeds]
 
