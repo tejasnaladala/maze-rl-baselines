@@ -1,0 +1,1 @@
+[{"agent_name": "A2C_default", "maze_size": 9, "seed": 42, "phase": "test", "wall_time_s": 524.9600801467896, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 4, "success_rate": 0.08, "mean_steps": 299.2, "train_time_s": 521.7578206062317, "total_timesteps": 500000}]

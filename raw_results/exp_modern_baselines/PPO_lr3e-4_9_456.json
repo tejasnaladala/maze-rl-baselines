@@ -1,0 +1,1 @@
+[{"agent_name": "PPO_lr3e-4", "maze_size": 9, "seed": 456, "phase": "test", "wall_time_s": 321.81799721717834, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 4, "success_rate": 0.08, "mean_steps": 299.56, "train_time_s": 319.33750581741333, "total_timesteps": 500000}]

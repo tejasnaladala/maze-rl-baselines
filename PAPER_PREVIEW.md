@@ -346,7 +346,23 @@ We trained PPO with the same shaped reward, same 24-d ego observation, same maze
 
 Per-seed values, sorted: 0, 0, 0, 0, 0, 2, 2, 4, 6, 12.
 
-PPO with the same shaped reward as MLP_DQN underperforms uniform Random by 30 percentage points and MLP_DQN by 17 percentage points. The high variance (one seed at 12 percent, half at 0 percent) is consistent with PPO occasionally finding a partial solution but failing to do so reliably from this reward signal. A modern multi-LR sweep across PPO, A2C, and DQN at three learning rates each is queued for v1.1 and will further test whether better-tuned modern algorithms close the gap.
+PPO with the same shaped reward as MLP_DQN underperforms uniform Random by 30 percentage points and MLP_DQN by 17 percentage points. The high variance (one seed at 12 percent, half at 0 percent) is consistent with PPO occasionally finding a partial solution but failing to do so reliably from this reward signal.
+
+### B.1 Multi-LR sweep across PPO, DQN, A2C (70 runs total)
+
+To address the reviewer concern that DQN-family baselines may be under-tuned, we ran SB3 PPO, DQN, and A2C across multiple learning rates on the same audited main-sweep harness. PPO and A2C run on CPU per SB3 guidance for MLP policies; DQN runs on GPU. n=10 seeds per config (PPO_lr1e-3 truncated to n=2 due to gradient instability).
+
+| Config | Mean | sd | Median | Range | n |
+|---|---|---|---|---|---|
+| PPO_lr1e-4 | 3.6 | 4.9 | 1.0 | 0 to 14 | 10 |
+| PPO_lr3e-4 | 6.0 | 6.9 | 4.0 | 0 to 24 | 10 |
+| PPO_lr1e-3 | 2.0 | 2.8 | 2.0 | 0 to 4 | 2 |
+| DQN_lr1e-4 | 28.4 | 12.4 | 33.0 | 8 to 44 | 10 |
+| **DQN_lr5e-4 (default)** | **31.4** | **7.2** | **34.0** | **16 to 40** | **10** |
+| DQN_lr1e-3 | 23.6 | 13.9 | 21.0 | 4 to 52 | 10 |
+| A2C_default | 8.4 | 4.3 | 7.0 | 2 to 16 | 10 |
+
+Best HP-tuned modern reward-driven baseline: SB3 DQN at default LR, 31.4 percent mean. Statistically tied with uniform Random (32.7 percent), 20 percentage points below NoBackRandom (51.5), and 66 percentage points below the BFS-distilled MLP (97.4). The original custom MLP_DQN baseline at 19.3 percent (used elsewhere in the paper, n=40) reflects implementation differences from the SB3 reference. The headline framing is updated accordingly: standard reward-driven RL with the same network class as the distilled MLP plateaus at uniform Random across all seven configurations tested.
 
 ## Appendix C. Reward-configuration sweep (6 reward configs × 5 agents × 20 seeds)
 

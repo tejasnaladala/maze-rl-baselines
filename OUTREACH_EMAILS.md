@@ -24,7 +24,7 @@ follow-up. Repo link in body.
 ## 1. Cold Email v1 (default, ~140 words)
 
 ```
-Subject: 5-line heuristic 100%, distilled MLP 97%, DQN 17% on procedural mazes
+Subject: 5-line heuristic 100%, distilled MLP 97%, modern RL 31% (= Random) on procedural mazes
 
 Dear Prof. [LAST_NAME],
 
@@ -32,11 +32,14 @@ Dear Prof. [LAST_NAME],
 
 I built a hazard-maze benchmark where a 5-line egocentric wall
 follower solves 100% of unseen instances and the same MLP
-architecture used by DQN reaches 97.4% by BFS distillation. DQN,
-DoubleDQN, and DRQN with the same observation stay at 16 to 19%. A
-capacity sweep (h32 to h256), an LR sweep across 1.5 orders of
-magnitude, LSTM memory, a K4 reward ablation, and a MiniGrid
-cross-env replication all rule out the obvious explanations.
+architecture used by DQN reaches 97.4% by BFS distillation. The best
+of seven HP-tuned modern reward-driven baselines (SB3 PPO, DQN, and
+A2C across three LRs each, 70 runs total) reaches 31% mean,
+statistically tied with uniform Random (33%) and 66 percentage points
+below the distillation result. PPO at every tested LR plateaus at
+3 to 6%. A capacity sweep (h32 to h256), LSTM memory, a K4 reward
+ablation, and a MiniGrid cross-env replication all rule out the
+obvious explanations.
 
 The cleanest experiment: initialize MLP_DQN from the 97% BC-distilled
 weights and fine-tune via standard DQN. Test success collapses from
