@@ -38,14 +38,16 @@ def _strip_md(text: str) -> str:
 
 def build_styles() -> dict:
     base = getSampleStyleSheet()
+    BLACK = colors.HexColor("#000000")
     body = ParagraphStyle(
         "Body",
         parent=base["Normal"],
         fontName="Helvetica",
         fontSize=10,
-        leading=13,
+        leading=13.5,
         alignment=TA_LEFT,
         spaceAfter=4,
+        textColor=BLACK,
     )
     h1 = ParagraphStyle(
         "H1",
@@ -53,7 +55,7 @@ def build_styles() -> dict:
         fontName="Helvetica-Bold",
         fontSize=17,
         leading=21,
-        textColor=colors.HexColor("#0c2050"),
+        textColor=BLACK,
         spaceBefore=0,
         spaceAfter=8,
     )
@@ -63,7 +65,7 @@ def build_styles() -> dict:
         fontName="Helvetica-Bold",
         fontSize=13,
         leading=17,
-        textColor=colors.HexColor("#23386e"),
+        textColor=BLACK,
         spaceBefore=10,
         spaceAfter=5,
     )
@@ -73,7 +75,7 @@ def build_styles() -> dict:
         fontName="Helvetica-Bold",
         fontSize=11,
         leading=14,
-        textColor=colors.HexColor("#23386e"),
+        textColor=BLACK,
         spaceBefore=6,
         spaceAfter=3,
     )
@@ -83,20 +85,22 @@ def build_styles() -> dict:
         leftIndent=14,
         bulletIndent=4,
         spaceAfter=2,
+        textColor=BLACK,
     )
     table_cell = ParagraphStyle(
         "TableCell",
         parent=body,
-        fontSize=8,
-        leading=10,
+        fontSize=8.5,
+        leading=11,
         spaceAfter=0,
         spaceBefore=0,
+        textColor=BLACK,
     )
     table_head = ParagraphStyle(
         "TableHead",
         parent=table_cell,
         fontName="Helvetica-Bold",
-        textColor=colors.HexColor("#0c2050"),
+        textColor=BLACK,
     )
     return {
         "body": body,
@@ -126,8 +130,8 @@ def make_table(rows: list[list[str]], styles: dict, usable_w: float):
     table.setStyle(
         TableStyle(
             [
-                ("BACKGROUND", (0, 0), (-1, 0), colors.HexColor("#dde6f5")),
-                ("GRID", (0, 0), (-1, -1), 0.4, colors.HexColor("#888aa0")),
+                ("GRID", (0, 0), (-1, -1), 0.4, colors.black),
+                ("LINEBELOW", (0, 0), (-1, 0), 0.7, colors.black),
                 ("VALIGN", (0, 0), (-1, -1), "TOP"),
                 ("LEFTPADDING", (0, 0), (-1, -1), 4),
                 ("RIGHTPADDING", (0, 0), (-1, -1), 4),
@@ -197,8 +201,8 @@ def render(md: str) -> list:
             flow.append(
                 HRFlowable(
                     width="100%",
-                    thickness=0.5,
-                    color=colors.HexColor("#aab0c0"),
+                    thickness=0.4,
+                    color=colors.black,
                     spaceBefore=2,
                     spaceAfter=4,
                 )
