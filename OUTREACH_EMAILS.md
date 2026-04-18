@@ -38,8 +38,13 @@ capacity sweep (h32 to h256), an LR sweep across 1.5 orders of
 magnitude, LSTM memory, a K4 reward ablation, and a MiniGrid
 cross-env replication all rule out the obvious explanations.
 
-The network class can express the policy. Standard reward-driven RL
-just does not find it.
+The cleanest experiment: initialize MLP_DQN from the 97% BC-distilled
+weights and fine-tune via standard DQN. Test success collapses from
+97.2% to 13.6% across 5 seeds (per-seed: 0, 12, 16, 18, 22). The
+reward gradient actively destroys the distilled high-performing
+representation, ending below from-scratch DQN. The network class can
+express the policy. Reward-driven RL pushes the network out of the
+basin that contains it.
 
 Paper attached, 6 pages. Code, raw data, SHA-256 manifest of all
 4,131 result files: https://github.com/tejasnaladala/engram

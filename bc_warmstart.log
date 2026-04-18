@@ -1,0 +1,48 @@
+Device: cuda
+
+BC Warm-Start RL: 5 runs, 0 done
+Seeds: [42, 123, 456, 789, 1024]
+Maze size: 9x9
+BC: 500 demos, 50 epochs
+Fine-tune: 200,000 env steps (eps 0.2->0.05 over 50,000 steps)
+Test: 50 eps on main_sweep_test_seeds
+Code hash: ed681d75c27fe352
+
+  [0/5] BCWarmStart_MLP_DQN s=42 ...
+      demos: 8,848 state-action pairs (0.1s)
+      BC done (12.1s)  BC test=98.0%
+      FT done (598s)  eps=1,084 steps=200,000 last100=43.0%
+      TEST (9.7s)  final=0.0%
+      seed 42 TOTAL 620s   BC=98.0% -> FT=0.0%   [COLLAPSED]
+
+  [1/5] BCWarmStart_MLP_DQN s=123 ...
+      demos: 8,864 state-action pairs (0.1s)
+      BC done (4.6s)  BC test=100.0%
+      FT done (976s)  eps=1,214 steps=200,000 last100=53.0%
+      TEST (5.8s)  final=18.0%
+      seed 123 TOTAL 986s   BC=100.0% -> FT=18.0%   [COLLAPSED]
+
+  [2/5] BCWarmStart_MLP_DQN s=456 ...
+      demos: 8,888 state-action pairs (0.1s)
+      BC done (4.0s)  BC test=98.0%
+      FT done (798s)  eps=1,240 steps=200,000 last100=48.0%
+      TEST (4.3s)  final=16.0%
+      seed 456 TOTAL 806s   BC=98.0% -> FT=16.0%   [COLLAPSED]
+
+  [3/5] BCWarmStart_MLP_DQN s=789 ...
+      demos: 9,164 state-action pairs (0.1s)
+      BC done (2.5s)  BC test=90.0%
+      FT done (827s)  eps=1,052 steps=200,000 last100=45.0%
+      TEST (11.3s)  final=12.0%
+      seed 789 TOTAL 841s   BC=90.0% -> FT=12.0%   [COLLAPSED]
+
+  [4/5] BCWarmStart_MLP_DQN s=1024 ...
+      demos: 8,716 state-action pairs (0.2s)
+      BC done (5.5s)  BC test=100.0%
+      FT done (837s)  eps=1,039 steps=200,000 last100=51.0%
+      TEST (5.1s)  final=22.0%
+      seed 1024 TOTAL 848s   BC=100.0% -> FT=22.0%   [COLLAPSED]
+
+
+BC warm-start sweep complete. Results in C:\Users\tejas\engram\raw_results\exp_bc_warmstart
+Aggregate post-hoc with: python analyze_*.py exp_bc_warmstart
