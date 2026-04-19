@@ -2,7 +2,7 @@
 
 ## Reward-Driven RL Cannot Find a Policy Its Own Network Class Can Express, and Actively Destroys That Policy When Initialized at It
 
-**Single-author draft v1.3** · 2026-04-18 · code + data: https://github.com/tejasnaladala/engram
+**Single-author draft v1.3** · 2026-04-18 · code + data: https://github.com/tejasnaladala/maze-rl-baselines
 
 ---
 
@@ -272,7 +272,7 @@ The headline ordering is posterior-certain at the 0.001 level.
 
 ## 12. Reproducibility
 
-All code at https://github.com/tejasnaladala/engram under Apache-2.0.
+All code at https://github.com/tejasnaladala/maze-rl-baselines under Apache-2.0.
 
 - Single-file statistics pipeline (paired bootstrap, Holm-Bonferroni, Cohen d, BCa).
 - SHA-256 manifest of all result files (currently 4,200+ JSON records across all experiments).

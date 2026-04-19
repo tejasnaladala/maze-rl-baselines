@@ -409,7 +409,7 @@ We do **not** claim that neural function approximation fails in general, nor tha
 
 ## 7. Reproducibility
 
-All code at https://github.com/tejasnaladala/engram under Apache-2.0 license. Every numerical claim is regenerable via `python reproduce.py verify --manifest manifest_final.json`.
+All code at https://github.com/tejasnaladala/maze-rl-baselines under Apache-2.0 license. Every numerical claim is regenerable via `python reproduce.py verify --manifest manifest_final.json`.
 
 **Single-file stats pipeline** (`stats_pipeline.py`): seed-aligned paired bootstrap (10,000 resamples), Mann-Whitney U, Cohen's d, Holm-Bonferroni family-wise correction, BCa bootstrap (post-hoc sensitivity). The seed-aligned guarantee was added after adversarial audit identified a subtle dict-insertion-order bug in the original version.
 

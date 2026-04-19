@@ -50,7 +50,7 @@ express the policy. Reward-driven RL pushes the network out of the
 basin that contains it.
 
 Paper attached, 6 pages. Code, raw data, SHA-256 manifest of all
-4,131 result files: https://github.com/tejasnaladala/engram
+4,131 result files: https://github.com/tejasnaladala/maze-rl-baselines
 
 Would 15 minutes work for a hard critique before I submit?
 
