@@ -20,7 +20,7 @@ The paper's central, narrow claim:
 
 > **Procedural-maze RL evaluations should include hand-coded heuristic, distillation, and random-walk baselines on identical evaluation harnesses. We provide one such audited benchmark and isolate a representation/discovery gap that is invisible without these baselines.**
 
-**Reproducibility.** ~4,100 per-run JSON results, SHA-256 manifest, code-hash pinned, paired bootstrap with Holm-Bonferroni correction, all raw data and code at <https://github.com/tejasnaladala/engram>. Total compute approximately 40 GPU-hours (RTX 5070 Ti laptop and 4×H200 at vast.ai, ~$155).
+**Reproducibility.** ~4,100 per-run JSON results, SHA-256 manifest, code-hash pinned, paired bootstrap with Holm-Bonferroni correction, all raw data and code at <https://github.com/tejasnaladala/maze-rl-baselines>. Total compute approximately 40 GPU-hours (RTX 5070 Ti laptop and 4×H200 at vast.ai, ~$155).
 
 ---
 
@@ -296,7 +296,7 @@ Implication for the field: procedural-maze RL evaluations should include heurist
 
 ## 7 Reproducibility
 
-Repository: <https://github.com/tejasnaladala/engram> (Apache-2.0).
+Repository: <https://github.com/tejasnaladala/maze-rl-baselines> (Apache-2.0).
 
 - `paper.md`. This draft (markdown source).
 - `EXECUTIVE_SUMMARY.md`. One-page reviewer skim.
