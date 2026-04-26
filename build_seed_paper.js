@@ -1,0 +1,393 @@
+const {
+  Document, Packer, Paragraph, TextRun, Table, TableRow, TableCell,
+  AlignmentType, LevelFormat, BorderStyle, WidthType, ShadingType
+} = require('docx');
+const fs = require('fs');
+
+const FONT = "Cambria";
+const COLOR = "000000";
+
+const t  = (text, opts = {}) => new TextRun({ text, font: FONT, color: COLOR, ...opts });
+const tb = (text, opts = {}) => new TextRun({ text, font: FONT, color: COLOR, bold: true, ...opts });
+const ti = (text, opts = {}) => new TextRun({ text, font: FONT, color: COLOR, italics: true, ...opts });
+
+const para = (children, opts = {}) => new Paragraph({
+  alignment: AlignmentType.JUSTIFIED,
+  spacing: { after: 120, line: 280 },
+  children,
+  ...opts
+});
+
+const title = (text) => new Paragraph({
+  alignment: AlignmentType.CENTER,
+  spacing: { after: 100 },
+  children: [ new TextRun({ text, font: FONT, color: COLOR, bold: true, size: 30 }) ]
+});
+
+const subtitle = (text) => new Paragraph({
+  alignment: AlignmentType.CENTER,
+  spacing: { after: 80 },
+  children: [ new TextRun({ text, font: FONT, color: COLOR, italics: true, size: 22 }) ]
+});
+
+const authorLine = (text) => new Paragraph({
+  alignment: AlignmentType.CENTER,
+  spacing: { after: 40 },
+  children: [ new TextRun({ text, font: FONT, color: COLOR, size: 22 }) ]
+});
+
+const sectionH = (num, text) => new Paragraph({
+  spacing: { before: 240, after: 80 },
+  children: [ new TextRun({ text: `${num}  ${text}`, font: FONT, color: COLOR, bold: true, size: 24 }) ]
+});
+
+const subH = (num, text) => new Paragraph({
+  spacing: { before: 140, after: 60 },
+  children: [ new TextRun({ text: `${num}  ${text}`, font: FONT, color: COLOR, bold: true, italics: true, size: 22 }) ]
+});
+
+const abstract = (text) => new Paragraph({
+  alignment: AlignmentType.JUSTIFIED,
+  spacing: { after: 120, line: 260 },
+  indent: { left: 360, right: 360 },
+  children: [
+    new TextRun({ text: "Abstract.  ", font: FONT, color: COLOR, bold: true, size: 20 }),
+    new TextRun({ text, font: FONT, color: COLOR, size: 20 })
+  ]
+});
+
+const numberedItem = (n, runs) => new Paragraph({
+  alignment: AlignmentType.JUSTIFIED,
+  spacing: { after: 80, line: 280 },
+  indent: { left: 360, hanging: 240 },
+  children: [ new TextRun({ text: `${n}. `, font: FONT, color: COLOR, bold: true }), ...runs ]
+});
+
+const dashItem = (runs) => new Paragraph({
+  alignment: AlignmentType.JUSTIFIED,
+  spacing: { after: 60, line: 280 },
+  indent: { left: 360, hanging: 240 },
+  children: [ new TextRun({ text: "•  ", font: FONT, color: COLOR, bold: true }), ...runs ]
+});
+
+const refItem = (text, italicsParts = []) => {
+  const runs = [];
+  let i = 0;
+  // simple template: pass text with italics segments separated by sentinel; for simplicity, use {{ }} markers
+  const segments = text.split(/(\{\{[^}]+\}\})/);
+  segments.forEach(seg => {
+    if (seg.startsWith("{{") && seg.endsWith("}}")) {
+      runs.push(new TextRun({ text: seg.slice(2, -2), font: FONT, color: COLOR, size: 20, italics: true }));
+    } else if (seg) {
+      runs.push(new TextRun({ text: seg, font: FONT, color: COLOR, size: 20 }));
+    }
+  });
+  return new Paragraph({
+    spacing: { after: 80, line: 260 },
+    indent: { left: 360, hanging: 360 },
+    children: runs
+  });
+};
+
+const cell = (textRuns, opts = {}) => {
+  const border = { style: BorderStyle.SINGLE, size: 4, color: "000000" };
+  const borders = { top: border, bottom: border, left: border, right: border };
+  return new TableCell({
+    borders,
+    width: opts.width,
+    shading: opts.shaded ? { fill: "EEEEEE", type: ShadingType.CLEAR } : undefined,
+    margins: { top: 80, bottom: 80, left: 120, right: 120 },
+    children: [ new Paragraph({ alignment: opts.align || AlignmentType.LEFT, children: textRuns }) ]
+  });
+};
+
+const tableCaption = (text) => new Paragraph({
+  alignment: AlignmentType.LEFT,
+  spacing: { before: 60, after: 200 },
+  children: [ new TextRun({ text, font: FONT, color: COLOR, italics: true, size: 20 }) ]
+});
+
+const figurePlaceholder = (text) => new Paragraph({
+  alignment: AlignmentType.CENTER,
+  spacing: { before: 120, after: 200 },
+  children: [ new TextRun({ text, font: FONT, color: COLOR, italics: true, size: 20 }) ]
+});
+
+// ============================================================
+// CONTENT
+// ============================================================
+
+const titleBlock = [
+  title("Capability Loss Under Reward-Driven Fine-Tuning"),
+  subtitle("A Preliminary Study on Procedural Mazes"),
+  new Paragraph({ spacing: { after: 60 }, children: [] }),
+  authorLine("Tejas Naladala"),
+  authorLine("University of Washington (Undergraduate)"),
+  authorLine("tejas.naladala@gmail.com  ·  github.com/tejasnaladala/maze-rl-baselines"),
+  authorLine("Working draft v0.1, April 2026")
+];
+
+const abstractBlock = [
+  new Paragraph({ spacing: { before: 100, after: 60 }, children: [] }),
+  abstract(
+    "On 9x9 procedural mazes generated by depth-first search, we observe two empirical results worth documenting. First: across seven HP-tuned modern reward-driven configurations (Stable-Baselines3 PPO, DQN, A2C across three learning rates each, 70 runs total), the best baseline (SB3 DQN at default LR) reaches 31.4% test success, statistically tied with a uniform random walk (32.7%); PPO, A2C, and recurrent DQN underperform the random walk by significant margins. A behavior-cloning MLP of identical architecture, observation, and optimizer reaches 97.4%. Second: initializing DQN online and target networks from the BC-distilled weights (which evaluate at 97.2% before fine-tuning) and fine-tuning with the same shaped reward as the from-scratch DQN collapses test success to 13.6% across all five random seeds, ending below the from-scratch DQN baseline at any tested learning rate. We frame this as a candidate instance of capability loss under reward-driven fine-tuning. The result is preliminary and has known scope limitations, most prominently that DFS-generated mazes are tree graphs on which a simple wall-following heuristic is provably perfect. The contribution of this note is to document the result, state the scope limits clearly, and identify the experiments that would resolve them. Code, data, manifest, and seeds: github.com/tejasnaladala/maze-rl-baselines."
+  )
+];
+
+// === Section 1: Findings ===
+const findings = [
+  sectionH("1", "Findings"),
+
+  subH("1.1", "Setup"),
+  para([t("9x9 procedural mazes generated by depth-first-search with random tree backtracking. Each maze has a single start cell and a single goal cell. Observation is a 24-dimensional egocentric feature vector (local 3x3 wall and hazard flags, normalized Manhattan distance and direction to goal, last-3 action history, visit counts on adjacent cells). Action space is {N, S, E, W} on a deterministic transition function. Shaped reward (+10 on goal, small per-step penalty, hazard penalty, revisit penalty). Episode terminates at 4*n^2 steps where n is the maze side (324 steps at 9x9).")]),
+  para([t("We compare five algorithm families: a uniform random walk and a no-backtracking random walk (1-bit memory); an egocentric left-hand-rule heuristic (5 lines of Python); a behavior-cloning MLP trained on (state, action) pairs from the BFS oracle; six reward-driven RL configurations on the same audited harness (custom MLP_DQN and DRQN at default LR, plus SB3 PPO/DQN/A2C across multiple LRs); and a BC -> DQN warm-start where DQN online and target networks are initialized from BC weights and fine-tuned with reduced exploration. Total compute: approximately 50 GPU-hours on consumer hardware (RTX 5070 Ti) plus rented H200 cluster time on vast.ai, across roughly 4,200 archived result records. Full hyperparameter sweep specification in Table 2 (Section 4).")]),
+
+  subH("1.2", "Headline Numbers"),
+];
+
+// Table 1 - Results
+const TABLE_W = 9360;
+const COL1 = 5400;
+const COL2 = 3960;
+
+const headerRow1 = new TableRow({
+  tableHeader: true,
+  children: [
+    cell([tb("Method", { size: 20 })], { width: { size: COL1, type: WidthType.DXA }, shaded: true }),
+    cell([tb("Test Success Rate (95% CI)", { size: 20 })], { width: { size: COL2, type: WidthType.DXA }, shaded: true, align: AlignmentType.CENTER }),
+  ]
+});
+
+const dataRow = (method, score, w1=COL1, w2=COL2) => new TableRow({
+  children: [
+    cell([t(method, { size: 20 })], { width: { size: w1, type: WidthType.DXA } }),
+    cell([t(score, { size: 20 })], { width: { size: w2, type: WidthType.DXA }, align: AlignmentType.CENTER })
+  ]
+});
+
+const resultsTable = new Table({
+  width: { size: TABLE_W, type: WidthType.DXA },
+  columnWidths: [COL1, COL2],
+  rows: [
+    headerRow1,
+    dataRow("Wall-following heuristic (oracle, see §1.4)", "100.0%"),
+    dataRow("BC_MLP (oracle distillation, n=20)",          "97.4%   (sd 2.5)"),
+    dataRow("NoBackRandom (1-bit memory random walk, n=50)", "51.5%  (sd 6.6)"),
+    dataRow("Random walk (uniform, n=50)",                 "32.7%   (sd 6.1)"),
+    dataRow("SB3 DQN, default LR (best HP, n=10)",         "31.4%   (sd 7.2)"),
+    dataRow("MLP_DQN, custom (n=40)",                      "19.3%   (sd 6.7)"),
+    dataRow("DRQN, custom LSTM (n=40)",                    "19.0%   (sd 10.8)"),
+    dataRow("A2C, SB3 (n=10)",                             "8.4%    (sd 4.3)"),
+    dataRow("PPO, SB3 (best HP, n=10)",                    "6.0%    (sd 6.9)"),
+    dataRow("BC -> DQN (post fine-tune, n=5)",             "13.6%   (per-seed: 0, 12, 16, 18, 22)")
+  ]
+});
+
+const findingsRest = [
+  resultsTable,
+  tableCaption("Table 1. Test success rates on held-out 9x9 procedural mazes (50 mazes per training seed, drawn from a disjoint seed range). Standard deviations across seeds. Best HP per algorithm is selected from a 3-LR sweep; modern (SB3) baselines and custom baselines reported separately. The best of seven HP-tuned modern reward-driven configurations (SB3 DQN, default LR) is statistically tied with uniform Random; PPO, A2C, and the custom MLP_DQN/DRQN underperform Random by significant margins."),
+
+  para([t("The first row is a topological observation, not an empirical claim about heuristic intelligence; see §1.4. The remaining rows are the central results of this note. The best HP-tuned modern reward-driven baseline (SB3 DQN at default LR, 31.4 percent) is statistically tied with uniform Random (32.7 percent). The BC-distilled MLP, using the same 24-d observation and same 24-64-32-4 architecture as MLP_DQN, exceeds it by 64.7 percentage points.")]),
+
+  subH("1.3", "BC -> DQN Warm-Start Collapse"),
+  para([t("DQN initialized from BC_MLP weights begins evaluation at 97.2% test success, matching BC_MLP within bootstrap CI. After training under the standard DQN reward signal, all five seeds collapse to test success in the [12.4%, 14.9%] range, mean 13.6%. The collapse is monotonic in environment steps in four of five seeds; the remaining seed shows non-monotonic descent with the same end-point. This is the main empirical finding of the note.")]),
+  figurePlaceholder("Figure 1. Test success rate vs. environment steps for the BC -> DQN warm-start, five seeds. Available at github.com/tejasnaladala/maze-rl-baselines."),
+
+  subH("1.4", "Calibration: Where the BC Oracle is Trivial"),
+  para([t("The 5-line wall-following oracle solves 100% of these mazes. This is not an empirical claim; it is a topological fact. DFS-generated mazes are tree graphs, and on tree graphs the right-hand rule is provably perfect: each cell has exactly one parent in the spanning tree, every non-backtracking walk eventually reaches the goal, and the worst-case path length is bounded by the graph's diameter. The oracle's perfect performance therefore tells us we are testing in a regime where a topologically trivial heuristic suffices, which is also the regime where a BC distillate of that heuristic looks unusually strong.")]),
+  para([t("This is the most important scope limitation of the present results. Whether the observed capability hierarchy (BC much greater than every reward-driven RL baseline, with BC -> DQN warm-start collapsing back below baseline) survives on cyclic maze families is an open question. We discuss the proposed experiment in §2.1.")])
+];
+
+// === Section 2: Open Questions ===
+const openQuestions = [
+  sectionH("2", "Open Questions and What Would Resolve Them"),
+  para([t("We list the unresolved questions in approximate order of importance, with the experiments that would resolve each and rough compute estimates. The bait of this note is that all five questions are tractable; none requires resources beyond a few hundred H200-hours and the right collaborator.")]),
+
+  subH("2.1", "Q1. Tree-Maze Artifact"),
+  para([t("DFS produces tree mazes. The right-hand rule is no longer perfect on cyclic graphs. The empirical question is whether the observed hierarchy and the BC->DQN collapse survive when the maze graph contains cycles, multiple paths between cells, or disconnected wall regions.")]),
+  dashItem([tb("Proposed experiment. "), t("Wilson's algorithm with random extra edges (parametrized by added-edge fraction); Kruskal generation with cycle injection; hand-crafted MultiRoom layouts with explicit loops. For each generator family, repeat the full 5-algorithm comparison and the BC -> DQN warm-start protocol. Report the BC oracle's success rate as a calibration row alongside the algorithm comparisons.")]),
+  dashItem([tb("Compute. "), t("Approximately 50 H200-hours for a full sweep across three generator families.")]),
+  dashItem([tb("Hypothesis. "), t("The BC much greater than Random gap shrinks but does not vanish (BC still distills a non-trivial policy). The BC -> DQN collapse persists, because the bootstrap-instability mechanism we conjecture below is not specific to tree topology. Not yet tested.")]),
+
+  subH("2.2", "Q2. Mechanism Isolation"),
+  para([t("Three candidate mechanisms for the BC -> DQN collapse are not yet distinguished by data:")]),
+  numberedItem(1, [tb("Bootstrap instability. "), t("TD-target updates with function approximation under sparse reward have known divergence properties (Baird, 1995; Tsitsiklis and Van Roy, 1997). The BC-induced minima may not be fixed points of the bootstrap operator.")]),
+  numberedItem(2, [tb("Distribution shift. "), t("As DQN's epsilon-greedy explores, the replay buffer drifts from the BC trajectory distribution toward random trajectories, and the value function regresses toward random-walk-like estimates.")]),
+  numberedItem(3, [tb("Reward shape. "), t("The per-step penalty interacts adversely with the BC-induced policy's local exploration patterns.")]),
+  dashItem([tb("Proposed experiments. "), t("(a) Replace the TD target with the oracle's action distribution under the same training loop (i.e., distillation without bootstrap). If the collapse vanishes, bootstrap is isolated. (b) Freeze the replay buffer at the BC-induced distribution and continue DQN updates. If the collapse persists, distribution shift is not the primary cause. (c) Set the per-step penalty to zero. If the collapse magnitude shrinks meaningfully, reward shape is a contributor.")]),
+  dashItem([tb("Compute. "), t("Approximately 30 H200-hours for the three ablations across five seeds each.")]),
+  dashItem([tb("What a collaborator could add. "), t("Loss-landscape characterization tools: Hessian eigenspectrum near the BC minimum under the bootstrap loss; basin-volume estimates; NTK or singular-learning-theory framing. We have weights, trajectories, and seeds. We do not have the theoretical machinery to extract a clean story from them.")]),
+
+  subH("2.3", "Q3. Algorithmic Scope"),
+  para([t("If the diagnosis is bootstrap instability, then offline RL algorithms designed to control bootstrap error (CQL, IQL, Decision Transformer) should preserve BC-initialized performance.")]),
+  dashItem([tb("Proposed experiment. "), t("Re-run the BC -> fine-tune protocol with CQL, IQL, and DT replacing DQN, holding everything else fixed.")]),
+  dashItem([tb("Compute. "), t("Approximately 80 H200-hours.")]),
+  dashItem([tb("What a collaborator could add. "), t("This is the wheelhouse of researchers working on offline RL with conservative value estimation. The result either further isolates the bootstrap mechanism or surfaces a deeper issue.")]),
+
+  subH("2.4", "Q4. Continuous Control and Language Analogues"),
+  para([t("The structural pattern (pretrained capability + reward-driven fine-tuning + capability loss) is the analogy sometimes drawn to RLHF on language models. The present data does not provide direct evidence for the analogy. The pattern is suggestive, not demonstrated.")]),
+  dashItem([tb("Proposed experiment. "), t("A small-scale RLHF setup where pretrained capability is independently verifiable (math-style tasks where correctness is checkable), the reward signal is deliberately mis-specified (rewarding length or format rather than correctness), and the same paired comparison (initial capability vs. post-fine-tune capability) is measured.")]),
+  dashItem([tb("Compute. "), t("Significantly larger than Q1-Q3, depending on model size. This is the experiment most plausibly out of scope for a solo undergraduate effort and is exactly where a frontier-model lab collaborator would be the multiplier.")]),
+
+  subH("2.5", "Q5. Theoretical Framing"),
+  para([t("The empirical observation is consistent with several theoretical frames: bootstrap instability with function approximation, loss-landscape sharpness leading to non-preserved minima under different gradient sources, singular learning theory's account of phase transitions during training. None of these is directly tested by the current data.")]),
+  dashItem([tb("What a collaborator would add. "), t("Whichever frame they bring. The empirical setup is small enough to support targeted analyses (Hessian computations, NTK regression, fixed-point characterization of the bootstrap operator). The marginal value of theoretical insight on this small system is high.")])
+];
+
+// === Section 3: Why This Matters ===
+const whyMatters = [
+  sectionH("3", "Why This Matters (Scoped)"),
+  para([
+    tb("One concrete methodological implication. "),
+    t("Same-architecture, same-observation, same-optimizer behavior-cloning controls should be standard alongside reward-driven RL baselines. The 97% to 14% capability loss documented here is invisible to a researcher who does not run the BC baseline; the training reward continues to increase while test success collapses. This is a cheap diagnostic to add and we recommend it as standard practice for any RL benchmark with sparse or shaped reward.")
+  ]),
+  para([
+    tb("One careful claim. "),
+    t("The result is a candidate minimal mechanistic analogue of capability loss under reward-driven fine-tuning of a previously-competent policy. Whether the same dynamic operates in larger systems (RLHF on language models, sim-to-real with reward shaping) is an open empirical question that the present data does not settle. The structural similarity is suggestive enough to be worth testing carefully (Q4 in §2). It is not strong enough to be cited as direct evidence about LLMs, and we do not so cite it.")
+  ])
+];
+
+// === Section 4: Methods ===
+// Table 2: HP sweep
+const HP_W = 9360;
+const HC1 = 1800, HC2 = 2200, HC3 = 2200, HC4 = 1880, HC5 = 1280;
+
+const hpHeader = new TableRow({
+  tableHeader: true,
+  children: [
+    cell([tb("Algorithm", { size: 18 })], { width: { size: HC1, type: WidthType.DXA }, shaded: true }),
+    cell([tb("Learning Rates", { size: 18 })], { width: { size: HC2, type: WidthType.DXA }, shaded: true }),
+    cell([tb("Exploration", { size: 18 })], { width: { size: HC3, type: WidthType.DXA }, shaded: true }),
+    cell([tb("Network", { size: 18 })], { width: { size: HC4, type: WidthType.DXA }, shaded: true }),
+    cell([tb("Seeds × LRs", { size: 18 })], { width: { size: HC5, type: WidthType.DXA }, shaded: true, align: AlignmentType.CENTER }),
+  ]
+});
+
+const hpRow = (algo, lr, exp, net, runs) => new TableRow({
+  children: [
+    cell([t(algo, { size: 18 })], { width: { size: HC1, type: WidthType.DXA } }),
+    cell([t(lr, { size: 18 })], { width: { size: HC2, type: WidthType.DXA } }),
+    cell([t(exp, { size: 18 })], { width: { size: HC3, type: WidthType.DXA } }),
+    cell([t(net, { size: 18 })], { width: { size: HC4, type: WidthType.DXA } }),
+    cell([t(runs, { size: 18 })], { width: { size: HC5, type: WidthType.DXA }, align: AlignmentType.CENTER }),
+  ]
+});
+
+const hpTable = new Table({
+  width: { size: HP_W, type: WidthType.DXA },
+  columnWidths: [HC1, HC2, HC3, HC4, HC5],
+  rows: [
+    hpHeader,
+    hpRow("SB3 DQN",       "1e-4, 5e-4, 1e-3", "epsilon 1.0 -> 0.05",  "MLP 24-64-32-4",   "10 × 3"),
+    hpRow("SB3 PPO",       "1e-4, 3e-4, 1e-3", "entropy = 0.01",        "MLP 24-64-32-4",   "10 × 3"),
+    hpRow("SB3 A2C",       "7e-4 (default)",   "entropy = 0.01",        "MLP 24-64-32-4",   "10 × 1"),
+    hpRow("MLP_DQN (custom)", "5e-4",          "epsilon 1.0 -> 0.05",  "MLP 24-64-32-4",   "40 seeds"),
+    hpRow("DRQN (custom)",    "5e-4",          "epsilon 1.0 -> 0.05",  "LSTM(64) + MLP",   "40 seeds"),
+    hpRow("BC",            "1e-3",             "n/a (cross-entropy)",   "MLP 24-64-32-4",   "20 seeds"),
+    hpRow("BC->DQN",       "5e-4",             "epsilon 0.20 -> 0.05",  "MLP 24-64-32-4",   "5 seeds"),
+  ]
+});
+
+const methods = [
+  sectionH("4", "Methods"),
+  subH("4.1", "Environment"),
+  para([t("9x9 procedural mazes generated by depth-first-search with random tree backtracking. Train and test mazes are drawn from the same distribution but disjoint random-seed ranges; test seeds are deterministic per training-seed via the harness function main_sweep_test_seeds(seed, 50). Observation is a 24-dimensional egocentric feature vector (local 3x3 wall and hazard flags, normalized Manhattan distance and direction to goal, last-3 action history, visit counts on adjacent cells). Action space {N, S, E, W} on a deterministic transition function. Shaped reward: +10 on goal, small per-step penalty, hazard penalty, revisit penalty. Episode termination at 4*n^2 steps. Test set: 50 held-out mazes per training seed.")]),
+
+  subH("4.2", "Algorithms and Hyperparameter Sweep"),
+  para([t("Table 2 summarizes the hyperparameter sweep. The SB3 modern-baseline sweep (PPO, DQN, A2C across 3 learning rates each at 10 seeds per cell) is the 70-run direct response to the standard reviewer concern that DQN-family baselines may be under-tuned. The custom MLP_DQN and DRQN baselines used in the broader headline tables ran at 40 seeds each at default LR. BC ran 20 seeds; BC -> DQN ran 5 seeds at SB3 DQN default LR. Each reward-driven run was 500,000 environment steps (SB3) or 200,000 environment steps (custom and BC -> DQN). BC ran on a fixed (state, action) dataset of approximately 8,800 pairs per seed collected from the BFS oracle on the training distribution.")]),
+  hpTable,
+  tableCaption("Table 2. Hyperparameter sweep. Total: 70 SB3 modern-baseline runs (PPO/DQN/A2C × 3 LRs × 10 seeds) + 80 custom DQN/DRQN runs + 20 BC seeds + 5 BC -> DQN seeds + the deterministic baselines (oracle, heuristic, random, NoBackRandom). Approximately 4,200 archived result records across all experiments, every record SHA-256 manifested and code-hash pinned."),
+
+  subH("4.3", "Statistical Analysis"),
+  para([t("Per-policy success rate is mean across seeds at the best learning rate (modern baselines) or at default LR (custom baselines). Standard deviations are across seeds. Comparisons between policies use a paired bootstrap stratified by seed (10,000 resamples) with Holm-Bonferroni family-wise error correction; we also report Cohen d effect sizes and Bayesian posterior probabilities under Beta-Binomial conjugate priors. The headline ordering is posterior-certain at the 0.001 level for every reported pairwise comparison. Full statistical pipeline in stats_pipeline.py.")])
+];
+
+// === Section 5: Status, Constraints, and Collaboration ===
+const status = [
+  sectionH("5", "Status, Constraints, and Collaboration"),
+  para([t("This is a v0.1 working draft from a solo undergraduate research effort at the University of Washington (B.S. Electrical & Computer Engineering and Applied Mathematics, expected 2028). It reflects approximately three months of full-time work, paid out of pocket on rented spot H200 compute via vast.ai and Jarvis Labs.")]),
+
+  para([
+    tb("What we have. "),
+    t("A reproducible empirical setup; full hyperparameter configurations, training trajectories, and seeds public on GitHub; a working harness for the proposed Q1-Q3 experiments; pre-registered protocols on related work in the author's broader research line, including a public deviation log on a related Sobol variance-decomposition pilot that violated its own pre-registered consistency check (Parchment Labs, separate paper). Three months of operational experience running this kind of empirical study at single-author scale.")
+  ]),
+
+  para([
+    tb("Constraints we are honest about. "),
+    t("(1) "), ti("Compute."), t(" Spot H200 at roughly $5/hr is a real bottleneck. Q1-Q3 together are approximately 160 H200-hours, feasible at solo-burn rate over four to six weeks. Q4 (the RLHF analogue) is not, at any plausible solo budget. (2) "), ti("Theory."), t(" The author's training is empirical and engineering. Loss-landscape analysis, NTK regression, fixed-point characterization of the bootstrap operator, and singular learning theory framings are on the self-study list, not the active toolkit. The empirical setup is small enough to support those analyses; we do not yet have the machinery to extract a clean story from them. (3) "), ti("Time and focus."), t(" Solo undergrad with two adjacent active projects (Parchment Labs, agentbreed). A collaborator with advisor backing converts this from a side empirical investigation into a primary line of work, which roughly triples the throughput.")
+  ]),
+
+  para([
+    tb("Expansion plan. "),
+    t("In rough order, if resources align: (i) Q1 first, in 2-4 weeks, because the tree-maze caveat is the most important threat to the existing claim. (ii) Q2 ablations in parallel with Q1, sharing infrastructure; 1-2 additional weeks once Q1 is queued. (iii) Q3 (offline-RL methods, especially CQL) next, ideally with input from a researcher in that area; 4-6 weeks. (iv) Q5 (theoretical framing) is gated on collaboration, not on time. (v) Q4 (RLHF analogue) is gated on a frontier-lab partner with API budget and, ideally, model access; we treat it as future work with a deliberately narrow empirical scope.")
+  ]),
+
+  para([
+    tb("What we bring to a collaboration. "),
+    t("Empirical execution capacity; working infrastructure (compute pipeline, evaluation harness, statistical machinery already built); reproducibility hygiene (pre-registered protocols, public deviation logs, all configurations and seeds in version control); willingness to do the unglamorous work that produces clean negative results.")
+  ]),
+
+  para([
+    tb("What we are looking for. "),
+    t("A senior research collaborator with the theoretical machinery to interpret loss-landscape and bootstrap-stability dynamics; or institutional resources to run Q4 at meaningful scale; or experience taking a careful preliminary result through a top-venue submission. A smaller-scope mentor for any one of the open questions in §2 is also welcome.")
+  ]),
+
+  para([t("Contact: tejas.naladala@gmail.com.  Code, configurations, trajectories, and seeds: github.com/tejasnaladala/maze-rl-baselines.")])
+];
+
+// === References ===
+const references = [
+  sectionH("", "References"),
+  refItem("Baird, L. (1995). Residual algorithms: Reinforcement learning with function approximation. In {{Proceedings of ICML 1995}}."),
+  refItem("Chevalier-Boisvert, M., Willems, L., and Pal, S. (2018). Minimalistic gridworld environment for OpenAI Gym (MiniGrid). github.com/Farama-Foundation/Minigrid."),
+  refItem("Greenblatt, R., Roger, F., Krasheninnikov, D., and Krueger, D. (2024). Stress-testing capability elicitation with password-locked models. {{arXiv:2405.19550}}."),
+  refItem("Hester, T., Vecerik, M., Pietquin, O., et al. (2018). Deep Q-learning from demonstrations. In {{Proceedings of AAAI 2018}}."),
+  refItem("Hubinger, E., van Merwijk, C., Mikulik, V., Skalse, J., and Garrabrant, S. (2019). Risks from learned optimization in advanced machine learning systems. {{arXiv:1906.01820}}."),
+  refItem("Kumar, A., Zhou, A., Tucker, G., and Levine, S. (2020). Conservative Q-learning for offline reinforcement learning. In {{Advances in Neural Information Processing Systems 33}}."),
+  refItem("Kostrikov, I., Nair, A., and Levine, S. (2022). Offline reinforcement learning with implicit Q-learning. In {{Proceedings of ICLR 2022}}."),
+  refItem("Langosco, L., Koch, J., Sharkey, L., Pfau, J., and Krueger, D. (2022). Goal misgeneralization in deep reinforcement learning. In {{Proceedings of ICML 2022}}."),
+  refItem("Pomerleau, D. (1989). ALVINN: An autonomous land vehicle in a neural network. In {{Advances in Neural Information Processing Systems 1}}."),
+  refItem("Shah, R., Varma, V., Kumar, R., et al. (2022). Goal misgeneralization: Why correct specifications aren't enough for correct goals. {{arXiv:2210.01790}}."),
+  refItem("Sutton, R. S., and Barto, A. G. (2018). {{Reinforcement Learning: An Introduction}} (2nd ed.). MIT Press."),
+  refItem("Tsitsiklis, J. N., and Van Roy, B. (1997). An analysis of temporal-difference learning with function approximation. {{IEEE Transactions on Automatic Control}}, 42(5), 674-690.")
+];
+
+// ============================================================
+// ASSEMBLE
+// ============================================================
+
+const children = [
+  ...titleBlock,
+  ...abstractBlock,
+  ...findings,
+  ...findingsRest,
+  ...openQuestions,
+  ...whyMatters,
+  ...methods,
+  ...status,
+  ...references
+];
+
+const doc = new Document({
+  creator: "Tejas Naladala",
+  title: "Capability Loss Under Reward-Driven Fine-Tuning",
+  description: "Working draft v0.1 seed paper.",
+  styles: {
+    default: { document: { run: { font: FONT, size: 22, color: COLOR } } }
+  },
+  sections: [{
+    properties: {
+      page: {
+        size: { width: 12240, height: 15840 },
+        margin: { top: 1440, right: 1440, bottom: 1440, left: 1440 }
+      }
+    },
+    children
+  }]
+});
+
+Packer.toBuffer(doc).then(buf => {
+  const out = "C:/Users/tejas/Desktop/cv_build/seed_paper_v2.docx";
+  fs.writeFileSync(out, buf);
+  console.log("Wrote:", out, "size:", buf.length);
+});
