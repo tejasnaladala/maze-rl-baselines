@@ -1,6 +1,6 @@
 # PAPER PREVIEW (v1.2)
 
-> End-to-end view of the paper as it would appear (markdown, no LaTeX). All numbers re-aggregated from raw data after the H200 data rescue (4,131 result files). Editorial pass: PPO and LSTM-distillation and FeatureQ-distillation cells have been moved to the Appendix; Bayesian posteriors are reported as ">0.999" rather than as exact 1.0; and the cover-time theory match is phrased as "consistent with" rather than as an exact match claim.
+> End-to-end view of the paper as it would appear (markdown, no LaTeX). All numbers re-aggregated from raw data after the H200 data rescue (4,200+ archived result records). Editorial pass: PPO and LSTM-distillation and FeatureQ-distillation cells have been moved to the Appendix; Bayesian posteriors are reported as ">0.999" rather than as exact 1.0; and the cover-time theory match is phrased as "consistent with" rather than as an exact match claim.
 
 ---
 
@@ -20,7 +20,7 @@ The paper's central, narrow claim:
 
 > **Procedural-maze RL evaluations should include hand-coded heuristic, distillation, and random-walk baselines on identical evaluation harnesses. We provide one such audited benchmark and isolate a representation/discovery gap that is invisible without these baselines.**
 
-**Reproducibility.** ~4,100 per-run JSON results, SHA-256 manifest, code-hash pinned, paired bootstrap with Holm-Bonferroni correction, all raw data and code at <https://github.com/tejasnaladala/maze-rl-baselines>. Total compute approximately 40 GPU-hours (RTX 5070 Ti laptop and 4×H200 at vast.ai, ~$155).
+**Reproducibility.** ~4,200 per-run JSON results, SHA-256 manifest, code-hash pinned, paired bootstrap with Holm-Bonferroni correction, all raw data and code at <https://github.com/tejasnaladala/maze-rl-baselines>. Total compute approximately 50 GPU-hours (RTX 5070 Ti laptop and 4×H200 at vast.ai, ~$155).
 
 ---
 
