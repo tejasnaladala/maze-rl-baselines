@@ -15,7 +15,7 @@ Tighter list with sharper per-recipient hooks.
 - 15-minute synchronous ask reserved for UW-local researchers only (cheaper for them since no travel)
 - Send order tighter: Tier 1 first to maximize signal in Tier 2/3 references
 
-**Attach**: `SEED_PAPER.pdf` (v0.3, 7 pages, plain Cambria) for every send
+**Attach**: `SEED_PAPER.pdf` (v0.4, 7 pages, plain Cambria) for every send
 **Repo**: `https://github.com/tejasnaladala/maze-rl-baselines`
 
 ---
@@ -451,7 +451,7 @@ P.S. The "WEIRD" acronym alone deserved an award.
 ### 12. Sergey Levine (Berkeley RAIL): `svlevine@eecs.berkeley.edu`
 
 ```
-Subject: Tiny RL failure mode: BC -> DQN warm-start collapses 97 to 14 (5/5 seeds)
+Subject: Procedural maze: BC at 97% on same arch DQN solves at 19%, BC->DQN ends at 14%
 
 Dear Prof. Levine,
 
@@ -553,6 +553,6 @@ back to here.
 - Best case: 1 collaborator engagement that converts to either coauthorship on a sharpened v1.0 or an internship/research-position offer
 - Worst case: the seed paper gets zero substantive replies but the SHIP_AS_IS cleanup means it remains a defensible portfolio artifact
 
-## CYCLIC-MAZE EXPERIMENTS: PAUSED. COUNT-BASED PPO: RUNNING.
+## CYCLIC-MAZE EXPERIMENTS: PAUSED. COUNT-BASED PPO: COMPLETE.
 
-Per user instruction. The §2.1 cyclic-maze hypothesis remains in the seed paper as proposed work for v1.1, but no compute will be spent on cyclic-maze runs until the pause is lifted. The count-based intrinsic-motivation PPO sweep (n=20 seeds, the Codex audit's top experiment recommendation) is currently running in the background; results will land in v1.1 of the seed paper if they are ready before the first email goes out, or as a "result added since seed paper v0.3" addendum if not.
+Per user instruction. The §2.1 cyclic-maze hypothesis remains in the seed paper as proposed work for v1.1, but no compute will be spent on cyclic-maze runs until the pause is lifted. The count-based intrinsic-motivation PPO sweep (n=20 seeds, the Codex audit's top experiment recommendation) is complete: mean 9.4 percent test success (sd 18.2, median 3.0, range 0 to 68; 10/20 seeds at 0-2 percent, only 2/20 above Random). Result is integrated into SEED_PAPER v0.4 abstract and Table 1; the under-baselined critique is materially defeated.
