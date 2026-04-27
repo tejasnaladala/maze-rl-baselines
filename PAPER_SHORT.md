@@ -112,8 +112,11 @@ In direct response to the reviewer concern that DQN-family baselines may be unde
 | **DQN_lr5e-4 (default)** | **31.4** | **7.2** | **34.0** | **16 to 40** | **10** |
 | DQN_lr1e-3 | 23.6 | 13.9 | 21.0 | 4 to 52 | 10 |
 | A2C_default | 8.4 | 4.3 | 7.0 | 2 to 16 | 10 |
+| Count-based PPO (intrinsic-motivation, beta=0.1) | 9.4 | 18.2 | 3.0 | 0 to 68 | 20 |
 
-The best modern reward-driven baseline (SB3 DQN at default LR) reaches 31.4 percent mean. Statistically indistinguishable from uniform Random (32.7 percent). 66 percentage points below the BC-distilled MLP (97.4 percent). Our custom MLP_DQN baseline (used elsewhere in this paper, n=40) at 19.3 percent reflects implementation differences from the SB3 reference and is reported transparently. No configuration tested clears Random.
+The best modern reward-driven baseline (SB3 DQN at default LR) reaches 31.4 percent mean. Statistically indistinguishable from uniform Random (32.7 percent). 66 percentage points below the BC-distilled MLP (97.4 percent). Our custom MLP_DQN baseline (used elsewhere in this paper, n=40) at 19.3 percent reflects implementation differences from the SB3 reference and is reported transparently. No configuration tested clears Random in mean.
+
+**Count-based intrinsic-motivation extension (n=20).** Following the adversarial audit's recommendation to test whether the failure is exploration-specific, we ran PPO with a count-based intrinsic reward (1/sqrt(N+1) bonus per state visit, beta=0.1, position-based hashing) for 20 seeds at 500K env steps each on the same audited harness. Mean 9.4 percent (sd 18.2, median 3.0, range 0 to 68). Distribution: 10 of 20 seeds collapse to 0 to 2 percent, 6 of 20 land in 4 to 12 percent, 2 of 20 reach 14 to 16 percent, and 2 of 20 reach 52 percent and 68 percent (the only configurations that beat uniform Random). The high variance (sd 18.2 against mean 9.4) is consistent with intrinsic motivation occasionally finding the maze-solving policy but doing so unreliably from this reward signal. Mean is below from-scratch SB3 DQN (31.4 percent) and 88 percentage points below the BC distillation. Adding a standard exploration bonus does not close the gap on this benchmark in mean.
 
 ---
 
