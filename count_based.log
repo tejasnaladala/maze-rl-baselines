@@ -1,0 +1,30 @@
+Device: cpu
+Count-based PPO sweep: 20 seeds at 9x9, beta=0.1, 500000 env steps each
+Code hash: ed681d75c27fe352
+
+  [0/20] PPO_countbased_shaped s=42... done (256s) test=2%
+  [1/20] PPO_countbased_shaped s=123... done (382s) test=52%
+  [2/20] PPO_countbased_shaped s=456... done (377s) test=0%
+  [3/20] PPO_countbased_shaped s=789... done (383s) test=12%
+  [4/20] PPO_countbased_shaped s=1024... done (434s) test=0%
+  [5/20] PPO_countbased_shaped s=2048... done (448s) test=0%
+  [6/20] PPO_countbased_shaped s=3072... done (473s) test=68%
+  [7/20] PPO_countbased_shaped s=4096... done (632s) test=0%
+  [8/20] PPO_countbased_shaped s=5120... Device: cpu
+Count-based PPO sweep: 20 seeds at 9x9, beta=0.1, 500000 env steps each
+Code hash: ed681d75c27fe352
+
+  [8/20] PPO_countbased_shaped s=5120... done (276s) test=4%
+  [9/20] PPO_countbased_shaped s=6144... done (292s) test=16%
+  [10/20] PPO_countbased_shaped s=7168... done (279s) test=0%
+  [11/20] PPO_countbased_shaped s=8192... done (247s) test=14%
+  [12/20] PPO_countbased_shaped s=9216... done (258s) test=0%
+  [13/20] PPO_countbased_shaped s=10240... done (274s) test=4%
+  [14/20] PPO_countbased_shaped s=11264... done (252s) test=8%
+  [15/20] PPO_countbased_shaped s=12288... done (255s) test=0%
+  [16/20] PPO_countbased_shaped s=13312... done (260s) test=0%
+  [17/20] PPO_countbased_shaped s=14336... done (354s) test=4%
+  [18/20] PPO_countbased_shaped s=15360... done (313s) test=4%
+  [19/20] PPO_countbased_shaped s=16384... done (265s) test=0%
+
+Count-based PPO complete: 20 seeds in C:\Users\tejas\engram\raw_results\exp_count_ppo_audited

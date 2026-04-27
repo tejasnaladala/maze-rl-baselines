@@ -1,0 +1,1 @@
+[{"agent_name": "PPO_countbased_shaped", "maze_size": 9, "seed": 8192, "phase": "test", "wall_time_s": 246.73770952224731, "code_hash": "ed681d75c27fe352", "n_eps": 50, "solved": 7, "success_rate": 0.14, "mean_steps": 282.16, "train_time_s": 245.28513145446777, "total_timesteps": 500000, "intrinsic_beta": 0.1}]
