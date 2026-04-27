@@ -1,6 +1,6 @@
 # A 5-Line Ego-Only Wall-Follower Beats Trained Neural Networks on Procedural Mazes
 
-## Reward-Driven RL Cannot Find a Policy Its Own Network Class Can Express, and Actively Destroys That Policy When Initialized at It
+## Reward-Driven RL Does Not Find a Policy Its Own Network Class Can Express, and the BC Initialization Does Not Survive Standard DQN Fine-Tuning in Our Setup
 
 **Single-author draft v1.3** · 2026-04-18 · code + data: https://github.com/tejasnaladala/maze-rl-baselines
 
@@ -17,7 +17,7 @@ We present a fully reproducible procedural-maze benchmark with the following pat
 
 The neural policy class can express the maze-solving policy. Standard reward-driven RL does not discover this policy from random initialization, and the BC initialization does not survive standard DQN fine-tuning in our setup (the post-fine-tune policy ends well below the BC starting point and below from-scratch DQN at any tested learning rate).
 
-We rule out the standard explanations for this gap: capacity (h32 to h256 sweep yields 13.6 to 19.3 percent flat band), learning rate (default is the local optimum across 1.5 orders of magnitude), partial observability (DRQN with LSTM matches MLP_DQN), reward shaping (paired ablation drops learners by 4 to 18 percentage points while leaving random walks unchanged), information asymmetry (the same 24-d ego-features support a 100% wall-following solution), and weakness of the modern-RL baseline class (PPO/DQN/A2C sweep above). A second environment family (MiniGrid: DoorKey, FourRooms, MultiRoom-N2-S4, Unlock) replicates the headline pattern in 3 of 4 environments. A 5-seed pilot on Wilson-algorithm loopy mazes confirms the heuristic still solves 100 percent under modest loop injection. We empirically confirm the Alon, Benjamini, Lubetzky and Sodin (2007) non-backtracking cover-time advantage on this benchmark.
+The standard candidates we ablated do not account for the gap on this benchmark: capacity (h32 to h256 sweep yields 13.6 to 19.3 percent flat band), learning rate (default is the local optimum across 1.5 orders of magnitude), partial observability (DRQN with LSTM matches MLP_DQN), reward shaping (paired ablation drops learners by 4 to 18 percentage points while leaving random walks unchanged), information asymmetry (the same 24-d ego-features support a 100% wall-following solution), the modern-RL baseline class (PPO/DQN/A2C sweep above), and standard intrinsic motivation (count-based PPO at n=20 reaches mean 9.4 percent, below Random). A second environment family (MiniGrid: DoorKey, FourRooms, MultiRoom-N2-S4, Unlock) replicates the headline pattern in 3 of 4 environments. A 5-seed pilot on Wilson-algorithm loopy mazes confirms the heuristic still solves 100 percent under modest loop injection. NoBackRandom and uniform Random scaling exponents differ by 0.84 units (95 percent bootstrap CI), consistent with the Alon, Benjamini, Lubetzky and Sodin (2007) non-backtracking cover-time prediction on this benchmark.
 
 The narrow claim: procedural-maze RL evaluations should include hand-coded heuristic, supervised distillation, and random-walk baselines on identical evaluation harnesses, with a behavioral-cloning warm-start probe. We provide one such audited benchmark and isolate a representation versus discovery gap that is invisible without these baselines.
 
@@ -61,7 +61,7 @@ Result: mean test success 97.4 percent (sd 2.5, n=20 seeds).
 
 The same architecture trained via standard DQN reaches 19.3 percent (custom) or 31.4 percent (SB3, default LR). The neural policy class can represent the maze-solving policy. Standard reward-driven reinforcement learning does not discover it from random initialization.
 
-### 2.2 BC warm-start proves the reward gradient is destructive
+### 2.2 BC warm-start probes whether the basin is preserved under DQN fine-tuning
 
 A behavioral-cloning warm-start experiment was run to disambiguate two hypotheses for the gap above:
 
@@ -79,12 +79,12 @@ Result (Table 1.B):
 
 | Seed | BC test (%) | Post-fine-tune test (%) | Drop (pp) | Verdict |
 |---|---|---|---|---|
-| 42 | 98.0 | 0.0 | -98.0 | COLLAPSED |
-| 123 | 100.0 | 18.0 | -82.0 | COLLAPSED |
-| 456 | 98.0 | 16.0 | -82.0 | COLLAPSED |
-| 789 | 90.0 | 12.0 | -78.0 | COLLAPSED |
-| 1024 | 100.0 | 22.0 | -78.0 | COLLAPSED |
-| **Mean** | **97.2** | **13.6** | **-83.6** | **5/5 COLLAPSED** |
+| 42 | 98.0 | 0.0 | -98.0 | NOT_PRESERVED |
+| 123 | 100.0 | 18.0 | -82.0 | NOT_PRESERVED |
+| 456 | 98.0 | 16.0 | -82.0 | NOT_PRESERVED |
+| 789 | 90.0 | 12.0 | -78.0 | NOT_PRESERVED |
+| 1024 | 100.0 | 22.0 | -78.0 | NOT_PRESERVED |
+| **Mean** | **97.2** | **13.6** | **-83.6** | **5/5 not preserved** |
 
 The mean drop of 83.6 percentage points is consistent across seeds. The post-fine-tune mean (13.6 percent) is below the from-scratch MLP_DQN baseline (19.3 percent custom) and well below SB3 DQN at default LR (31.4 percent).
 
