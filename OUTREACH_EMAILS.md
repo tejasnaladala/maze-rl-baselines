@@ -1,214 +1,558 @@
-# Outreach Emails: UW + Tier 1 Researchers
+# Outreach Dossier (post Codex R8 audit)
 
-Cold-email package for the procedural-maze RL benchmark paper.
+**Cut from 25 to 13 researchers** per Codex MCP audit recommendation:
+spray-and-pray to 25 senior PIs has uneven topic fit and visible templating.
+Tighter list with sharper per-recipient hooks.
 
-**Two-stage strategy.** Send the lean cold email first (~140 words).
-If they reply showing interest, send the long version with the
-journey, the audit, and the explicit ask. Senior PIs skim cold emails
-in under 20 seconds. The lean version is built for that.
+**Tone fixes applied throughout** (per audit):
+- "rules out the standard explanations" → "is not explained by the obvious candidates we tested"
+- "reward gradient actively destroys" → "the BC initialization does not survive standard DQN fine-tuning in our setup"
+- "first empirical confirmation of ABLS 2007" → "consistent with the ABLS 2007 prediction"
+- "wall-follower is provably perfect" → "provably complete (terminates at goal on every tree maze, though not at shortest-path-optimal step count)"
 
-Sections:
+**Strategic shifts**:
+- Switched the cold ask from "15 minutes of your time" to a low-cost async ask: "if one claim looks wrong on a 2-minute skim, I would value a one-line reply saying which one"
+- 15-minute synchronous ask reserved for UW-local researchers only (cheaper for them since no travel)
+- Send order tighter: Tier 1 first to maximize signal in Tier 2/3 references
 
-1. **Cold Email v1** (lean, ~140 words). Default for every send.
-2. **Reply Template v2** (~350 words). Send only after they engage.
-3. **Researcher list** with email-pattern guesses.
-4. **Per-researcher openers**, one sentence each.
-5. **Send workflow**.
-
-Attach `PAPER_SHORT.pdf` (6 pages, 16 KB). Optional:
-`PAPER_PREVIEW.pdf` (10 pages, 28 KB) for the longer version, only on
-follow-up. Repo link in body.
+**Attach**: `SEED_PAPER.pdf` (v0.3, 7 pages, plain Cambria) for every send
+**Repo**: `https://github.com/tejasnaladala/maze-rl-baselines`
 
 ---
 
-## 1. Cold Email v1 (default, ~140 words)
+## Send order (10 days, 13 researchers)
+
+| Day | Tier | Researchers | Ask type |
+|---|---|---|---|
+| 1 | A | Pulkit Agrawal, Aviral Kumar, Roberta Raileanu | Async one-line skim reply |
+| 3 | B | Aravind Rajeswaran, Pablo Castro, Peter Henderson | Async one-line skim reply |
+| 5 | C | Rishabh Agarwal, Marc Bellemare, Tim Rocktäschel | Async one-line skim reply |
+| 7 | D (UW local) | Natasha Jaques, Abhishek Gupta | 30 min in person at Allen |
+| 10 | E (stretch) | Sergey Levine, Sham Kakade | Async one-line skim reply |
+
+---
+
+## TIER A: Direct technical fit, send Day 1
+
+### 1. Pulkit Agrawal (MIT Improbable AI): `pulkitag@mit.edu`
 
 ```
-Subject: 5-line heuristic 100%, distilled MLP 97%, modern RL 31% (= Random) on procedural mazes
+Subject: Possible inverse of "RL's Razor": online RL erases a BC pretrain on mazes
 
-Dear Prof. [LAST_NAME],
+Dear Prof. Agrawal,
 
-[ONE-SENTENCE PERSONAL OPENER from Section 4.]
+Your "RL's Razor: Why Online RL Forgets Less" (ICLR 2025) is the framing I
+most want to test against a finding that looks like the inverse phenomenon
+on a small benchmark. On 9x9 procedural mazes (DFS-generated tree graphs,
+where a wall-following heuristic is provably complete; we are honest that
+this is the most important scope limit), behavior cloning from a BFS
+oracle reaches 97.4 percent test success with a 24-64-32-4 MLP.
+Initializing DQN online and target networks from those weights and
+fine-tuning with the same shaped reward used by the from-scratch DQN run
+collapses test success from 97.2 to 13.6 percent across all 5 seeds
+(per-seed: 0, 12, 16, 18, 22). The fine-tuned policy ends below
+from-scratch DQN at any tested LR.
 
-I built a hazard-maze benchmark where a 5-line egocentric wall
-follower solves 100% of unseen instances and the same MLP
-architecture used by DQN reaches 97.4% by BFS distillation. The best
-of seven HP-tuned modern reward-driven baselines (SB3 PPO, DQN, and
-A2C across three LRs each, 70 runs total) reaches 31% mean,
-statistically tied with uniform Random (33%) and 66 percentage points
-below the distillation result. PPO at every tested LR plateaus at
-3 to 6%. A capacity sweep (h32 to h256), LSTM memory, a K4 reward
-ablation, and a MiniGrid cross-env replication all rule out the
-obvious explanations.
+Best HP-tuned modern reward-driven baseline (SB3 PPO/DQN/A2C across 3 LRs
+each, 70 runs total) ties uniform Random at 31 percent. Whether this
+generalizes beyond DFS tree mazes and beyond one fine-tune recipe is the
+open question.
 
-The cleanest experiment: initialize MLP_DQN from the 97% BC-distilled
-weights and fine-tune via standard DQN. Test success collapses from
-97.2% to 13.6% across 5 seeds (per-seed: 0, 12, 16, 18, 22). The
-reward gradient actively destroys the distilled high-performing
-representation, ending below from-scratch DQN. The network class can
-express the policy. Reward-driven RL pushes the network out of the
-basin that contains it.
+I am a UW undergraduate (ECE + Applied Math, '28). If one claim in the
+seed paper looks wrong on a 2-minute skim, I would value a one-line reply
+saying which one.
 
-Paper attached, 6 pages. Code, raw data, SHA-256 manifest of all
-4,131 result files: https://github.com/tejasnaladala/maze-rl-baselines
+Seed paper attached. Code, configurations, seeds:
+github.com/tejasnaladala/maze-rl-baselines.
 
-Would 15 minutes work for a hard critique before I submit?
-
-Thanks,
+Best,
 Tejas Naladala
 tejas.naladala@gmail.com
+
+P.S. Improbable AI's curiosity-driven exploration line was on my reading
+list before I knew the lab name; you have shaped how I think about
+discovery.
 ```
 
-**Why this length.** Senior PIs get 50+ cold emails a week. They scan
-the subject, the first line, and the ask. Anything more goes
-unread. The lean version has one specific result, one ruled-out list
-in a single sentence, one specific ask (15 minutes). If they bite,
-you can send the long version.
-
----
-
-## 2. Reply Template v2 (only after they engage, ~350 words)
+### 2. Aviral Kumar (CMU AIRe): `aviralku@andrew.cmu.edu`
 
 ```
-Subject: Re: [their reply subject]
+Subject: BC -> DQN warm-start collapses 97 to 14 on tree mazes; CQL/IQL diagnostic?
 
-Thanks for getting back so quickly. Quick context on how this started
-and where it stands.
+Dear Prof. Kumar,
 
-I built a small procedural-maze evaluation harness to test some
-neural-RL baselines and noticed they were losing to random walks. I
-assumed I had a bug. After about 3,500 runs across 20+ seeds per
-cell, paired bootstrap with Holm-Bonferroni, the capacity, LR, LSTM,
-and shaping ablations from the paper, plus a MiniGrid replication on
-DoorKey, FourRooms, MultiRoom-N2-S4, and Unlock (3 of 4 also show
-MLP-DQN at or below Random), the result held.
+Your CQL paper is the diagnostic I most want to run on a finding I cannot
+explain. On 9x9 DFS procedural mazes (tree topology, where a 5-line
+wall-follower is provably complete; this is the main scope caveat),
+initializing DQN online and target networks from a 97.2 percent
+behavior-cloning policy and fine-tuning with the same shaped reward as the
+from-scratch DQN run collapses test success to 13.6 percent across all 5
+seeds (per-seed: 0, 12, 16, 18, 22). Post-fine-tune ends below from-scratch
+DQN at any tested LR. Best HP-tuned modern reward-driven baseline ties
+uniform Random at 31 percent on the same harness.
 
-I caught a harness-filtering bug in some early auxiliary launchers
-(an is_solvable(avoid_hazards=True) filter that quietly inflated
-baselines by 12 to 22 percentage points), wrote the validation table
-directly into §3.2.1, and re-ran the headline experiments on the
-corrected harness. The 97.4% distillation number survived the fix.
-The 19.3% DQN number survived the fix.
+The clean diagnostic is whether CQL or IQL fine-tune preserves the BC
+basin. If yes, bootstrap instability is the mechanism. If no, the
+mechanism is something else (distribution shift in replay, reward shape,
+or something I am not seeing). I have the harness, the BC weights, all 5
+seeds, and the trajectories ready to share.
 
-A modern-baseline sweep (PPO, A2C, and DQN at three LRs each, 10
-seeds each, on the corrected harness) is finishing this week.
-Procgen replication is queued.
+I am a UW undergraduate (ECE + Applied Math, '28). If one claim looks
+wrong on a 2-minute skim, I would value a one-line reply saying which
+one.
 
-The two questions I most want answered before submission:
+Seed paper attached. Code: github.com/tejasnaladala/maze-rl-baselines.
 
-  1. Does this separate representation from exploration cleanly enough
-     to be worth a paper, in your view?
-  2. What additional baseline (NGU-style episodic novelty, RND,
-     PPO-LSTM at scale, anything else) would you demand to either
-     defeat or sharpen the claim?
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
 
-If the result interests you, I would welcome any of: a brief written
-critique, your group running independent reproduction on a different
-procedural generator, or co-authorship on a sharpened version. I am
-solo on this with limited compute (~40 GPU-hours total) and a second
-team replicating the headline would matter.
+P.S. The CQL paper's "value-overestimation under bootstrap" framing is
+the lens I keep coming back to.
+```
 
-Longer version of the paper (with appendices, audit transcripts):
-attached as PAPER_PREVIEW.pdf.
+### 3. Roberta Raileanu (Meta AI): `rraileanu@meta.com`
 
-Thanks again,
-Tejas
+```
+Subject: BC -> DQN warm-start collapse on procedural mazes, MiniGrid-adjacent
+
+Dear Roberta,
+
+Your work on procedurally generated environments and exploration in
+MiniGrid is the closest precedent for the result I am sitting on. On 9x9
+DFS procedural mazes (tree topology, scope caveat: a wall-following
+heuristic is provably complete here), the controlled finding is that
+behavior cloning from a BFS oracle reaches 97.4 percent with a 24-64-32-4
+MLP, best HP-tuned modern reward-driven baseline ties uniform Random at
+31 percent, and BC -> DQN warm-start collapses to 13.6 percent across all
+5 seeds. MiniGrid replication on 4 envs (DoorKey, FourRooms, MultiRoom,
+Unlock) shows MLP-DQN at or below Random in 3 of 4, consistent with the
+procgen pattern your group has documented at much larger scale.
+
+This is a small benchmark (about 50 GPU-hours total) but the BC -> DQN
+collapse is a controlled diagnostic for what may be a broader pattern.
+The natural follow-up is to extend the BC -> DQN protocol to NetHack-scale
+procedural environments, which I do not have the compute for.
+
+I am a UW undergraduate (ECE + Applied Math, '28). If one claim looks
+wrong on a 2-minute skim, I would value a one-line reply saying which one.
+
+Seed paper attached. Code: github.com/tejasnaladala/maze-rl-baselines.
+
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
+
+P.S. Your "Decoupling Exploration and Exploitation" paper is the cleanest
+treatment of the distinction I have read.
 ```
 
 ---
 
-## 3. Researcher List
+## TIER B: Strategic technical + reproducibility fit, send Day 3
 
-### A. UW Current Faculty (Allen School and affiliated)
+### 4. Aravind Rajeswaran (Microsoft AI Frontiers): `aravraj@microsoft.com`
 
-| # | Name | Lab / Affiliation | Email pattern | Why they care |
-|---|------|-------------------|---------------|---------------|
-| 1 | Simon Du | Allen School (RL theory) | ssdu@cs.washington.edu | Theory of RL; cover-time framing maps to his work. |
-| 2 | Natasha Jaques | Allen School, Social RL Lab | nj@cs.washington.edu | Exploration, intrinsic motivation, MiniGrid relevance. |
-| 3 | Abhishek Gupta | Allen School, WEIRD Lab | abhgupta@cs.washington.edu | Robot RL, real-world RL failure modes. |
-| 4 | Emo Todorov | UW Movement Control Lab | todorov@cs.washington.edu | Model-based control; baselines-first culture. |
-| 5 | Kevin Jamieson | Allen School (active learning) | jamieson@cs.washington.edu | Sample-efficient learning; baseline rigor. |
-| 6 | Byron Boots | UW Robotics Lab | bboots@cs.washington.edu | Robot learning; model-based RL. |
+```
+Subject: UW alum: BC -> DQN warm-start collapses 97 to 14 (DAPG-shaped result)
 
-### B. UW Alum / Closely Affiliated
+Dear Aravind,
 
-| # | Name | Current Affiliation | Email pattern | UW connection |
-|---|------|---------------------|---------------|---------------|
-| 7 | Sham Kakade | Harvard / Kempner | sham@seas.harvard.edu | UW faculty 2018 to 2023. |
-| 8 | Aravind Rajeswaran | Microsoft AI Frontiers | aravraj@microsoft.com | UW PhD; DAPG, Decision Transformer, R3M. |
-| 9 | Vikash Kumar | CMU / Meta | vikashplus@gmail.com | UW PhD; dexterous manipulation RL. |
-| 10 | Pieter Abbeel | Berkeley | pabbeel@cs.berkeley.edu | UW EE BS 2000. |
+I am a UW undergraduate (ECE + Applied Math, '28) and your PhD work with
+Sham and Emo, DAPG in particular, is the closest precedent for what I am
+sitting on. On 9x9 DFS procedural mazes (tree topology, scope caveat:
+wall-follower is provably complete here), behavior cloning from a BFS
+oracle reaches 97.4 percent with a 24-64-32-4 MLP. Initializing MLP_DQN
+online and target networks from those weights and fine-tuning with the
+same shaped reward collapses test success to 13.6 percent across all 5
+seeds (per-seed: 0, 12, 16, 18, 22). Post-fine-tune ends below
+from-scratch DQN at any tested LR (best HP-tuned modern baseline ties
+uniform Random at 31 percent).
 
-### C. Non-UW Tier 1
+DAPG showed demonstrations resolve exploration-hard tasks where pure RL
+fails; this benchmark is a tiny inverse, where the fine-tune procedure
+appears to undo the demonstration prior. Whether this generalizes beyond
+tree mazes and beyond one fine-tune recipe is open.
 
-| # | Name | Affiliation | Email pattern | Why they care |
-|---|------|-------------|---------------|---------------|
-| 11 | Peter Henderson | Princeton | peter.henderson@princeton.edu | Deep RL That Matters methodology. |
-| 12 | Rishabh Agarwal | GDM / Mila | rishabhagarwal@google.com | Statistical Precipice protocol. |
-| 13 | Marc Bellemare | Mila / DeepMind | bellemare@google.com | ALE random baseline; cover-time fit. |
-| 14 | Joelle Pineau | Meta / McGill | jpineau@meta.com | Reproducibility checklist author. |
-| 15 | Pablo Castro | Google DeepMind | psc@google.com | Dopamine baseline rigor. |
-| 16 | Roberta Raileanu | Meta AI | rraileanu@meta.com | MiniGrid and procgen exploration. |
-| 17 | Tim Rocktäschel | Meta AI / UCL | rockt@meta.com | NLE, MiniHack, procedural exploration. |
-| 18 | Pulkit Agrawal | MIT CSAIL | pulkitag@mit.edu | Active perception, intrinsic motivation. |
-| 19 | Benjamin Eysenbach | Princeton | eysenbach@princeton.edu | Exploration as inference. |
-| 20 | Sergey Levine | Berkeley | svlevine@eecs.berkeley.edu | Deep RL canonical voice. |
-| 21 | Chelsea Finn | Stanford | cbfinn@cs.stanford.edu | Meta-learning, distillation. |
+If one claim looks wrong on a 2-minute skim, I would value a one-line
+reply saying which one. Equally, if your group has a 2026 summer or fall
+opening for someone with empirical execution capacity who can ship clean
+ablations end-to-end, I would be glad to talk.
 
-> Patterns above are guesses. Verify from the lab page before sending.
+Seed paper attached. Code: github.com/tejasnaladala/maze-rl-baselines.
+
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
+
+P.S. Sham was on my reading list before I knew he was at UW.
+```
+
+### 5. Pablo Castro (Google DeepMind): `psc@google.com`
+
+```
+Subject: Compact procedural maze benchmark with audited 5-tier baseline ladder
+
+Dear Pablo,
+
+The Dopamine philosophy of careful, comparable baselines first is the
+spirit I tried to extend with this 5-tier ladder. The most surprising row
+is policy distillation: a vanilla MLP trained on BFS oracle action labels
+with the same 24-d ego-feature observation as MLP_DQN reaches 97.4
+percent test success (n=20). The same architecture trained via DQN
+reaches 19.3 percent (custom) or 31.4 percent (SB3 default LR, the latter
+ties uniform Random at 32.7 percent on the same harness).
+
+The sharper finding: initializing DQN at the BC weights and fine-tuning
+with the same shaped reward collapses test success to 13.6 percent across
+all 5 seeds. Scope caveat: DFS mazes are tree graphs, where a wall-
+follower is provably complete; whether the BC -> DQN collapse holds on
+loopy generators and beyond one fine-tune recipe is open.
+
+I am a UW undergraduate (ECE + Applied Math, '28). If one claim looks
+wrong on a 2-minute skim, I would value a one-line reply saying which
+one. I would also value Dopamine-team feedback on whether this benchmark
+is worth being added to a standard suite for sample-efficient agent eval.
+
+Seed paper attached. Code: github.com/tejasnaladala/maze-rl-baselines.
+
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
+
+P.S. The Dopamine README is still the cleanest baseline reference I know.
+```
+
+### 6. Peter Henderson (Princeton): `peter.henderson@princeton.edu`
+
+```
+Subject: Reproducibility-first procedural RL benchmark, harness audit in §3.2.1
+
+Dear Prof. Henderson,
+
+Your "Deep RL That Matters" (AAAI 2018) is the methodological model I
+built this work around: 20+ seeds per cell, paired bootstrap with Holm-
+Bonferroni, Cohen d, code-hash-pinned reproducibility, SHA-256 manifest
+of all 4,200+ archived result records. After an adversarial review caught
+a harness-filtering bug I had missed (an `is_solvable(avoid_hazards=True)`
+filter that quietly inflated baselines by 12 to 22 pp), I wrote the
+validation table directly into §3.2.1 of the paper and re-ran the
+affected experiments on the corrected harness. The headline distillation
+and DQN numbers survived the fix. Confounded experiment directories are
+quarantined under `_CONFOUNDED` suffixes for audit purposes.
+
+Headline finding: behavior-cloning MLP reaches 97.4 percent, best HP-tuned
+modern reward-driven baseline ties uniform Random at 31 percent, BC -> DQN
+warm-start collapses to 13.6 percent across all 5 seeds. Scope caveat:
+DFS tree mazes only; broader generators are queued.
+
+I am a UW undergraduate (ECE + Applied Math, '28). If one claim looks
+wrong on a 2-minute skim, I would value a one-line reply saying which one.
+
+Seed paper attached. Code, raw data, manifest:
+github.com/tejasnaladala/maze-rl-baselines.
+
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
+
+P.S. "Deep RL That Matters" is the paper I most often cite when explaining
+to people why I run 20 seeds.
+```
 
 ---
 
-## 4. Per-Researcher Openers (one sentence each)
+## TIER C: Theory + procedural-RL fit, send Day 5
 
-Drop into the `[ONE-SENTENCE PERSONAL OPENER]` slot. Specific, no
-flattery, ties their work to the result.
+### 7. Rishabh Agarwal (GDM / Mila): `rishabhagarwal@google.com`
 
-### A. UW Current
+```
+Subject: Statistical Precipice protocol applied to a small RL failure mode
 
-1. **Simon Du**: *Your RL theory work was the framing I kept returning to when the random walks beat the neural agents.*
-2. **Natasha Jaques**: *Your Social RL work is part of why I started taking exploration as a first-class object, and 3 of 4 MiniGrid envs in my replication show MLP-DQN below Random.*
-3. **Abhishek Gupta**: *Congratulations on the RAS Early Career Award; I am UW-local and would gladly come present a 30-minute version of this in person at WEIRD Lab.*
-4. **Emo Todorov**: *Your culture of building careful baselines first is the spirit I tried to keep here, and the headline implicates standard reward-driven RL specifically.*
-5. **Kevin Jamieson**: *Your sample-efficient learning work made me twice as careful about the seed counts here (20+ per cell, paired bootstrap, Holm-Bonferroni).*
-6. **Byron Boots**: *The benchmark exposes a model-free failure that distillation from a planning oracle resolves cleanly, which I think connects to your model-based vs model-free trade-off work.*
+Dear Rishabh,
 
-### B. UW Alum
+Your "Deep RL at the Edge of the Statistical Precipice" (NeurIPS 2021)
+shaped the analysis pipeline here: paired bootstrap stratified by seed,
+IQM where applicable, family-wise error correction, performance profiles.
+On 9x9 DFS procedural mazes (tree topology, scope caveat: wall-follower
+provably complete here), behavior-cloning MLP reaches 97.4 percent, best
+of 7 HP-tuned modern reward-driven configurations (SB3 PPO/DQN/A2C across
+3 LRs each, 70 runs total) ties uniform Random at 31 percent, BC -> DQN
+warm-start collapses to 13.6 percent across all 5 seeds.
 
-7. **Sham Kakade**: *Your Statistical RL course at UW (and rltheorybook with Agarwal, Jiang, Sun) is part of why I framed this as a representation-vs-discovery question.*
-8. **Aravind Rajeswaran**: *Your DAPG work at UW is the closest precedent for the headline here: distillation from a planner closes a gap that reward-driven RL cannot.*
-9. **Vikash Kumar**: *Your dexterous-manipulation work at UW is one of the cleanest examples of distillation-from-planning closing an exploration gap, and I think this is a small sharp instance of the same phenomenon.*
-10. **Pieter Abbeel**: *I am UW-adjacent and a long-time reader of your group's deep-RL work; the result here is small in scope but unusually clean.*
+The Bayesian dominance probabilities for every headline pairwise
+comparison exceed 0.999 under Beta-Binomial conjugate priors with uniform
+prior. The 5-seed BC -> DQN result is the only number flagged as
+undersized; an n equal or greater than 20 extension is queued.
 
-### C. Non-UW Tier 1
+I am a UW undergraduate (ECE + Applied Math, '28). If one claim looks
+wrong on a 2-minute skim, I would value a one-line reply saying which one.
 
-11. **Peter Henderson**: *Your Deep RL That Matters (AAAI 2018) is the methodological model I built this work around, including a harness-bug audit trail in §3.2.1 after an adversarial review caught a filter I had missed.*
-12. **Rishabh Agarwal**: *Your Statistical Precipice (NeurIPS 2021) shaped the analysis pipeline here, and the headline would not be reportable under a less rigorous protocol.*
-13. **Marc Bellemare**: *I empirically confirm the Alon-Benjamini-Lubetzky-Sodin (2007) non-backtracking cover-time theorem on a procedural RL benchmark, with NoBackRandom and uniform Random scaling exponents differing by 0.84 units (95% bootstrap CI).*
-14. **Joelle Pineau**: *Your reproducibility work shaped this from day one: SHA-256 manifest of all 4,131 results, code-hash pinned per record, harness-audit table in §3.2.1.*
-15. **Pablo Castro**: *The Dopamine philosophy of careful comparable baselines first is the spirit I tried to extend with this 5-tier ladder, and the most surprising row is a 97.4% supervised MLP on the same observation that DQN solves at 19.3%.*
-16. **Roberta Raileanu**: *Your work on procedural environments and MiniGrid exploration is the closest precedent for the result here, in a much smaller benchmark fully reproducible in 40 GPU-hours.*
-17. **Tim Rocktäschel**: *Your NLE and MiniHack work made procedural exploration a first-class topic for me, and this benchmark isolates a specific failure mode at a much smaller scale.*
-18. **Pulkit Agrawal**: *Your intrinsic-motivation work is part of why I read the failure here as a discovery problem, and I would value your view on whether RND, ICM, or NGU would close the gap.*
-19. **Benjamin Eysenbach**: *Your exploration-as-inference framing is the sharpest theoretical lens I know for the kind of failure I land at here.*
-20. **Sergey Levine**: *I am a single-author with a small but unusually clean procedural-maze benchmark that rules out the standard explanations for a 78pp distillation-vs-DQN gap.*
-21. **Chelsea Finn**: *Your work on meta-learning and distillation is part of how I think about the supervised-MLP-from-oracle result here, which I think makes a small fast testbed for distillation methods.*
+Seed paper attached. Code: github.com/tejasnaladala/maze-rl-baselines.
+
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
+
+P.S. The "rliable" library has been in my dependencies since the second
+week of this project.
+```
+
+### 8. Marc Bellemare (Mila / DeepMind): `bellemare@google.com`
+
+```
+Subject: ABLS 2007 cover-time consistent on procedural mazes + BC warm-start collapse
+
+Dear Prof. Bellemare,
+
+The ALE paper convinced the field that the random-policy baseline is
+load-bearing; this work tries to sharpen that for procedural mazes. The
+empirical NoBackRandom and uniform Random scaling exponents differ by
+0.84 units (95 percent bootstrap CI), consistent with the Alon, Benjamini,
+Lubetzky and Sodin (2007) non-backtracking cover-time prediction on this
+benchmark.
+
+Sharper finding: behavior-cloning MLP reaches 97.4 percent on 9x9 DFS
+mazes, best HP-tuned modern reward-driven baseline ties uniform Random at
+31 percent, BC -> DQN warm-start collapses to 13.6 percent across all 5
+seeds. Scope caveat: DFS mazes are tree graphs, where a wall-follower is
+provably complete; whether the cover-time framing is the right anchor for
+the BC -> DQN collapse on loopy generators is open.
+
+I am a UW undergraduate (ECE + Applied Math, '28). If one claim looks
+wrong on a 2-minute skim, I would value a one-line reply saying which one.
+
+Seed paper attached. Code: github.com/tejasnaladala/maze-rl-baselines.
+
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
+
+P.S. The "distributional RL" line is on my queue if the cover-time
+framing turns out to be insufficient.
+```
+
+### 9. Tim Rocktäschel (Meta AI / UCL): `rockt@meta.com`
+
+```
+Subject: Procedural maze BC -> DQN collapse, MiniHack-adjacent at much smaller scale
+
+Dear Prof. Rocktäschel,
+
+Your NLE and MiniHack work made procedural exploration a first-class
+topic for me. This benchmark is much smaller (9x9 hazard mazes, about
+50 GPU-hours total compute, full reproducibility on a laptop GPU), but it
+isolates a specific failure mode at a controllable scale. Behavior-cloning
+MLP reaches 97.4 percent, best HP-tuned modern reward-driven baseline
+ties uniform Random at 31 percent, BC -> DQN warm-start collapses to
+13.6 percent across all 5 seeds. MiniGrid replication: 3 of 4 envs show
+MLP-DQN at or below Random.
+
+Scope caveat: DFS tree mazes, where a wall-follower is provably complete;
+the BC -> DQN collapse may or may not survive on more complex topology.
+Scaling the BC -> DQN protocol to MiniHack is the kind of test I do not
+have the compute for.
+
+I am a UW undergraduate (ECE + Applied Math, '28). If one claim looks
+wrong on a 2-minute skim, I would value a one-line reply saying which one.
+
+Seed paper attached. Code: github.com/tejasnaladala/maze-rl-baselines.
+
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
+
+P.S. The MiniHack design choices around procedural difficulty calibration
+are the toolkit I would want for a v1.1 cyclic-maze extension.
+```
 
 ---
 
-## 5. Send Workflow
+## TIER D: UW local, send Day 7 (in-person ask is cheap for them)
 
-1. Verify each address from the lab page first.
-2. Pick the one-sentence opener from Section 4. Paste the Cold Email
-   v1 body verbatim. Attach `PAPER_SHORT.pdf`. Send.
-3. Send in waves of 5 over 7 to 10 days. UW current first, then UW
-   alum, then non-UW Tier 1.
-4. Track in `outreach_log.csv` (sent_date, replied, follow_up_date).
-5. If they reply with interest: send Reply Template v2 within 24
-   hours. Attach `PAPER_PREVIEW.pdf` for the appendices.
-6. If no reply after 10 business days: send a 2-line nudge
-   ("re-sending in case it slipped past, paper attached again, no
-   pressure"), then drop.
+### 10. Natasha Jaques (UW Allen, Social RL Lab): `nj@cs.washington.edu`
 
-Do not ask for funding or a PhD slot in cold email. Save for
-second-touch conversations after they have engaged.
+```
+Subject: UW Social RL Lab: BC -> DQN warm-start collapse on procedural mazes
+
+Dear Prof. Jaques,
+
+Your Social RL work is part of why I started taking exploration as a
+first-class object. On 9x9 DFS procedural mazes (tree topology, scope
+caveat: wall-follower provably complete here), behavior-cloning MLP
+reaches 97.4 percent, best HP-tuned modern reward-driven baseline ties
+uniform Random at 31 percent, BC -> DQN warm-start collapses to 13.6
+percent across all 5 seeds. MiniGrid replication: 3 of 4 envs show
+MLP-DQN at or below Random.
+
+I am a UW undergraduate (ECE + Applied Math, '28) and your group is the
+most natural intellectual home for this kind of question on this campus.
+I would value 30 minutes in person at Allen, whichever week is convenient
+in May or June. I have the harness, the BC weights, all 5 fine-tune
+seeds, and the trajectories ready to walk through. Specific question I
+most want your view on: is the BC -> DQN collapse a controlled instance
+of what the Social RL framing would predict for misaligned reward, or is
+it a different mechanism.
+
+If your group has a 2026 summer or fall opening for an undergraduate
+research assistant who can ship empirical work end-to-end, I would also
+be glad to talk about that.
+
+Seed paper attached. Code: github.com/tejasnaladala/maze-rl-baselines.
+
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
+
+P.S. Caught the Social RL Lab launch announcement earlier this year,
+congrats on the new group.
+```
+
+### 11. Abhishek Gupta (UW Allen, WEIRD Lab): `abhgupta@cs.washington.edu`
+
+```
+Subject: WEIRD Lab: BC -> DQN warm-start collapse 97 to 14 (UW-local, in person)
+
+Dear Prof. Gupta,
+
+Congratulations on the RAS Early Academic Career Award, well-earned. I am
+a UW undergraduate (ECE + Applied Math, '28) and your robotics RL work is
+one of the closest precedents on this campus for the result I am sitting
+on. On 9x9 DFS procedural mazes (tree topology, scope caveat: wall-
+follower is provably complete here), behavior cloning from a BFS oracle
+reaches 97.4 percent with a 24-64-32-4 MLP. Initializing MLP_DQN online
+and target networks from those weights and fine-tuning with the same
+shaped reward as the from-scratch baseline collapses test success to
+13.6 percent across all 5 seeds. Best HP-tuned modern reward-driven
+baseline ties uniform Random at 31 percent.
+
+The structural pattern (distillation works, reward-driven RL does not,
+and the standard fine-tune recipe undoes the distillation prior) is the
+analogue to manipulation tasks where demonstration-augmented learning
+works but standard RL fine-tune erases the demo.
+
+I would value 30 minutes in person at WEIRD Lab, whichever week works in
+May or June. Equally, if your group has a 2026 summer or fall undergraduate
+research opening, I would be glad to talk.
+
+Seed paper attached. Code: github.com/tejasnaladala/maze-rl-baselines.
+
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
+
+P.S. The "WEIRD" acronym alone deserved an award.
+```
+
+---
+
+## TIER E: Stretch, send Day 10 only after package response signal
+
+### 12. Sergey Levine (Berkeley RAIL): `svlevine@eecs.berkeley.edu`
+
+```
+Subject: Tiny RL failure mode: BC -> DQN warm-start collapses 97 to 14 (5/5 seeds)
+
+Dear Prof. Levine,
+
+I am a UW undergraduate (ECE + Applied Math, '28) reaching out with a
+small empirical result. On 9x9 DFS procedural mazes (tree topology,
+where a wall-following heuristic is provably complete; this is the most
+important scope caveat), initializing DQN online and target networks from
+a 97.2 percent behavior-cloning MLP and fine-tuning with the same shaped
+reward as a from-scratch DQN run collapses test success to 13.6 percent
+across all 5 seeds (per-seed: 0, 12, 16, 18, 22). Post-fine-tune ends
+below from-scratch DQN at any tested LR. Best of seven HP-tuned modern
+reward-driven configurations ties uniform Random at 31 percent.
+
+RAIL has built most of the methods I would reach for to defeat this:
+offline-RL bootstrap control (CQL, IQL), demonstration-augmented
+exploration, distribution-aware fine-tuning. I am being careful not to
+overclaim from n=5 and one fine-tune recipe; whether the basin
+instability is robust under these alternatives is the most informative
+follow-up.
+
+If one claim looks wrong on a 2-minute skim, I would value a one-line
+reply saying which one.
+
+Seed paper attached. Code: github.com/tejasnaladala/maze-rl-baselines.
+
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
+
+P.S. DAPG was on my reading list when I built the BC pipeline. The
+pattern here looks like its inverse.
+```
+
+### 13. Sham Kakade (Harvard Kempner): `sham@seas.harvard.edu`
+
+```
+Subject: UW-adjacent: small RL benchmark, basin-instability under DQN fine-tune
+
+Dear Prof. Kakade,
+
+Your Statistical RL course materials at UW and the rltheorybook are part
+of why I framed this result as a representation-versus-discovery question.
+On 9x9 DFS procedural mazes (tree topology, scope caveat: wall-follower
+is provably complete here), a behavior-cloning MLP reaches 97.4 percent
+with a 24-64-32-4 architecture. Initializing DQN online and target
+networks from those weights and fine-tuning with the same shaped reward
+collapses test success to 13.6 percent across all 5 seeds. Post-fine-tune
+ends below from-scratch DQN at any tested LR. Best HP-tuned modern
+reward-driven baseline ties uniform Random at 31 percent.
+
+The controlled framing: the high-performing minimum is in the function-
+class reachable set (BC reaches it via supervised gradient) and is
+approximately a fixed point of the policy itself at fine-tune step 0
+(97.2 percent measured). The DQN bootstrap operator with epsilon-greedy
+and shaped reward moves the iterate away from that fixed point. The
+empirical setup is small enough to support fixed-point analysis of the
+bootstrap operator near the BC minimum, but I do not have the theoretical
+machinery to do that analysis cleanly.
+
+I am a UW undergraduate (ECE + Applied Math, '28). If one claim looks
+wrong on a 2-minute skim, I would value a one-line reply saying which
+one.
+
+Seed paper attached. Code: github.com/tejasnaladala/maze-rl-baselines.
+
+Best,
+Tejas Naladala
+tejas.naladala@gmail.com
+
+P.S. The "Transcendence" paper from Kempner is the framing I keep coming
+back to here.
+```
+
+---
+
+## SEND WORKFLOW
+
+1. Verify each address from the lab page first (patterns above are best-known guesses)
+2. Send ONE email per researcher per day; never CC, never BCC
+3. Attach SEED_PAPER.pdf + paste Drive link in body (some filters drop attachments)
+4. Track in spreadsheet: sent_date, replied (Y/N), reply_summary, follow_up_date
+5. One follow-up after 5 business days if no reply, then drop
+6. If Tier A lands a Yes: slow Tier B-E cadence to focus on the engaged conversation
+7. If a Tier A reply offers strong critique that invalidates a claim: pause Tier B-E entirely, fix the claim, then resume
+
+## ASKS LADDER (per researcher type)
+
+| Recipient type | Primary ask |
+|---|---|
+| External senior PI (Tier A, B, C, E) | "If one claim looks wrong on a 2-minute skim, I would value a one-line reply saying which one" |
+| UW local PI (Tier D) | 30 minutes in person at Allen + possible URA opening |
+| Anyone who responds positively | Move to follow-up template (longer, propose specific collaboration mode) |
+
+## REALISTIC EXPECTATIONS
+
+- Reply rate from senior PIs to cold email at this caliber: 5 to 15 percent base rate
+- BC -> DQN collapse is a strong enough hook to push toward the upper end of that range
+- Realistic outcome: 2 to 4 of 13 reply with something substantive, 1 to 2 of those become a real conversation
+- Best case: 1 collaborator engagement that converts to either coauthorship on a sharpened v1.0 or an internship/research-position offer
+- Worst case: the seed paper gets zero substantive replies but the SHIP_AS_IS cleanup means it remains a defensible portfolio artifact
+
+## CYCLIC-MAZE EXPERIMENTS: PAUSED. COUNT-BASED PPO: RUNNING.
+
+Per user instruction. The §2.1 cyclic-maze hypothesis remains in the seed paper as proposed work for v1.1, but no compute will be spent on cyclic-maze runs until the pause is lifted. The count-based intrinsic-motivation PPO sweep (n=20 seeds, the Codex audit's top experiment recommendation) is currently running in the background; results will land in v1.1 of the seed paper if they are ready before the first email goes out, or as a "result added since seed paper v0.3" addendum if not.

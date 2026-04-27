@@ -1,5 +1,7 @@
 # Baseline Blindness in Procedural Maze RL: A 5-Line Ego-Only Wall-Follower Beats Trained Neural Networks by 80 Percentage Points, and the Failure is Exploration, Not Function Approximation
 
+> **NOTE (v4.3 archive header, 2026-04-26):** This file is the long-form working draft from the early phase of the project. Some numbers in this document are from the pre-harness-fix harness (BC at 99.9% rather than the corrected 97.4%; Random at 31.7% rather than 32.7%; NoBackRandom at 52.2% rather than 51.5%; FeatureQ at 35.3% rather than 36.5%). The corrected and current numbers are in `PAPER_SHORT.pdf` and `SEED_PAPER.pdf`. Do not cite this file for headline numbers; cite PAPER_SHORT.
+
 **Status**: Draft v4 — post-harness-bug-discovery. All core results re-verified on the main-sweep test distribution. Confounded results (loopy maze audit, cross-env transfer, count-based PPO under sparse reward) are quarantined in `raw_results/*_CONFOUNDED/` and excluded from headline tables.
 
 ---
