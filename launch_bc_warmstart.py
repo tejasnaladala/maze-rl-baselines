@@ -141,7 +141,22 @@ print(f"Device: {DEVICE}")
 # CONFIGURATION
 # ---------------------------------------------------------------------------
 
-SEEDS = [42, 123, 456, 789, 1024]
+# Allow CLI arg --seed N to override the SEEDS list with [N], for parallel runs.
+import argparse as _argparse  # noqa: E402
+
+_parser = _argparse.ArgumentParser(add_help=False)
+_parser.add_argument("--seed", type=int, default=None)
+_cli_args, _ = _parser.parse_known_args()
+
+if _cli_args.seed is not None:
+    SEEDS = [_cli_args.seed]
+else:
+    SEEDS = [
+        42, 123, 456, 789, 1024,           # original 5 (already complete)
+        2048, 3072, 4096, 5120, 6144,      # +5 to reach n=10
+        7168, 8192, 9216, 10240, 11264,    # +5 to reach n=15
+        12288, 13312, 14336, 15360, 16384, # +5 to reach n=20
+    ]
 MAZE_SIZE = 9
 
 # BC distillation hyperparameters (mirror launch_policy_distillation.py)

@@ -13,7 +13,7 @@ We present a fully reproducible procedural-maze benchmark with the following pat
 - A 5-line egocentric wall-following heuristic solves 100% of unseen instances.
 - A supervised MLP, trained by behavioral cloning on BFS oracle action labels with the same 24-d ego-feature observation, the same 24 to 64 to 32 to 4 architecture, and the same Adam optimizer as MLP_DQN, reaches 97.4 percent.
 - The best of seven HP-tuned modern reward-driven baselines (SB3 PPO, DQN, A2C across three learning rates each, 70 runs total) reaches 31.4 percent at SB3 DQN default LR (n=10), statistically tied with uniform Random (32.7 percent) and 66 percentage points below the BC-distilled MLP.
-- A behavioral-cloning warm-start experiment (initialize MLP_DQN online and target networks from BFS-distilled weights, fine-tune via standard DQN with reduced exploration, 200K env steps, 5 seeds) collapses test success from a mean BC pre-fine-tune 97.2 percent to a mean post-fine-tune 13.6 percent. The fine-tuned policy ends below from-scratch DQN (19.3 percent custom, 31.4 percent SB3).
+- A behavioral-cloning warm-start experiment (initialize MLP_DQN online and target networks from BFS-distilled weights, fine-tune via standard DQN with reduced exploration, 200K env steps, 20 seeds) drops test success from a mean BC pre-fine-tune 97.2 percent to a mean post-fine-tune 18.4 percent (sd 11.5, median 17.0, range 0 to 38). The post-fine-tune mean is statistically tied with from-scratch custom MLP_DQN (19.3 percent) and 13 percentage points below from-scratch SB3 DQN at default LR (31.4 percent), so the BC initialization does not retain its 97 percent performance under standard DQN fine-tuning, but the post-fine-tune policy is not reliably below from-scratch DQN as a smaller pilot suggested.
 
 The neural policy class can express the maze-solving policy. Standard reward-driven RL does not discover this policy from random initialization, and the BC initialization does not survive standard DQN fine-tuning in our setup (the post-fine-tune policy ends well below the BC starting point and below from-scratch DQN at any tested learning rate).
 
@@ -68,27 +68,30 @@ A behavioral-cloning warm-start experiment was run to disambiguate two hypothese
 - H1 (discovery problem): the high-performing policy is reachable from a sufficiently good initialization, RL just cannot reach it from random initialization.
 - H2 (basin-instability problem): the standard DQN training procedure does not preserve the high-performing basin even when initialized inside it. We test this with one specific fine-tune recipe; whether it generalizes across LR, exploration schedule, target-network freeze, and offline-RL variants is open.
 
-Protocol (5 seeds):
+Protocol (20 seeds):
 
 1. Train an MLP via behavioral cloning on BFS oracle action labels.
 2. Initialize MLP_DQN's online network and target network with the resulting weights (architecture is bit-identical).
 3. Fine-tune via standard DQN with reduced initial exploration (epsilon 0.20 to 0.05 over 50K steps), 200K total environment steps, same shaped reward as the from-scratch DQN baseline.
 4. Test on the main-sweep harness (50 episodes per seed, deterministic policy).
 
-Result (Table 1.B):
+Result (Table 1.B). Per-seed BC starting accuracy was 90 to 100 percent across the 5 seeds we measured; we report the post-fine-tune values for all 20 seeds, sorted:
 
-| Seed | BC test (%) | Post-fine-tune test (%) | Drop (pp) | Verdict |
-|---|---|---|---|---|
-| 42 | 98.0 | 0.0 | -98.0 | NOT_PRESERVED |
-| 123 | 100.0 | 18.0 | -82.0 | NOT_PRESERVED |
-| 456 | 98.0 | 16.0 | -82.0 | NOT_PRESERVED |
-| 789 | 90.0 | 12.0 | -78.0 | NOT_PRESERVED |
-| 1024 | 100.0 | 22.0 | -78.0 | NOT_PRESERVED |
-| **Mean** | **97.2** | **13.6** | **-83.6** | **5/5 not preserved** |
+| Statistic | Value |
+|---|---|
+| n | 20 seeds |
+| BC mean (sample of n=5) | 97.2 percent |
+| Post-fine-tune mean | 18.4 percent |
+| Post-fine-tune median | 17.0 percent |
+| Post-fine-tune sd | 11.5 |
+| Range | 0 to 38 percent |
+| Per-seed sorted | 0, 0, 4, 8, 8, 12, 14, 14, 16, 16, 18, 20, 22, 24, 26, 26, 28, 36, 38, 38 |
 
-The mean drop of 83.6 percentage points is consistent across seeds. The post-fine-tune mean (13.6 percent) is below the from-scratch MLP_DQN baseline (19.3 percent custom) and well below SB3 DQN at default LR (31.4 percent).
+The mean drop from BC starting accuracy (97.2) to post-fine-tune mean (18.4) is approximately 79 percentage points, consistent across the n=20 sweep. The variance is substantial (sd 11.5; 6 of 20 seeds collapse to 0 to 8 percent while 4 of 20 reach 26 to 38 percent), much higher than the n=5 pilot suggested.
 
-H2 is supported under the specific fine-tune recipe tested. The standard DQN training procedure does not preserve the high-performing basin even when initialized inside it; the post-fine-tune mean ends below from-scratch DQN at any tested learning rate. Whether the basin instability is robust to alternative fine-tune recipes (lower LR, full target-network freeze, no exploration noise, offline-RL methods such as CQL or IQL) is the natural follow-up.
+The post-fine-tune mean (18.4 percent) is statistically indistinguishable from from-scratch custom MLP_DQN (19.3 percent, n=40) and well below from-scratch SB3 DQN at default LR (31.4 percent, n=10). The "post-fine-tune ends below from-scratch DQN at any tested LR" framing of the n=5 pilot is not supported at n=20: the post-fine-tune policy is essentially tied with from-scratch custom DQN and 13 percentage points below the best from-scratch SB3 configuration.
+
+H2 (basin-instability) is partially supported: the BC initialization does not retain its 97 percent performance under the tested fine-tune recipe, dropping ~79 pp on average. But the BC initialization does not produce a fine-tuned policy reliably worse than from-scratch DQN; the variance is high enough that some seeds end at 36 to 38 percent (above from-scratch custom DQN) while others collapse to 0 percent. Whether the basin instability is robust to alternative fine-tune recipes (lower LR, full target-network freeze, no exploration noise, offline-RL methods such as CQL or IQL) remains the natural follow-up.
 
 ### 2.3 Falsifiability
 
@@ -253,7 +256,7 @@ The headline ordering is posterior-certain at the 0.001 level.
 
 **Representation versus discovery.** Tables 1 and 2 establish that the MLP architecture used in MLP_DQN (24 to 64 to 32 to 4 with Adam) is sufficient to express a 97.4 percent maze-solving policy. The same architecture trained via standard DQN converges to a policy that solves 19.3 percent (custom) or 31.4 percent (SB3 default). The reward signal does not lead the optimizer to the policy that the network class can represent.
 
-**The BC initialization does not survive DQN fine-tuning in our setup.** The BC warm-start experiment (Section 2.2) tests the "discovery only" interpretation directly. If standard RL were purely a discovery problem, initializing inside the high-performing basin should preserve performance under fine-tuning. Instead, performance collapses by 83.6 percentage points on average across 5 seeds (one specific fine-tune recipe: standard DQN, eps 0.20 to 0.05 over 50K steps, 200K total env steps, same shaped reward as from-scratch). The post-fine-tune policy ends below from-scratch DQN at any tested configuration. We are careful not to over-generalize from n=5 and one fine-tune recipe; whether the basin instability holds under lower LR, full target-network freeze, zero-exploration fine-tune, or offline-RL methods (CQL, IQL) is the most important follow-up.
+**The BC initialization does not retain its high-performing basin under DQN fine-tuning.** The BC warm-start experiment (Section 2.2) tests the "discovery only" interpretation directly. If standard RL were purely a discovery problem, initializing inside the high-performing basin should preserve performance under fine-tuning. Instead, performance drops from a 97.2 percent BC starting accuracy to a 18.4 percent post-fine-tune mean across n=20 seeds (sd 11.5, range 0 to 38), an approximately 79 percentage point drop. The post-fine-tune mean is statistically tied with from-scratch custom MLP_DQN (19.3 percent) and below from-scratch SB3 DQN at default LR (31.4 percent), so we do not claim the fine-tune procedure produces a policy reliably worse than from-scratch DQN; we claim only that it does not preserve the BC basin. Whether the basin instability holds under lower LR, full target-network freeze, zero-exploration fine-tune, or offline-RL methods (CQL, IQL) is the most important follow-up.
 
 **Why standard RL finds a low-success local optimum.** A reward decomposition (cover-time analysis at 9x9) shows MLP_DQN's pain-per-step at -0.136 versus Random's -0.238. Neural agents learn the locally rewarding policy component (avoiding walls, hazards, revisits). They fail at the globally rewarding component (sustained exploration through a region of small negative reward toward a sparse +10 goal). When they do solve, they do so near-optimally (0.78 times BFS path length). Their failure is on the fraction of mazes solved, not on path quality.
 
@@ -266,7 +269,7 @@ The headline ordering is posterior-certain at the 0.001 level.
 ## 11. Limitations
 
 - **Single primary maze class.** The recursive-backtracking generator produces simply-connected mazes (single spanning tree). The 5-seed Wilson + loop-injection pilot (Section 5) shows the heuristic is robust to modest loop injection (still 100 percent), but a higher loop density and hazard-enabled follow-up is queued for v1.1.
-- **BC warm-start n=5.** The collapse is consistent across all 5 seeds (mean drop 83.6pp). A larger sweep (n equal or greater than 20), longer fine-tune budgets, and a sweep over fine-tune learning rate are queued for v1.1 to map the destruction landscape.
+- **BC warm-start sweep at n=20 with one fine-tune recipe only.** The 79 pp drop from BC starting accuracy is consistent across the n=20 sweep (sd 11.5; 6 of 20 seeds at 0 to 8 percent, 4 of 20 at 26 to 38 percent). Variance is substantial. Whether the basin instability is robust to alternative fine-tune recipes (lower LR, full target-network freeze, zero-exploration fine-tune, or offline-RL methods such as CQL or IQL) is queued for v1.1.
 - **Modest network sizes.** 24 to 64 to 32 to 4 MLPs. Capacity sensitivity rules out "size too small" within the 32 to 256 hidden range; the 10M-parameter regime is not tested.
 - **Two implementations of DQN disagree by 12 percentage points.** Our custom MLP_DQN at 19.3 percent and SB3 DQN at default LR at 31.4 percent reflect implementation differences. Both reported transparently. The headline framing uses the SB3 number as the higher-confidence "best HP-tuned baseline" reference.
 - **Single research team.** All code, raw data, manifests, and analyses are public; every numerical claim is regenerable from raw data via `python reproduce.py verify`. Independent reproduction is welcomed.
@@ -283,7 +286,7 @@ All code at https://github.com/tejasnaladala/maze-rl-baselines under Apache-2.0.
 - Smoke test at `smoke_test.py` covers every agent class in 3 minutes on a consumer GPU.
 - Validation script `validate_harness.py` reproduces the headline harness numbers.
 - Modern baseline launcher `launch_modern_baselines.py` (70-run sweep, ~7 hours on RTX 5070 Ti).
-- BC warm-start launcher `launch_bc_warmstart.py` (5 seeds, ~50 minutes on RTX 5070 Ti).
+- BC warm-start launcher `launch_bc_warmstart.py` (20 seeds, ~32 minutes wall on RTX 5070 Ti when run as 8-way parallel).
 - Loopy-maze pilot: `loopy_maze.py` + `launch_loopy_pilot.py` (5 seeds, ~4 minutes).
 
 Total compute: approximately 50 GPU-hours (RTX 5070 Ti laptop and 4xH200 at vast.ai, approximately 155 USD).
@@ -296,7 +299,7 @@ Eight numerically-defended claims, every number above is regenerable from the pu
 
 1. **A 5-line ego-only wall-follower solves 100 percent of procedural mazes** at every tested size 9 through 21, on the same observation space as the neural agents. (Tables 1, 8.)
 2. **A supervised MLP recovers the BFS oracle at 97.4 percent** with the same architecture, observation, and optimizer as MLP_DQN. (Tables 1, Section 2.1.) The same MLP trained via standard DQN reaches 19.3 percent (custom) or 31.4 percent (SB3 default).
-3. **The BC initialization does not survive standard DQN fine-tuning in our setup.** Initialize MLP_DQN at the 97.2 percent BC-distilled weights, fine-tune via standard DQN (eps 0.20 to 0.05 over 50K steps, 200K total): post-fine-tune mean is 13.6 percent across all 5 seeds (mean drop 83.6 pp, per-seed [0, 12, 16, 18, 22]). The post-fine-tune policy ends below from-scratch DQN at any tested LR. We test one fine-tune recipe; robustness to lower LR, full target-network freeze, zero-exploration fine-tune, and offline-RL variants is open. (Section 2.2, Table 1.B.)
+3. **The BC initialization does not retain its high-performing basin under standard DQN fine-tuning.** Initialize MLP_DQN at the 97.2 percent BC-distilled weights, fine-tune via standard DQN (eps 0.20 to 0.05 over 50K steps, 200K total): post-fine-tune mean is 18.4 percent across n=20 seeds (sd 11.5, median 17.0, range 0 to 38, sorted [0, 0, 4, 8, 8, 12, 14, 14, 16, 16, 18, 20, 22, 24, 26, 26, 28, 36, 38, 38]). Post-fine-tune mean is statistically tied with from-scratch custom MLP_DQN (19.3) and 13 pp below from-scratch SB3 DQN at default LR (31.4). We test one fine-tune recipe; robustness to alternative recipes and offline-RL variants is open. (Section 2.2, Table 1.B.)
 4. **Best HP-tuned modern reward-driven baseline reaches 31.4 percent** across 7 configurations of 3 modern algorithms (PPO/DQN/A2C × 3 LRs × 10 seeds, 70 runs total). Statistically tied with uniform Random. (Table 2.)
 5. **No standard RL-failure explanation accounts for the gap.** Capacity sweep h32 to h256 (160 runs) flat at 13.6 to 19.3 percent; LR sweep (40 runs) finds default is local optimum; DRQN with LSTM (40+ seeds) matches MLP_DQN; K4 reward ablation (200 runs, paired bootstrap) shows learners collapse without shaping while random walks unchanged. (Tables 3 to 6.)
 6. **Loopy-maze pilot.** EgoWallFollowerLeft still solves 100 percent of Wilson + loop-injected mazes (5 seeds, hazards disabled). (Table 7.)
