@@ -1,4 +1,4 @@
-"""Statistical analysis pipeline for Engram publication-grade results.
+"""Statistical analysis pipeline for the maze-RL benchmark, publication-grade results.
 
 Reads raw JSON result files from any experiment tier and produces:
   - Per-agent / per-size / per-config success-rate tables with bootstrap 95% CIs

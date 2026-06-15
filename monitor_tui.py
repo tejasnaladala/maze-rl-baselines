@@ -180,7 +180,7 @@ def main() -> None:
             now = time.time()
             elapsed = int(now - start)
 
-            print(f"{BOLD}{CYAN}=== Engram experiment monitor ==={RESET}  "
+            print(f"{BOLD}{CYAN}=== maze experiment monitor ==={RESET}  "
                   f"{DIM}refresh {REFRESH_S}s  uptime {elapsed//60}m{elapsed%60:02d}s  Ctrl+C to quit{RESET}")
             print()
 

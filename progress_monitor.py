@@ -63,7 +63,7 @@ def human_time(ts: float | None) -> str:
 
 
 def main() -> None:
-    print(f"\n=== Engram experiment progress — {time.strftime('%Y-%m-%d %H:%M:%S')} ===\n")
+    print(f"\n=== maze experiment progress — {time.strftime('%Y-%m-%d %H:%M:%S')} ===\n")
     print(f"{'Tier':<35} {'Files':<12} {'Ckpt':<10} {'Last write':<15} Status")
     print("-" * 90)
 

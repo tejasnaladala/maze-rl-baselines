@@ -115,7 +115,7 @@ def main() -> int:
     except ImportError:
         pass
 
-    print(f"Engram smoke test  code_hash={code_hash()}")
+    print(f"maze-rl-baselines smoke test  code_hash={code_hash()}")
     print(f"Device: {device}, sizes={sizes}, train_eps={args.num_train}, test_eps={args.num_test}")
     print("=" * 80)
 
