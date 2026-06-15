@@ -4,10 +4,10 @@ A small, fully reproducible procedural-maze benchmark with one sharp finding: on
 
 - A 5-line egocentric wall-following heuristic solves **100%** of unseen instances.
 - A behavior-cloned MLP (same architecture, observation, and optimizer as the neural DQN) reaches **97.4%**.
-- The best of seven hyperparameter-tuned modern reward-driven baselines (SB3 PPO, DQN, and A2C, three learning rates each, 70 runs total) reaches **31.4%**, statistically tied with uniform Random (31.7%).
-- A behavior-cloning warm-start (initialize the MLP_DQN at the 97% distilled weights, then fine-tune with standard DQN) collapses test success to **13.6%** across all 5 seeds.
+- The best of seven hyperparameter-tuned modern reward-driven baselines (SB3 PPO, DQN, and A2C, three learning rates each, 70 runs total) reaches **31.4%**, statistically tied with uniform Random (32.7%).
+- A behavior-cloning warm-start (initialize the MLP_DQN at the 97% distilled weights, then fine-tune with standard DQN, 20 seeds) drops test success to a post-fine-tune mean of **18.4%** (sd 11.5, median 17.0, range 0 to 38), an approximately 79 pp drop from the 97.2% BC starting accuracy.
 
-The neural policy class can express the maze-solving policy: behavior cloning finds it. Standard reward-driven RL does not discover that policy from random initialization, and actively pushes the network out of the high-performing basin even when it starts inside it.
+The neural policy class can express the maze-solving policy: behavior cloning finds it. Standard reward-driven RL does not discover that policy from random initialization, and the BC initialization does not retain its high-performing basin under standard DQN fine-tuning. The post-fine-tune policy is statistically tied with from-scratch MLP_DQN (19.3%); we test one fine-tune recipe and report robustness to alternatives as open follow-up.
 
 ## Paper
 
@@ -29,18 +29,21 @@ The neural policy class can express the maze-solving policy: behavior cloning fi
 | Modern RL (SB3 A2C) | A2C_default | 8.4 | 4.3 | 10 |
 | Modern RL (SB3 PPO, best LR) | PPO_lr3e-4 | 6.0 | 6.9 | 10 |
 
-## BC warm-start collapse
+## BC warm-start: basin not retained under fine-tuning
 
-Each row starts the MLP_DQN from behavior-cloned weights, then fine-tunes for 200k steps of standard DQN.
+Initialize the MLP_DQN online and target networks from the BFS-distilled weights, then fine-tune for 200k steps of standard DQN (epsilon 0.20 to 0.05 over 50k steps). Across 20 seeds, the post-fine-tune mean is 18.4% (sd 11.5), well below the 97.2% BC starting accuracy but statistically tied with from-scratch MLP_DQN (19.3%).
 
-| Seed | BC test (%) | Post-fine-tune (%) | Drop (pp) |
-|---|---|---|---|
-| 42 | 98.0 | 0.0 | -98.0 |
-| 123 | 100.0 | 18.0 | -82.0 |
-| 456 | 98.0 | 16.0 | -82.0 |
-| 789 | 90.0 | 12.0 | -78.0 |
-| 1024 | 100.0 | 22.0 | -78.0 |
-| **Mean** | **97.2** | **13.6** | **-83.6** |
+| Statistic | Value |
+|---|---|
+| n | 20 seeds |
+| BC mean (sample of n=5) | 97.2% |
+| Post-fine-tune mean | 18.4% |
+| Post-fine-tune median | 17.0% |
+| Post-fine-tune sd | 11.5 |
+| Range | 0 to 38% |
+| Per-seed sorted | 0, 0, 4, 8, 8, 12, 14, 14, 16, 16, 18, 20, 22, 24, 26, 26, 28, 36, 38, 38 |
+
+The ~79 pp drop from BC starting accuracy is consistent across the n=20 sweep; variance is substantial (6 of 20 seeds collapse to 0 to 8%, 4 of 20 reach 26 to 38%). The post-fine-tune mean is statistically indistinguishable from from-scratch MLP_DQN (19.3%) and 13 pp below from-scratch SB3 DQN at default LR (31.4%). We test one fine-tune recipe; robustness to lower LR, target-network freeze, zero-exploration, and offline-RL variants (CQL, IQL) is open follow-up.
 
 ## Reproducing the headline
 
@@ -66,7 +69,7 @@ python verify_wall_follower.py
 | Script | Runs | Wall time on RTX 5070 Ti |
 |---|---|---|
 | `launch_modern_baselines.py` | 70 (PPO/DQN/A2C, 3 LRs, 10 seeds) | ~7 hr |
-| `launch_bc_warmstart.py` | 5 seeds (BC + DQN fine-tune) | ~50 min |
+| `launch_bc_warmstart.py` | 20 seeds (BC + DQN fine-tune) | ~32 min (8-way parallel) |
 | `launch_policy_distillation.py` | distillation headline | ~30 min |
 | `launch_ppo_shaped.py` | 10 seeds | ~85 min |
 | `launch_loopy_pilot.py` | 25 (5 agents, 5 seeds) | ~4 min |
@@ -82,7 +85,7 @@ python verify_wall_follower.py
 
 ## What this is and is not
 
-**It is**: a small, well-audited benchmark with one narrow falsifiable claim, backed by ~3,500 runs across 20+ seeds per cell, a complete reproducibility apparatus, and a BC warm-start collapse that did not appear in prior work.
+**It is**: a small, well-audited benchmark with one narrow falsifiable claim, backed by ~3,500 runs across 20+ seeds per cell, a complete reproducibility apparatus, and a BC warm-start probe showing the distilled basin does not survive standard DQN fine-tuning.
 
 **It is not**: a method paper or a result on large-scale environments. The claim is documented at 9x9 mazes and replicated on 4 MiniGrid environments. Larger-scale generalization is open follow-up work.
 

@@ -137,7 +137,7 @@ If DRQN at 9×9 still loses to NoBackRandom, partial observability is not the so
 
 ## 7. Reproducibility
 
-- All code at `github.com/tejas/engram` under Apache-2.0.
+- All code at `github.com/tejasnaladala/maze-rl-baselines` under Apache-2.0.
 - Single-file stats pipeline (`stats_pipeline.py`), seed-aligned paired bootstrap, Holm-Bonferroni.
 - `reproduce.py freeze` → `manifest.json` (SHA-256 per result file).
 - `reproduce.py verify --manifest manifest.json` regenerates headline numbers and fails loud if any file is corrupted or modified.
