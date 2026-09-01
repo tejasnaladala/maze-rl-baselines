@@ -1,13 +1,17 @@
 # Procedural Maze RL Baselines
 
-A small, fully reproducible procedural-maze benchmark with one sharp finding: on the same audited test harness at 9x9 mazes,
+Research code and result artifacts for comparing heuristics, behavior cloning, custom DQN, and Stable-Baselines3 agents on procedurally generated mazes.
 
-- A 5-line egocentric wall-following heuristic solves **100%** of unseen instances.
-- A behavior-cloned MLP (same architecture, observation, and optimizer as the neural DQN) reaches **97.4%**.
-- The best of seven hyperparameter-tuned modern reward-driven baselines (SB3 PPO, DQN, and A2C, three learning rates each, 70 runs total) reaches **31.4%**, statistically tied with uniform Random (32.7%).
-- A behavior-cloning warm-start (initialize the MLP_DQN at the 97% distilled weights, then fine-tune with standard DQN, 20 seeds) drops test success to a post-fine-tune mean of **18.4%** (sd 11.5, median 17.0, range 0 to 38), an approximately 79 pp drop from the 97.2% BC starting accuracy.
-
-The neural policy class can express the maze-solving policy: behavior cloning finds it. Standard reward-driven RL does not discover that policy from random initialization, and the BC initialization does not retain its high-performing basin under standard DQN fine-tuning. The post-fine-tune policy is statistically tied with from-scratch MLP_DQN (19.3%); we test one fine-tune recipe and report robustness to alternatives as open follow-up.
+> [!WARNING]
+> **Artifact reconciliation fails in the current checkout.** Running `python reproduce.py verify --manifest manifest_final.json` exits 1. The current scan contains 2,193 files against the 1,540-file pin: 653 later files are outside the manifest, and three pinned 9x9 headline cells recompute differently.
+>
+> | Cell | Pinned mean success | Current mean success |
+> |---|---:|---:|
+> | `DRQN` | 14.75% | 19.0% |
+> | `MLP_DQN_h32` | 12.0% | 13.6% |
+> | `vanilla__DoubleDQN` | 13.71% | 11.6% |
+>
+> No pinned file is missing or hash-mismatched. `manifest_final.json` is intentionally unchanged; the later files and the three drifting cells require reconciliation before a new pin is created. Tables and papers below record reported experiment outputs. The current artifact set does not pass reconciliation.
 
 ## Paper
 
@@ -15,7 +19,26 @@ The neural policy class can express the maze-solving policy: behavior cloning fi
 - [`PAPER_PREVIEW.pdf`](PAPER_PREVIEW.pdf): 11-page version with appendices.
 - [`paper.md`](paper.md): full working draft (markdown).
 
-## Headline result (9x9)
+## Artifact checks
+
+```bash
+git clone https://github.com/tejasnaladala/maze-rl-baselines
+cd maze-rl-baselines
+pip install -r requirements-experiments.txt
+
+# Current status: exits 1 with 653 files outside the pin and 3 drifting cells.
+python reproduce.py verify --manifest manifest_final.json
+
+# Fast small-budget sweep across agent classes and maze sizes.
+python smoke_test.py
+
+# Independently exercise the 5-line wall follower.
+python verify_wall_follower.py
+```
+
+## Reported results (9x9)
+
+These values are retained as the repository's reported result table. They have not been reconciled with the current artifact set described above.
 
 | Tier | Agent | Mean success (%) | sd | n |
 |---|---|---|---|---|
@@ -29,7 +52,9 @@ The neural policy class can express the maze-solving policy: behavior cloning fi
 | Modern RL (SB3 A2C) | A2C_default | 8.4 | 4.3 | 10 |
 | Modern RL (SB3 PPO, best LR) | PPO_lr3e-4 | 6.0 | 6.9 | 10 |
 
-## BC warm-start: basin not retained under fine-tuning
+The behavior-cloning result tests whether the MLP architecture can represent the oracle policy under supervised training. The reward-driven rows use either the custom implementation or SB3. Only one DQN fine-tuning recipe was tested from the behavior-cloned initialization.
+
+## Reported BC warm-start experiment
 
 Initialize the MLP_DQN online and target networks from the BFS-distilled weights, then fine-tune for 200k steps of standard DQN (epsilon 0.20 to 0.05 over 50k steps). Across 20 seeds, the post-fine-tune mean is 18.4% (sd 11.5), well below the 97.2% BC starting accuracy but statistically tied with from-scratch MLP_DQN (19.3%).
 
@@ -43,26 +68,7 @@ Initialize the MLP_DQN online and target networks from the BFS-distilled weights
 | Range | 0 to 38% |
 | Per-seed sorted | 0, 0, 4, 8, 8, 12, 14, 14, 16, 16, 18, 20, 22, 24, 26, 26, 28, 36, 38, 38 |
 
-The ~79 pp drop from BC starting accuracy is consistent across the n=20 sweep; variance is substantial (6 of 20 seeds collapse to 0 to 8%, 4 of 20 reach 26 to 38%). The post-fine-tune mean is statistically indistinguishable from from-scratch MLP_DQN (19.3%) and 13 pp below from-scratch SB3 DQN at default LR (31.4%). We test one fine-tune recipe; robustness to lower LR, target-network freeze, zero-exploration, and offline-RL variants (CQL, IQL) is open follow-up.
-
-## Reproducing the headline
-
-```bash
-git clone https://github.com/tejasnaladala/maze-rl-baselines
-cd maze-rl-baselines
-pip install -r requirements-experiments.txt
-
-# Re-hash every result file against the pinned manifest, then recompute
-# every numerical claim and compare to the pinned headline.
-python reproduce.py verify --manifest manifest_final.json
-
-# Fast sanity check: every agent class on every maze size, tiny budget.
-# ~2 min on CPU, under 30 s on GPU.
-python smoke_test.py
-
-# Verify the 5-line wall-follower hits 100%.
-python verify_wall_follower.py
-```
+Across the recorded seeds, 6 of 20 finish between 0 and 8%; 4 of 20 finish between 26 and 38%. The reported 18.4% mean is close to the 19.3% from-scratch MLP_DQN result and 13 percentage points below the 31.4% SB3 DQN result. Lower learning rates, a frozen target network, zero exploration, and offline-RL variants such as CQL or IQL remain untested here.
 
 ## Key experiments (re-runnable)
 
@@ -76,18 +82,15 @@ python verify_wall_follower.py
 
 ## Data and reproducibility
 
-- **Result manifest**: [`manifest_final.json`](manifest_final.json) pins a SHA-256 hash of every result file (4,200+ JSON records) plus the pinned headline summary. `reproduce.py verify` re-hashes and recomputes.
+- **Pinned artifact set**: [`manifest_final.json`](manifest_final.json) contains SHA-256 entries for 1,540 result files and a pinned headline summary. The current verifier scan finds 2,193 files; see the reconciliation warning above.
 - **Raw results**: per-experiment JSON under `raw_results/` (e.g. `exp_modern_baselines`, `exp_bc_warmstart`, `exp_wall_following`).
 - **Code-hash pinned** per result. Current main-sweep hash: `ed681d75c27fe352`.
 - **Statistics**: single-file pipeline in [`stats_pipeline.py`](stats_pipeline.py) (paired bootstrap, Mann-Whitney U, Cohen d, Holm-Bonferroni correction, BCa intervals).
-- **20+ seeds per cell** on the headline table.
 - **Harness-bug audit trail**: a real harness bug was caught and fixed during development; the before/after is documented in the paper (section 3.2.1).
 
-## What this is and is not
+## Scope
 
-**It is**: a small, well-audited benchmark with one narrow falsifiable claim, backed by ~3,500 runs across 20+ seeds per cell, a complete reproducibility apparatus, and a BC warm-start probe showing the distilled basin does not survive standard DQN fine-tuning.
-
-**It is not**: a method paper or a result on large-scale environments. The claim is documented at 9x9 mazes and replicated on 4 MiniGrid environments. Larger-scale generalization is open follow-up work.
+The primary study covers 9x9 procedural mazes, with additional experiments on four MiniGrid environments. Larger-scale environments, broader fine-tuning recipes, and reconciliation of the current artifacts remain open work.
 
 ## License
 
